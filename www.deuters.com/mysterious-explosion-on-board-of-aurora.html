@@ -1,175 +1,468 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Explosion aboard Darsenian research vessel injures three | Deuters</title>
+  <meta name="description" content="Equipment fault suspected after explosion aboard Darsenian research vessel. A fictional Deuters report for a wargame.">
+
+  <title>Equipment fault suspected after blast aboard Darsenian research vessel | Deuters</title>
 
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --ink: #17212a;
+      --muted: #606b74;
+      --line: #dce1e4;
+      --orange: #df531d;
+      --paper: #fff;
+      --wash: #f3f5f6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      color: #202830;
-      background: #fff;
-      font-family: Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    header {
-      border-bottom: 1px solid #ddd;
-      padding: 25px max(24px, calc((100% - 1060px) / 2));
+    .wrap {
+      max-width: 1160px;
+      margin: auto;
+      padding: 0 28px;
+    }
+
+    .masthead {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 94px;
+      gap: 20px;
     }
 
     .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-size: 42px;
-      font-weight: bold;
+      font-weight: 750;
       letter-spacing: -2px;
     }
 
-    .brand span { color: #df531d; }
+    .mark {
+      width: 35px;
+      height: 35px;
+      border: 7px dotted var(--orange);
+      border-radius: 50%;
+    }
 
     .edition {
-      color: #65717c;
       font-size: 11px;
-      letter-spacing: 2px;
+      letter-spacing: 1.7px;
       text-transform: uppercase;
-      margin-top: 8px;
+      color: var(--muted);
     }
 
     nav {
-      border-bottom: 1px solid #ddd;
-      padding: 14px 24px;
-      text-align: center;
-      color: #53606b;
-      font-size: 13px;
-      word-spacing: 18px;
+      border-top: 1px solid var(--line);
     }
 
-    main {
-      max-width: 820px;
-      padding: 40px 24px 65px;
-      margin: auto;
+    .nav-items {
+      display: flex;
+      gap: 30px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .nav-items span:first-child {
+      color: var(--orange);
+    }
+
+    .wire {
+      background: var(--wash);
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      padding: 11px 0;
+      line-height: 1.6;
+    }
+
+    .wire strong {
+      color: var(--orange);
+      margin-right: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 780px) 250px;
+      gap: 68px;
+      padding-top: 42px;
+      padding-bottom: 70px;
     }
 
     .section {
-      color: #c74716;
-      font-size: 12px;
+      color: var(--orange);
       font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      margin: 0 0 18px;
     }
 
     h1 {
-      font-size: clamp(32px, 5vw, 47px);
-      line-height: 1.12;
-      letter-spacing: -1px;
-      margin: 18px 0;
+      font-size: clamp(31px, 4vw, 49px);
+      line-height: 1.09;
+      letter-spacing: -1.6px;
+      margin: 0 0 20px;
     }
 
-    .subtitle {
+    .standfirst {
       font-size: 20px;
       line-height: 1.5;
-      color: #5b6570;
+      color: #4c5861;
+      margin: 0 0 25px;
     }
 
     .byline {
       font-size: 13px;
       font-weight: bold;
-      margin-top: 25px;
+      margin-bottom: 9px;
     }
 
     .date {
       font-size: 12px;
-      color: #65717c;
-      margin: 10px 0 26px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .tools {
+      display: flex;
+      gap: 10px;
+      margin: 19px 0 27px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    button {
+      background: #fff;
+      border: 1px solid #bac2c7;
+      border-radius: 3px;
+      padding: 9px 14px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--wash);
+    }
+
+    button:focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 3px;
     }
 
     .summary {
-      background: #f4f5f6;
-      border-left: 3px solid #df531d;
-      padding: 18px 24px;
+      border-left: 3px solid var(--orange);
+      padding: 3px 0 3px 20px;
+      margin: 0 0 30px;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     .summary ul {
       margin: 0;
-      padding-left: 18px;
+      padding-left: 17px;
     }
 
-    .article {
-      font-family: Georgia, serif;
+    .summary li + li {
+      margin-top: 8px;
+    }
+
+    .body {
+      max-width: 680px;
+      font-family: Georgia, "Times New Roman", serif;
       font-size: 19px;
-      line-height: 1.8;
-      margin-top: 30px;
+      line-height: 1.75;
     }
 
-    .article h2 {
-      font-family: Arial, sans-serif;
-      font-size: 22px;
-      margin-top: 32px;
+    .body p {
+      margin: 0 0 23px;
     }
 
-    .credit, footer {
-      font-family: Arial, sans-serif;
-      color: #65717c;
-      font-size: 12px;
-      line-height: 1.7;
-      border-top: 1px solid #ddd;
+    .body h2 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 21px;
+      letter-spacing: -0.4px;
+      margin: 33px 0 15px;
+    }
+
+    .credit {
+      font: 12px/1.7 Arial, Helvetica, sans-serif;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
       padding-top: 20px;
       margin-top: 35px;
     }
 
-    footer {
-      padding: 22px 24px;
-      text-align: center;
+    aside {
+      padding-top: 8px;
+    }
+
+    aside h2 {
+      font-size: 12px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      border-top: 3px solid var(--ink);
+      padding-top: 15px;
       margin-top: 0;
+    }
+
+    .side-story {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .side-story small {
+      display: block;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 9px;
+    }
+
+    .side-story p {
+      font-size: 16px;
+      line-height: 1.45;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .context {
+      background: var(--wash);
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .context h3 {
+      font-size: 14px;
+      margin: 0 0 12px;
+    }
+
+    .context p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 23px 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .foot-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    #share-status {
+      font-size: 12px;
+      color: var(--muted);
+      align-self: center;
+    }
+
+    @media (max-width: 850px) {
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      aside {
+        max-width: 680px;
+      }
+
+      .brand {
+        font-size: 36px;
+      }
+
+      .nav-items {
+        gap: 23px;
+        overflow: auto;
+      }
+
+      .edition {
+        max-width: 110px;
+        text-align: right;
+        line-height: 1.6;
+      }
+
+      .foot-row {
+        display: block;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .layout {
+        padding-top: 28px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .standfirst {
+        font-size: 18px;
+      }
+
+      .body {
+        font-size: 18px;
+      }
+
+      .brand-row {
+        min-height: 80px;
+      }
+
+      .nav-items {
+        gap: 22px;
+        font-size: 12px;
+      }
+
+      .wire {
+        font-size: 11px;
+      }
+    }
+
+    @media print {
+      nav,
+      .wire,
+      .tools,
+      aside {
+        display: none;
+      }
+
+      .layout {
+        display: block;
+        padding-top: 20px;
+      }
+
+      .wrap {
+        max-width: none;
+      }
+
+      .body {
+        max-width: none;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      footer {
+        margin-top: 25px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="brand"><span>●</span> deuters</div>
-    <div class="edition">International news agency</div>
+  <header class="masthead">
+    <div class="wrap brand-row">
+      <div class="brand" aria-label="Deuters">
+        <span class="mark" aria-hidden="true"></span>
+        deuters
+      </div>
+
+      <div class="edition">
+        International edition<br>
+        Independent news wire
+      </div>
+    </div>
+
+    <nav aria-label="Coverage">
+      <div class="wrap nav-items">
+        <span>World</span>
+        <span>Politics</span>
+        <span>Energy</span>
+        <span>Markets</span>
+        <span>Technology</span>
+      </div>
+    </nav>
   </header>
 
-  <nav aria-label="Coverage">
-    World Politics Energy Markets Technology
-  </nav>
+  <div class="wire">
+    <div class="wrap">
+      <strong>Developing story</strong>
+      Research vessel evacuated after explosion in disputed Arctic waters
+    </div>
+  </div>
 
-  <main>
-    <div class="section">World / Arctic region</div>
+  <main class="wrap layout">
+    <article aria-labelledby="headline">
+      <p class="section">World / Arctic region</p>
 
-    <article>
-      <h1>Explosion aboard Darsenian research vessel injures three</h1>
+      <h1 id="headline">
+        Explosion aboard Darsenian research vessel injures three
+      </h1>
 
-      <p class="subtitle">
+      <p class="standfirst">
         Crew evacuates the Aurora near a disputed offshore oil reserve.
         Authorities say the cause remains unknown.
       </p>
 
-      <div class="byline">By Elena Voss | Deuters</div>
+      <div class="byline">
+        By Elena Voss and Mikhail Berg | Deuters
+      </div>
 
+      <!-- Change the publication date and article dates together if needed. -->
       <div class="date">
         Published
-        <time datetime="2026-11-18T07:00:00Z">
-          November 18, 2026 · 07:00 UTC
+        <time datetime="2026-11-18T07:05:00Z">
+          November 18, 2026 · 07:05 UTC
+        </time>
+        <br>
+        Updated
+        <time datetime="2026-11-18T07:05:00Z">
+          November 18, 2026 · 07:05 UTC
         </time>
       </div>
 
-      <div class="summary">
+      <div class="tools">
+        <button type="button" id="copy-link">Copy link</button>
+        <button type="button" id="print">Print article</button>
+        <span role="status" id="share-status"></span>
+      </div>
+
+      <div class="summary" aria-label="Key points">
         <ul>
           <li>Explosion reported at approximately 06:40 UTC</li>
-          <li>Three injuries reported; all crew members accounted for</li>
-          <li>Authorities have not established the cause</li>
+          <li>Three crew members injured; research vessel remains afloat</li>
+          <li>Authorities have not established the cause</li>        
         </ul>
       </div>
 
-      <div class="article">
-        <p>
-          NORTH COAST, Nov 18 (Deuters) — An explosion aboard the
+      <div class="body">
+       NORTH COAST, Nov 18 (Deuters) — An explosion aboard the
           Darsenian scientific vessel <em>Aurora</em> injured three
           crew members early on Wednesday, maritime authorities said,
           interrupting a research mission near an offshore oil reserve
@@ -238,16 +531,67 @@
         </p>
 
         <div class="credit">
-          Reporting by Elena Voss; editing by Anna Kehl.<br>
+          Reporting by Elena Voss and Mikhail Berg; editing by Anna Kehl.
+          <br>
           This report reflects information available at publication.
+        </div>
+
         </div>
       </div>
     </article>
+
+    <aside aria-label="Regional context">
+      <h2>In focus</h2>
+
+      <div class="side-story">
+        <small>ENERGY</small>
+        <p>
+          Offshore discovery puts Arctic boundary dispute back on the agenda
+        </p>
+      </div>
+
+      <div class="side-story">
+        <small>DIPLOMACY</small>
+        <p>
+          Darsenia and Belvaria prepare for emergency bilateral talks
+        </p>
+      </div>
+
+      <div class="context">
+        <h3>The disputed waters</h3>
+        <p>
+          Darsenia and Belvaria claim overlapping maritime areas. The newly
+          identified oil reserve extends across their competing claims.
+          No development agreement has been reached.
+        </p>
+      </div>
+    </aside>
   </main>
 
   <footer>
-    © 2026 Deuters · Fictional wargame publication ·
-    Not affiliated with Reuters.
+    <div class="wrap foot-row">
+      <span>© 2026 Deuters. All rights reserved.</span>
+      <span>
+        Fictional news outlet · Wargame simulation · Not affiliated with Reuters.
+      </span>
+    </div>
   </footer>
+
+  <script>
+    document.getElementById("print").addEventListener("click", () => {
+      window.print();
+    });
+
+    document.getElementById("copy-link").addEventListener("click", async () => {
+      const status = document.getElementById("share-status");
+
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        status.textContent = "Link copied.";
+      } catch {
+        status.textContent = "Copy the address from your browser.";
+      }
+    });
+  </script>
 </body>
 </html>
