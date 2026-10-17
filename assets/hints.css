@@ -5,3 +5,32 @@
   border-radius: 3px;
   padding: 2px 4px;
 }
+.hint-button {
+  padding: 10px 16px;
+  margin-top: 15px;
+  border: 1px solid #996500;
+  border-radius: 5px;
+  background: #fff4ce;
+  color: #3d2c00;
+  font: 600 13px Arial, sans-serif;
+  cursor: pointer;
+}
+
+.hint-button:hover:not(:disabled) {
+  background: #ffe59a;
+}
+
+.hint-button:focus-visible {
+  outline: 3px solid #996500;
+  outline-offset: 3px;
+}
+
+.hint-button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.hint-status {
+  font: 12px/1.6 Arial, sans-serif;
+  color: #59636b;
+}
