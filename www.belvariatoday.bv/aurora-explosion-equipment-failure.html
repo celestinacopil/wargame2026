@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="../assets/hints.css">
+  <script src="../assets/hints.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
@@ -184,10 +186,12 @@
       </div>
 
       <div class="date">
+        <span data-hint="early-knowledge">
         Published
         <time datetime="2026-12-03T07:10:00Z">
           December 3, 2026 · 07:10 UTC
         </time>
+        </span>
       </div>
 
       <div class="article">
@@ -199,9 +203,11 @@
         </p>
 
         <p>
+          <span data-hint="early-knowledge">
           The explosion originated in the compartment housing the
-          vessel’s survey equipment, the source said. An electrical
-          fault in its power system was the most likely cause,
+          vessel’s survey equipment, the source said. 
+          </span> 
+          An electrical fault in its power system was the most likely cause,
           the source added.
         </p>
 
@@ -270,6 +276,15 @@
           Belvaria Today — Maritime security desk.
         </div>
       </div>
+      <br>
+      <button
+  type="button"
+  class="hint-button"
+  data-source="belvaria-today"
+  data-hint-id="early-knowledge"
+>
+  Request a hint
+</button>
     </article>
   </main>
 
