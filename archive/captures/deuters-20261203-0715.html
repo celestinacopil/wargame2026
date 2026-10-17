@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="../../assets/hints.css">
+  <script src="../../assets/hints.js" defer></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
@@ -436,10 +438,12 @@
 
       <!-- Change the publication date and article dates together if needed. -->
       <div class="date">
+         <span data-hint="early-knowledge">
         Published
         <time datetime="2026-12-03T07:05:00Z">
           December 3, 2026 · 07:05 UTC
         </time>
+         </span>
         <br>
       </div>
 
@@ -478,8 +482,11 @@
         </p>
 
         <p>
-          The cause of the explosion and its precise location aboard
-          the vessel have not been established, the statement said.
+          The cause of the explosion and 
+           <span data-hint="early-knowledge">
+             its precise location aboard the vessel have not been established,
+           </span>
+          the statement said.
           A technical inspection will be required once conditions
           permit safe access.
         </p>
@@ -531,7 +538,15 @@
           <br>
           This report reflects information available at publication.
         </div>
-
+        <br>
+        <button
+  type="button"
+  class="hint-button"
+  data-source="deuters-archive"
+  data-hint-id="early-knowledge"
+>
+  Request a hint
+</button>
         </div>
       </div>
     </article>
