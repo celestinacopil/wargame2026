@@ -11,36 +11,23 @@ document.addEventListener("DOMContentLoaded", () => {
     "belvaria-cyber"
   ];
 
-  function getTeam() {
-    let team = null;
+  function getTeam(button) {
+  const requiredTeam = button.dataset.team;
 
-    try {
-      team = sessionStorage.getItem("wargame2026-v2:session");
-    } catch {
-      // Ask below if the session cannot be read.
+  try {
+    const loggedInTeam =
+      sessionStorage.getItem("wargame2026-v2:session");
+
+    if (
+      VALID_TEAMS.includes(requiredTeam) &&
+      loggedInTeam === requiredTeam
+    ) {
+      return requiredTeam;
     }
+  } catch {}
 
-    if (VALID_TEAMS.includes(team)) return team;
-
-    const answer = window.prompt(
-      "Select your team by entering a number:\n\n" +
-      "1: Darsenia government\n" +
-      "2: Darsenia cyber\n" +
-      "3: Belvaria government\n" +
-      "4: Belvaria cyber"
-    );
-
-    if (answer === null) return null;
-
-    const choices = {
-      "1": "darsenia-government",
-      "2": "darsenia-cyber",
-      "3": "belvaria-government",
-      "4": "belvaria-cyber"
-    };
-
-    return choices[answer.trim()] || null;
-  }
+  return null;
+}
 
   function readSaved(key) {
     try {
@@ -131,11 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", async () => {
       if (busy) return;
 
-      const team = getTeam();
+      const team = getTeam(button);
 
       if (!team) {
         status.textContent =
-          "No valid team selected. Click again to choose your team.";
+          "Open this source from the correct team dashboard. Your team session is missing or does not match this challenge.";
         return;
       }
 
