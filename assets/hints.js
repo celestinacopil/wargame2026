@@ -11,22 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "belvaria-cyber"
   ];
 
-  function getTeam(button) {
-  const requiredTeam = button.dataset.team;
-
-  try {
-    const loggedInTeam =
-      sessionStorage.getItem("wargame2026-v2:session");
-
-    if (
-      VALID_TEAMS.includes(requiredTeam) &&
-      loggedInTeam === requiredTeam
-    ) {
-      return requiredTeam;
-    }
-  } catch {}
-
-  return null;
+ function getTeam(button) {
+  const team = button.dataset.team;
+  return VALID_TEAMS.includes(team) ? team : null;
 }
 
   function readSaved(key) {
