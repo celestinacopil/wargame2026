@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="../assets/hints.css">
+  <script src="../assets/hints.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
@@ -179,9 +181,11 @@
         <p><strong>Reference:</strong> DCG/2026/118/02</p>
         <p>
           <strong>Published:</strong>
+          <span data-hint="early-knowledge">
           <time datetime="2026-12-03T08:30:00Z">
             3 December 2026, 08:30 UTC
           </time>
+          </span> 
         </p>
         <p><strong>Status:</strong> Preliminary findings. Investigation ongoing.</p>
       </div>
@@ -196,9 +200,11 @@
 
       <p>
         An initial review of crew statements, onboard alarm records and
-        photographs transmitted from the vessel indicates that the
-        explosion began in the compartment housing the vessel’s
+        photographs transmitted from the vessel indicates that 
+         <span data-hint="early-knowledge">
+        the explosion began in the compartment housing the vessel’s
         survey equipment.
+         </span> 
       </p>
 
       <p>
@@ -206,30 +212,7 @@
         The subsequent fire affected adjacent spaces.
       </p>
 
-      <h2>2. Public release of this finding</h2>
-
-      <div class="notice">
-        This statement, published at 08:30 UTC, is the first official
-        public confirmation of the compartment in which the explosion
-        began.
-      </div>
-
-      <p>
-        Before this statement, neither the DCG nor any other
-        Darsenian government body had publicly identified the affected
-        compartment. No official press briefing, public incident notice
-        or media response had provided that detail.
-      </p>
-
-      <p>
-        The DCG’s initial statement at 06:55 UTC confirmed the
-        explosion, evacuation, reported injuries and condition of the
-        vessel. It stated that the cause and precise location of the
-        explosion aboard the vessel had not been established.
-      </p>
-
-
-      <h2>3. Cause remains undetermined</h2>
+      <h2>2. Cause remains undetermined</h2>
 
       <p>
         Investigators have not determined whether the explosion resulted
@@ -242,6 +225,14 @@
         equipment are required.
       </p>
 
+ <h2>3. Crew and vessel</h2>
+
+      <p>
+        All crew members are accounted for. Three people were injured
+        and are receiving medical care. The vessel remains afloat.
+        Survey operations are suspended.
+      </p>
+      
       <h2>4. Incident and information timeline</h2>
 
       <table>
@@ -258,7 +249,7 @@
             <td>Approximate time of the explosion.</td>
           </tr>
           <tr>
-            <td>06:52</td>
+            <td>06:42</td>
             <td>Distress message received by maritime authorities.</td>
           </tr>
           <tr>
@@ -269,36 +260,31 @@
             </td>
           </tr>
           <tr>
+             <span data-hint="early-knowledge">
             <td>08:10</td>
             <td>
               Investigators confirmed the survey equipment compartment
               as the location of the initial explosion.
             </td>
-          </tr>
-          <tr>
-            <td>08:30</td>
-            <td>
-              This technical update published, identifying the
-              compartment publicly for the first time through
-              official channels.
-            </td>
+             </span>
           </tr>
         </tbody>
       </table>
-
-      <h2>5. Crew and vessel</h2>
-
-      <p>
-        All crew members are accounted for. Three people were injured
-        and are receiving medical care. The vessel remains afloat.
-        Survey operations are suspended.
-      </p>
 
       <div class="signature">
         <strong>Office of Public Information</strong><br>
         Directorate for Maritime Safety and Incident Investigation<br>
         Darsenian Maritime Authority
       </div>
+      <br>
+      <button
+  type="button"
+  class="hint-button"
+  data-source="dcg-later-report"
+  data-hint-id="early-knowledge"
+>
+  Request a hint
+</button>
     </article>
   </main>
 
