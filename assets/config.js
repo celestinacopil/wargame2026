@@ -4,9 +4,9 @@
 window.WARGAME = {
   storagePrefix: "wargame2026-v2:",
   roles: {
-    "darsenia-government": { name: "Darsenia | Government", password: "darsenia-gov2026", page: "teams/darsenia-government.html", country: "Darsenia", cyber: false },
+    "darsenia-government": { name: "Darsenia | Government", password: "darsenia2026", page: "teams/darsenia-government.html", country: "Darsenia", cyber: false },
     "darsenia-cyber": { name: "Darsenia | Cyber team", password: "darsenia2026", page: "teams/darsenia-cyber.html", country: "Darsenia", cyber: true },
-    "belvaria-government": { name: "Belvaria | Government", password: "belvaria-gov2026", page: "teams/belvaria-government.html", country: "Belvaria", cyber: false },
+    "belvaria-government": { name: "Belvaria | Government", password: "belvaria2026", page: "teams/belvaria-government.html", country: "Belvaria", cyber: false },
     "belvaria-cyber": { name: "Belvaria | Cyber team", password: "belvaria2026", page: "teams/belvaria-cyber.html", country: "Belvaria", cyber: true }
   }
 };
