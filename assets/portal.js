@@ -10,7 +10,30 @@
  function save(role,value){memory[role]=value;try{localStorage.setItem(progressKey(role),JSON.stringify(value));return true}catch{return false}}
  function message(el,text,kind=""){el.textContent=text;el.className="message "+kind}
  function normalize(value){return value.trim().toLowerCase()}
- document.querySelectorAll("[data-logout]").forEach(button=>{button.hidden=false;button.addEventListener("click",()=>{try{sessionStorage.removeItem(key)}catch{}location.href=new URL("index.html",base).href})});
+document.querySelectorAll("[data-logout]").forEach(button => {
+  button.hidden = false;
+
+  button.addEventListener("click", () => {
+    // Reset locally saved hints.
+    try {
+      Object.keys(localStorage)
+        .filter(storageKey =>
+          storageKey.startsWith("wargame2026:hint:") ||
+          storageKey.startsWith("wargame2026:logged-hint:")
+        )
+        .forEach(storageKey => {
+          localStorage.removeItem(storageKey);
+        });
+    } catch {}
+
+    // Log out.
+    try {
+      sessionStorage.removeItem(key);
+    } catch {}
+
+    location.href = new URL("index.html", base).href;
+  });
+});
  const required=document.body.dataset.role;
  if(required&&session()!==required){const target=new URL("index.html",base);target.searchParams.set("role",required);location.replace(target.href);return}
  if(document.body.dataset.page==="login"){
