@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="../assets/hints.css">
+  <script src="../assets/hints.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
@@ -238,7 +240,9 @@
         <div>
           <span class="metadata-label">Published</span>
           <time datetime="2026-12-03T06:55:00Z">
+            <span data-hint="early-knowledge">
             3 December 2026 · 06:55 UTC
+            </span> 
           </time>
         </div>
 
@@ -251,7 +255,7 @@
       <div class="statement">
         <p>
           The Darsenian Coast Guard received a distress message at
-          06:52 UTC from the Darsenian scientific vessel
+          06:42 UTC from the Darsenian scientific vessel
           <em>Aurora</em>, reporting an explosion at approximately
           06:40 UTC, followed by a fire.
         </p>
@@ -259,11 +263,6 @@
         <p>
           The crew has evacuated. All crew members are accounted for.
           Three people are reported injured. The vessel remains afloat.
-        </p>
-
-        <p>
-          The <em>Aurora</em> was conducting a civilian geological
-          survey near the disputed maritime boundary.
         </p>
 
         <p>
@@ -276,6 +275,15 @@
         <strong>Office of Public Information</strong><br>
         Darsenian Coast Guard
       </div>
+      <br>
+      <button
+  type="button"
+  class="hint-button"
+  data-source="dcg-initial"
+  data-hint-id="early-knowledge"
+>
+  Request a hint
+</button>
     </article>
   </main>
 
