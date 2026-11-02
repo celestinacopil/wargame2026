@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>DCG mailbox | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script><script src="../../assets/challenge-log-config.js" defer></script></head>
+<body data-page="challenge" data-role="darsenia-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/darsenia-cyber.html">← Back to Darsenia cyber space</a><p class="tag blue">Darsenia / Cyber / DCG mailbox</p>
+  <h1>DCG mailbox</h1>
+  <section class="panel instructions">
+    <h2>Instructions</h2>
+    <p>This is the mailbox of <code>security@dcg.dr</code>, at the Darsenian Coast Guard (DCG). Read each message. Check the sender, the reply address and how urgent the message sounds.</p>
+    <p id="open-instructions" hidden>Report the phishing email. Do not click any link inside it. Each false alarm counts against your team's score.</p>
+    <p id="alert-banner" class="message">No active security alert.</p>
+  </section>
+  <section class="panel">
+    <h2>Inbox: security@dcg.dr <span id="new-badge" class="badge" hidden>1 new</span></h2>
+    <p class="note">Select a message to open it.</p>
+    <p id="false-alarm-counter" class="note" hidden>False alarms: <strong id="false-alarm-count">0</strong></p>
+
+    <details>
+      <summary>Aurora site cordon maintained <span class="badge">3 Dec 2026, 09:05</span></summary>
+      <p class="muted"><strong>From:</strong> coastguard-liaison@dcg.dr<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Aurora site cordon maintained</p>
+      <p>Hello security team,</p>
+      <p>The cordon around the Aurora remains in place. Patrol boats will rotate every six hours. Please keep the usual access list for the quay unchanged until the investigators say otherwise.</p>
+      <p>Coast Guard Liaison Office</p>
+      <p class="note report-note" role="status" hidden>False alarm. This message is legitimate. This counts against your team's score.</p>
+      <div class="actions report-controls" hidden><button type="button" class="button" data-report>Report as phishing</button></div>
+    </details>
+
+    <details>
+      <summary>Updated shift roster (week 50) <span class="badge">3 Dec 2026, 09:40</span></summary>
+      <p class="muted"><strong>From:</strong> hr@dcg.dr<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Updated shift roster (week 50)</p>
+      <p>Hello,</p>
+      <p>The shift roster for next week is now on the staff intranet. Night shifts at the operations room have changed. Please check your shifts and tell HR about any problem by Friday.</p>
+      <p>Roster: <a href="#" data-inert-link>https://portal.dcg.dr/roster</a></p>
+      <p>Human Resources</p>
+      <p class="note link-note" role="status" hidden>This page is not available in the exercise.</p>
+      <p class="note report-note" role="status" hidden>False alarm. This message is legitimate. This counts against your team's score.</p>
+      <div class="actions report-controls" hidden><button type="button" class="button" data-report>Report as phishing</button></div>
+    </details>
+
+    <details id="mail-alert" hidden>
+      <summary>Urgent: reset your password within 2 hours after the Aurora incident <span class="badge">3 Dec 2026, 10:15</span></summary>
+      <p class="muted"><strong>From:</strong> it-support@dcg-portal.dr<br><strong>Reply-To:</strong> d.kova@mail.bv<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Urgent: reset your password within 2 hours after the Aurora incident</p>
+      <p>Dear colleague,</p>
+      <p>Because of the Aurora incident, all DCG accounts must be checked. You must reset your password within 2 hours. If you do not, your account will be locked.</p>
+      <p>Reset your password here: <a id="trap-link" href="#">http://dcg-portal.dr/login</a></p>
+      <p>IT Support</p>
+      <div class="actions report-controls" hidden><button type="button" class="button" data-report>Report as phishing</button></div>
+    </details>
+
+    <details>
+      <summary>Question about the Aurora <span class="badge">3 Dec 2026, 10:50</span></summary>
+      <p class="muted"><strong>From:</strong> a.renn@deuters.com<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Question about the Aurora</p>
+      <p>Hello,</p>
+      <p>I am a reporter at Deuters. Can DCG confirm whether the Aurora is still under guard? I would like to quote your press office. I need an answer by 14:00 today for the evening edition. Please send my request to them if you are not the right contact.</p>
+      <p>A. Renn, Deuters</p>
+      <p class="note report-note" role="status" hidden>False alarm. This message is legitimate. This counts against your team's score.</p>
+      <div class="actions report-controls" hidden><button type="button" class="button" data-report>Report as phishing</button></div>
+    </details>
+
+    <details>
+      <summary>Invoice 2026-1187 <span class="badge">3 Dec 2026, 11:20</span></summary>
+      <p class="muted"><strong>From:</strong> billing@northsea-supply.dr<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Invoice 2026-1187</p>
+      <p>Hello,</p>
+      <p>The invoice for November deliveries is attached. Payment is due in 30 days, as usual. Our bank details have not changed.</p>
+      <p>Attachment: <a href="#" data-inert-link>invoice-2026-1187.pdf</a> (84 KB)</p>
+      <p>Northsea Supply, Billing</p>
+      <p class="note link-note" role="status" hidden>This page is not available in the exercise.</p>
+      <p class="note report-note" role="status" hidden>False alarm. This message is legitimate. This counts against your team's score.</p>
+      <div class="actions report-controls" hidden><button type="button" class="button" data-report>Report as phishing</button></div>
+    </details>
+  </section>
+  <section class="panel" id="decision-panel" hidden>
+    <h2>Decision</h2>
+    <p id="decision-note" class="note">Decision recorded.</p>
+    <div data-outcome="win" hidden>
+      <p class="success">Correct. You reported the malicious email. Reported in time: intrusion blocked.</p>
+      <p>These are the tells:</p>
+      <ul>
+        <li>The sender domain <code>dcg-portal.dr</code> is not the real staff portal <code>portal.dcg.dr</code>, and it is not the official site <code>dcg.dr</code>.</li>
+        <li>The reply address is on a <code>.bv</code> (Belvaria) domain.</li>
+        <li>The message uses fake urgency: a 2-hour deadline.</li>
+        <li>The login link uses <code>http</code>, not <code>https</code>.</li>
+      </ul>
+      <p>Also, DCG never asks for a password reset by email.</p>
+    </div>
+    <div data-outcome="phished" hidden>
+      <p class="error">You clicked the link in the phishing email. Belvaria is in.</p>
+    </div>
+    <p>False alarms: <strong id="final-false-alarms">0</strong></p>
+    <form id="flag-form" hidden><div hidden><label for="flag">Flag</label><input id="flag" type="text" autocomplete="off" required></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p>
+  </section>
+  <dialog id="lose-dialog" aria-labelledby="lose-title" style="max-width:560px;background:var(--panel);color:var(--text);border:1px solid #ffaaaa;border-radius:10px;padding:25px">
+    <h2 id="lose-title" class="error">You clicked a phishing link</h2>
+    <p>The domain was <code>dcg-portal.dr</code>. It is not the real staff portal <code>portal.dcg.dr</code>, and it is not the official site <code>dcg.dr</code>. The reply address was on <code>.bv</code>. The message used fake urgency and an <code>http</code> link.</p>
+    <p>In the game, Belvaria is now inside DCG.</p>
+    <div class="actions"><button type="button" class="button primary" id="lose-close">Close</button></div>
+  </dialog><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+  var mail = document.getElementById("mail-alert");
+  if (new URLSearchParams(location.search).get("alerte") !== "on") {
+    mail.remove();
+    return;
+  }
+
+  var banner = document.getElementById("alert-banner");
+  var panel = document.getElementById("decision-panel");
+  var dialog = document.getElementById("lose-dialog");
+  var buttons = document.querySelectorAll("[data-report]");
+  var links = document.querySelectorAll("#trap-link, [data-inert-link]");
+  var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
+  var key = prefix + "decision:" + document.body.dataset.role + ":dcg-inbox";
+  var memory = null;
+  var locked = false;
+  var falseAlarms = 0;
+
+  function logEvent(name) {
+    var url = window.CHALLENGE_LOG_URL;
+    if (!url) return;
+    try {
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          type: "challenge-event",
+          team: "darsenia-cyber",
+          challenge: "darsenia-dcg-inbox",
+          event: name,
+          falseAlarms: falseAlarms,
+          ts: new Date().toISOString()
+        })
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  function stored() {
+    try {
+      var value = JSON.parse(localStorage.getItem(key));
+      if (value && (value.outcome === "win" || value.outcome === "phished")) return value;
+    } catch (e) {}
+    return memory;
+  }
+
+  function remember(outcome) {
+    memory = { outcome: outcome, falseAlarms: falseAlarms, at: new Date().toISOString() };
+    try { localStorage.setItem(key, JSON.stringify(memory)); } catch (e) {}
+  }
+
+  function showCount() {
+    document.getElementById("false-alarm-count").textContent = falseAlarms;
+    document.getElementById("final-false-alarms").textContent = falseAlarms;
+  }
+
+  function lock(outcome, fresh) {
+    locked = true;
+    buttons.forEach(function (button) { button.disabled = true; });
+    links.forEach(function (link) {
+      link.setAttribute("aria-disabled", "true");
+      link.tabIndex = -1;
+      link.style.opacity = "0.6";
+    });
+    panel.querySelectorAll("[data-outcome]").forEach(function (block) {
+      block.hidden = block.dataset.outcome !== outcome;
+    });
+    showCount();
+    panel.hidden = false;
+    banner.textContent = "Decision recorded. The mailbox is locked.";
+    if (!fresh) return;
+    if (outcome === "win") {
+      document.getElementById("flag").value = "FLAG{email3_dcg-portal.dr}";
+      document.getElementById("flag-form").requestSubmit();
+    } else if (typeof dialog.showModal === "function") {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute("open", "");
+    }
+    panel.scrollIntoView({ block: "center" });
+  }
+
+  function decide(outcome) {
+    if (locked) return;
+    remember(outcome);
+    lock(outcome, true);
+    logEvent(outcome === "win" ? "report-correct" : "link-clicked");
+  }
+
+  banner.textContent = "Security alert: 1 new message needs review.";
+  banner.className = "message error";
+  document.getElementById("open-instructions").hidden = false;
+  document.getElementById("false-alarm-counter").hidden = false;
+  mail.hidden = false;
+  document.getElementById("new-badge").hidden = false;
+  document.querySelectorAll(".report-controls").forEach(function (box) { box.hidden = false; });
+
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      if (locked) return;
+      var email = button.closest("details");
+      if (email === mail) {
+        decide("win");
+        return;
+      }
+      falseAlarms += 1;
+      button.disabled = true;
+      email.querySelector(".report-note").hidden = false;
+      showCount();
+      logEvent("report-false-alarm");
+    });
+  });
+
+  document.getElementById("trap-link").addEventListener("click", function (event) {
+    event.preventDefault();
+    decide("phished");
+  });
+
+  document.querySelectorAll("[data-inert-link]").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (locked) return;
+      link.closest("details").querySelector(".link-note").hidden = false;
+    });
+  });
+
+  document.getElementById("lose-close").addEventListener("click", function () { dialog.close(); });
+
+  var previous = stored();
+  if (previous) {
+    falseAlarms = previous.falseAlarms || 0;
+    lock(previous.outcome, false);
+  }
+});
+</script>
+<script id="challenge-data" type="application/json">{
+  "id": "dcg-inbox",
+  "enabled": true,
+  "acceptedFlags": [
+    "FLAG{email3_dcg-portal.dr}"
+  ],
+  "feedback": "Correct. Reported in time: intrusion blocked. If it is missed or the link is clicked, Belvaria gets in."
+}</script></body></html>

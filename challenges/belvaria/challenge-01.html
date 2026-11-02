@@ -1,8 +1,73 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
-<body data-page="challenge" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 01</p><h1>Awaiting briefing</h1><span class="badge">Not released</span><section class="panel instructions"><h2>Instructions</h2><p>This challenge has not been released. Wait for the organisers to provide instructions.</p></section><section class="panel"><h2>Evidence</h2><p class="muted">No evidence released yet.</p><!-- Add evidence links here. --></section><section class="panel"><h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main><script id="challenge-data" type="application/json">{
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script><script src="../../assets/challenge-log-config.js" defer></script></head>
+<body data-page="challenge" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 01</p>
+  <h1>Prepare the lure</h1>
+  <span class="badge">Available</span>
+  <section class="panel instructions">
+    <h2>Instructions</h2>
+    <p>You want DCG staff to land on a fake login that looks like their real one. Using DCG's public pages only, work out three things and submit the third as your flag:</p>
+    <ol>
+      <li>DCG's official website domain.</li>
+      <li>DCG's real staff portal address (a subdomain of it).</li>
+      <li>A look-alike domain you could register that staff might confuse with the real portal.</li>
+    </ol>
+    <p>Everything stays inside the game. Do not register a real domain and do not send a real message.</p>
+    <p>Flag format: <code>FLAG{look-alike-domain}</code></p>
+  </section>
+  <section class="panel">
+    <h2>How look-alike domains work</h2>
+    <p>The real staff portal is a subdomain of the real domain (word + dot + domain), controlled by the real owner. A look-alike is a separate domain you register that reuses the same words in a different shape.</p>
+    <p>To build one from a subdomain: take the subdomain word, move it to the front, join it to the main name with a hyphen, keep the ending.</p>
+    <p>Example (a different company): real portal <code>mail.northstar.dr</code> becomes look-alike <code>northstar-mail.dr</code>.</p>
+  </section>
+  <section class="panel">
+    <h2>Evidence</h2>
+    <ul class="resource-list">
+      <li>
+        <a href="../../www.dcg.dr/statement-03-12-26.html" target="_blank" rel="noopener noreferrer">DCG initial statement on the Aurora incident</a>
+      </li>
+      <li>
+        <a href="../../www.dcg.dr/coast-guard-report-03-12-26.html" target="_blank" rel="noopener noreferrer">DCG preliminary technical update on the Aurora incident</a>
+      </li>
+    </ul>
+  </section>
+  <section class="panel">
+      <h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+  function logEvent(payload) {
+    var url = window.CHALLENGE_LOG_URL;
+    if (!url) return;
+    try {
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  document.addEventListener("submit", function (event) {
+    if (!event.target || event.target.id !== "flag-form") return;
+    var input = document.getElementById("flag");
+    if (!input || input.value.trim().toLowerCase() !== "flag{dcg-portal.dr}") return;
+    logEvent({
+      type: "challenge-event",
+      team: "belvaria-cyber",
+      challenge: "belvaria-01",
+      event: "solved",
+      ts: new Date().toISOString()
+    });
+  }, true);
+});
+</script>
+<script id="challenge-data" type="application/json">{
   "id": "challenge-01",
-  "enabled": false,
-  "acceptedFlags": [],
-  "feedback": "Correct flag."
+  "enabled": true,
+  "acceptedFlags": [
+    "FLAG{dcg-portal.dr}"
+  ],
+  "feedback": "Correct. This look-alike domain is your lure. The organisers will now plant an email using it in the DCG (Darsenia) mailbox. You have launched the attack, but you have not won yet: you win this challenge only if Darsenia clicks the link or fails to report the email before the round ends. If they spot it and report it, your attempt is blocked. You will find out next round."
 }</script></body></html>
