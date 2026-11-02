@@ -1,8 +1,127 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 06 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
-<body data-page="challenge" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 06</p><h1>Awaiting briefing</h1><span class="badge">Not released</span><section class="panel instructions"><h2>Instructions</h2><p>This challenge has not been released. Wait for the organisers to provide instructions.</p></section><section class="panel"><h2>Evidence</h2><p class="muted">No evidence released yet.</p><!-- Add evidence links here. --></section><section class="panel"><h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main><script id="challenge-data" type="application/json">{
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 06 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script><script src="../../assets/challenge-log-config.js" defer></script></head>
+<body data-page="challenge" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 06</p>
+  <h1>Control panel</h1>
+  <span class="badge">Available</span>
+  <section class="panel instructions">
+    <h2>Instructions</h2>
+    <p>Both teams race to seize a shared offshore control panel. It holds a photo that identifies the ship that attacked the Aurora. The first team to crack the panel PIN and take control gets the proof. The other team is locked out of it for the rest of the phase.</p>
+    <p>The panel PIN is the time (UTC, four digits, no colon) when investigators confirmed the location of the explosion.</p>
+    <p>You can try as many times as you need. A wrong PIN has no penalty.</p>
+  </section>
+  <section class="panel">
+    <h2>Evidence</h2>
+    <ul class="resource-list">
+      <li>
+        <a href="../../www.dcg.dr/coast-guard-report-03-12-26.html" target="_blank" rel="noopener noreferrer">Official report from Darsenia's Coast Guard</a>
+      </li>
+    </ul>
+  </section>
+  <section class="panel">
+      <h2>Enter the panel PIN</h2><form id="flag-form" hidden><label for="flag">PIN</label><input id="flag" type="text" inputmode="numeric" maxlength="4" placeholder="0000" autocomplete="off" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary" id="pin-submit">Check PIN</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p></section>
+  <section class="panel" id="control-panel" hidden>
+    <h2>Control panel</h2>
+    <p>Clicking this records your control claim with a timestamp. The first team to claim wins. The organisers confirm the winner.</p>
+    <div class="actions"><button type="button" class="button primary" id="claim-button">Change Admin Password (take control)</button></div>
+    <p id="claim-message" class="message" role="status"></p>
+  </section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+  var TEAM = "belvaria-cyber";
+  var PIN = "0810";
+  var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
+  var key = prefix + "control:" + document.body.dataset.role + ":challenge-06";
+  var memory = {};
+  var panel = document.getElementById("control-panel");
+  var button = document.getElementById("claim-button");
+  var message = document.getElementById("claim-message");
+
+  function load() {
+    try {
+      var value = JSON.parse(localStorage.getItem(key));
+      if (value && typeof value === "object") return value;
+    } catch (e) {}
+    return memory;
+  }
+
+  function save(value) {
+    memory = value;
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+
+  function logEvent(payload) {
+    var url = window.CHALLENGE_LOG_URL;
+    if (!url) return;
+    try {
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  function clock(date) {
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    return pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":" + pad(date.getSeconds());
+  }
+
+  function showClaim(date) {
+    message.textContent = "Control claim recorded at " + clock(date) + ". Await the organisers' confirmation.";
+    message.className = "message success";
+    button.disabled = true;
+    var input = document.getElementById("flag");
+    var submit = document.getElementById("pin-submit");
+    if (input) input.disabled = true;
+    if (submit) submit.disabled = true;
+  }
+
+  document.addEventListener("submit", function (event) {
+    if (!event.target || event.target.id !== "flag-form") return;
+    var input = document.getElementById("flag");
+    if (!input) return;
+    if (input.value.trim() !== PIN) {
+      setTimeout(function () {
+        var status = document.getElementById("flag-message");
+        status.textContent = "Incorrect. Keep working.";
+      }, 0);
+      return;
+    }
+    var state = load();
+    state.pinOk = true;
+    save(state);
+    panel.hidden = false;
+  }, true);
+
+  button.addEventListener("click", function () {
+    var state = load();
+    if (state.claimedAt) return;
+    var now = new Date();
+    state.pinOk = true;
+    state.claimedAt = now.toISOString();
+    save(state);
+    showClaim(now);
+    logEvent({
+      type: "challenge-event",
+      team: TEAM,
+      challenge: "challenge-06",
+      event: "claim",
+      ts: now.toISOString()
+    });
+  });
+
+  var previous = load();
+  if (previous.pinOk) panel.hidden = false;
+  if (previous.claimedAt) showClaim(new Date(previous.claimedAt));
+});
+</script>
+<script id="challenge-data" type="application/json">{
   "id": "challenge-06",
-  "enabled": false,
-  "acceptedFlags": [],
-  "feedback": "Correct flag."
+  "enabled": true,
+  "acceptedFlags": [
+    "0810"
+  ],
+  "feedback": "PIN accepted. The control panel is open below."
 }</script></body></html>
