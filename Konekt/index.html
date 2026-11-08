@@ -25,13 +25,30 @@ h1{font-size:25px;margin:0 0 7px;color:#1c1e21}h2{font-size:18px;margin:0 0 12px
 .noresult{padding:14px;background:#f7f8fa;border-radius:7px;color:#65676b;font-size:13px}
 @media(max-width:850px){.layout{grid-template-columns:210px minmax(0,1fr)}.rightcol{display:none}}
 @media(max-width:620px){.layout{grid-template-columns:1fr}.leftcol{display:none}.toplabel{display:none}.topbar{padding:0 10px}.searchform{width:auto;flex:1}.page{padding:0 9px}}
-</style></head><body>
+</style>
+
+  <script src="catalog.js" defer></script>
+  <script src="search.js" defer></script>
+   
+</head>
+  
+  
+  <body>
 <div class="topbar">
   <div class="logo">k</div>
-  <form class="searchform" id="searchForm" role="search">
-    <input id="searchInput" type="search" placeholder="Search Konekt" aria-label="Search Konekt" autocomplete="off">
-    <button type="submit">Search</button>
-  </form>
+
+
+
+  <form id="konekt-form"><label for="url">Person</label><div class="search-row">
+    <input id="url" name="url" type="text" placeholder="John Doe" autocomplete="url" spellcheck="false" required>
+    <button type="submit">Search</button></div></form>
+  <p class="hint">Look up people you found out throughout your investigation.</p>
+  <p id="status" role="status"></p><section id="results" hidden aria-labelledby="results-title">
+    <h2 id="results-title">Profiles that match your search</h2><p id="result-url" class="address"></p>
+    <div id="capture-list"></div></section><noscript><p>Enable JavaScript to search the archive.</p>
+    </noscript> 
+
+  
   <div class="toplabel">Konekt · Belvaria</div>
 </div>
 <main class="page">
@@ -76,37 +93,5 @@ h1{font-size:25px;margin:0 0 7px;color:#1c1e21}h2{font-size:18px;margin:0 0 12px
     </aside>
   </div>
 </main>
-<script>
-const known = {
-  "elena varek": {name:"Elena Varek", initials:"EV", detail:"1,284 friends · Public profile", href:"elena-varek.html", about:"Vardos, Belvaria · Vesta Advisory"},
-  "elena": {name:"Elena Varek", initials:"EV", detail:"1,284 friends · Public profile", href:"elena-varek.html", about:"Vardos, Belvaria · Vesta Advisory"}
-};
-const unrelated = [
-  ["Elena Varga","EV","Vardos · Photographer"],
-  ["E. Varek","EV","Belvaria · Private account"],
-  ["Varek Elena Studio","VS","Vardos · Design and photography"]
-];
-function searchPeople(q){
-  const box=document.getElementById("searchResults");
-  const key=q.trim().toLowerCase().replace(/\s+/g," ");
-  if(!key){box.hidden=true;return;}
-  box.hidden=false;
-  let html='<h2>Search results</h2><p class="muted">People matching “'+escapeHtml(q.trim())+'”</p>';
-  if(key==="elena varek" || key==="elena"){
-    const p=known[key];
-    html+='<div class="result"><div class="avatar">'+p.initials+'</div><div><a href="'+p.href+'">'+p.name+'</a><div class="muted">'+p.detail+'</div><div class="muted">'+p.about+'</div></div></div>';
-  }else{
-    const matches=unrelated.filter(x=>(x[0]+" "+x[2]).toLowerCase().includes(key));
-    const list=matches.length?matches:unrelated;
-    html+='<p class="muted">No exact match found. Here are some suggested people:</p>';
-    list.forEach(x=>{html+='<div class="result"><div class="avatar">'+x[1]+'</div><div><b>'+x[0]+'</b><div class="muted">'+x[2]+'</div><div class="muted">Suggested profile · Not available</div></div></div>';});
-    html+='<div class="noresult">These suggested profiles are not exact matches. Try another name.</div>';
-  }
-  box.innerHTML=html;
-  box.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
-function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();searchPeople(document.getElementById("searchInput").value);});
-document.getElementById("searchInput").addEventListener("input",e=>{if(!e.target.value.trim())document.getElementById("searchResults").hidden=true;});
-</script>
+
 </body></html>
