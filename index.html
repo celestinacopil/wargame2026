@@ -1,65 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  
-  <head>
-    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
-  <title>Team access | Arctic Crisis</title>
-  <link rel="stylesheet" href="assets/style.css"><script src="assets/config.js" defer></script><script src="assets/portal.js" defer></script>
-  </head>
-  
-<body data-page="login"><main class="container">
-  <header class="masthead">
-    <div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p>
-      <a class="brand" href="index.html">ARCTIC CRISIS</a>
-    </div><button class="button" type="button" data-logout hidden>Exit space</button>
-  </header><h1>Choose your space</h1>
-  <p class="muted">Select your country and team. Enter the password provided by the organisers.</p>
-  
-  <section id="role-grid" class="grid" aria-label="Team spaces">
-    <button type="button" class="card" data-choice="darsenia-government">
-      <span class="tag blue">Darsenia</span>
-      <h2>Government</h2>
-      <p>Enter your dedicated team space.</p>
-    </button>
-    <button type="button" class="card" data-choice="darsenia-cyber">
-      <span class="tag blue">Darsenia</span>
-      <h2>Cyber team</h2>
-      <p>Enter your dedicated team space.</p>
-    </button>
-    <button type="button" class="card" data-choice="belvaria-government">
-      <span class="tag red">Belvaria</span>
-      <h2>Government</h2>
-      <p>Enter your dedicated team space.</p>
-    </button>
-    <button type="button" class="card" data-choice="belvaria-cyber">
-      <span class="tag red">Belvaria</span><h2>Cyber team</h2>
-      <p>Enter your dedicated team space.</p>
-    </button>
-  </section>
-  
-  <section id="login-panel" class="panel login" hidden>
-    <h2 id="login-title"></h2>
-    <form id="login-form">
-      <label for="password">Team password</label>
-      <input id="password" type="password" autocomplete="current-password" aria-describedby="login-message" required>
-      <p id="login-message" class="message" role="alert"></p>
-      <div class="actions">
-        <button type="submit" class="button primary">Enter space</button>
-        <button type="button" class="button" id="change-role">Change team</button>
-      </div>
-    </form></section>
-  <noscript>
-    <p class="panel">Enable JavaScript to use this portal.</p>
-  </noscript>
-
-  <p>
-  <a class="button" href="organisers.html">
-    Organiser control room
-  </a>
-  </p>
-  
-  <footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer>
-
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belvarian Business Register</title>
+<style>
+:root{--navy:#17324d;--blue:#245b83;--ink:#243342;--muted:#687887;--line:#d9e0e6;--bg:#f3f6f8;--white:#fff;--gold:#b58a35}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Arial,Helvetica,sans-serif}
+header{background:var(--navy);color:#fff;border-bottom:4px solid var(--gold)}
+.top{max-width:1120px;margin:auto;padding:20px 24px;display:flex;align-items:center;gap:16px}
+.crest{width:46px;height:46px;border:2px solid #d6c08a;border-radius:50%;display:grid;place-items:center;font-weight:bold;color:#e8d7a8;font-size:20px}
+.brand small{display:block;color:#c7d3dd;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+.brand strong{font-size:21px;letter-spacing:.01em}
+nav{background:#10283d;color:#dbe5ed}
+nav .navinner{max-width:1120px;margin:auto;padding:9px 24px;font-size:13px}
+main{max-width:1120px;margin:28px auto;padding:0 24px}
+.breadcrumb{font-size:12px;color:var(--muted);margin-bottom:18px}
+.hero{background:#fff;border:1px solid var(--line);padding:28px;border-radius:5px;margin-bottom:20px}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);font-weight:bold}
+h1{font-size:29px;line-height:1.2;margin:8px 0 10px;color:var(--navy)}
+.lead{color:#536473;max-width:760px;margin:0}
+.searchbox{margin-top:24px;display:flex;gap:8px;max-width:780px}
+input{flex:1;min-width:0;padding:14px 15px;border:1px solid #aebbc6;border-radius:4px;font-size:15px}
+input:focus{outline:3px solid #b8d5e8;border-color:var(--blue)}
+button{border:0;background:var(--blue);color:#fff;padding:0 22px;border-radius:4px;font-weight:bold;cursor:pointer}
+button:hover{background:#194667}
+.hint{font-size:12px;color:var(--muted);margin-top:9px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:5px;margin:18px 0}
+.panelhead{padding:15px 19px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.panelhead h2{font-size:17px;margin:0;color:var(--navy)}
+.panelbody{padding:18px 19px}
+.results{display:grid;gap:10px}
+.result{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);padding:15px;border-radius:4px}
+.result:hover{border-color:var(--blue);background:#f8fbfd}
+.result strong{display:block;color:var(--blue);font-size:16px}
+.meta{font-size:12px;color:var(--muted);margin-top:4px}
+.pill{display:inline-block;font-size:11px;padding:3px 8px;border-radius:20px;background:#e8f1eb;color:#28633b;font-weight:bold}
+.empty{padding:20px;text-align:center;color:var(--muted);background:#fafbfc;border:1px dashed var(--line)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.quick div{background:#f7f9fa;border:1px solid var(--line);padding:14px;border-radius:4px}
+.quick b{display:block;color:var(--navy);font-size:13px;margin-bottom:5px}
+.quick span{font-size:12px;color:var(--muted)}
+footer{max-width:1120px;margin:38px auto 0;padding:20px 24px 32px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
+@media(max-width:650px){.top{padding:16px}.brand strong{font-size:17px}main{padding:0 14px;margin-top:18px}.hero{padding:20px}.searchbox{flex-direction:column}button{padding:13px}.quick{grid-template-columns:1fr}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="crest">B</div><div class="brand"><small>Ministry of Justice · Republic of Belvaria</small><strong>Belvarian Business Register</strong></div></div></header>
+<nav><div class="navinner">Home　/　Company search</div></nav>
+<main>
+<div class="breadcrumb">PUBLIC REGISTERS &nbsp;›&nbsp; BUSINESS REGISTER &nbsp;›&nbsp; SEARCH</div>
+<section class="hero">
+<div class="eyebrow">Official company information service</div>
+<h1>Search the Business Register</h1>
+<p class="lead">Search registered legal entities and consult publicly available company information, registration details and filed documents. Records are provided for information purposes and may not reflect recent changes.</p>
+<form class="searchbox" id="searchForm">
+<input id="query" type="search" placeholder="Enter company name, registration number or keyword" autocomplete="off" aria-label="Search companies">
+<button type="submit">Search register</button>
+</form>
+<div class="hint">Examples: Belvarian Maritime, Vesta Holdings, BV-2019-08421</div>
+</section>
+<section class="panel">
+<div class="panelhead"><h2>Search results</h2><span id="count" class="meta">2 entities indexed</span></div>
+<div class="panelbody"><div id="results" class="results" aria-live="polite">
+<a class="result" href="company-belvarian-maritime.html"><strong>Belvarian Maritime Ltd.</strong><span class="meta">BV-2019-08421 · Private Limited Company · Vardos</span><div style="margin-top:8px"><span class="pill">Active</span></div></a>
+<a class="result" href="company-vesta-holdings.html"><strong>Vesta Holdings Ltd.</strong><span class="meta">BV-2021-03117 · Private Limited Company · Vardos</span><div style="margin-top:8px"><span class="pill">Active</span></div></a>
+</div></div>
+</section>
+<section class="panel">
+<div class="panelhead"><h2>About this register</h2></div>
+<div class="panelbody">
+<div class="quick">
+<div><b>Company records</b><span>Registration details, legal status and registered office information.</span></div>
+<div><b>Filed documents</b><span>Selected annual returns, notices and incorporation records.</span></div>
+<div><b>Record limitations</b><span>Not all filings or beneficial ownership details are publicly accessible.</span></div>
+</div>
+<p class="hint" style="margin-top:16px">The register is a fictional training environment. All entities, persons, addresses and registration details are invented.</p>
+</div>
+</section>
 </main>
-</body>
-</html>
+<footer>Belvarian Business Register · Public Information Portal · Version 2.4.1<br>© 2026 Republic of Belvaria · This is a fictional environment created for a wargame exercise.</footer>
+<script>
+const entities=[
+{name:"Belvarian Maritime Ltd.",number:"BV-2019-08421",type:"Private Limited Company",city:"Vardos",status:"Active",href:"company-belvarian-maritime.html",keywords:"maritime shipping transport logistics petroleum vessel"},
+{name:"Vesta Holdings Ltd.",number:"BV-2021-03117",type:"Private Limited Company",city:"Vardos",status:"Active",href:"company-vesta-holdings.html",keywords:"holding investment management"}
+];
+const form=document.getElementById('searchForm'), input=document.getElementById('query'), results=document.getElementById('results'), count=document.getElementById('count');
+function search(q){
+ const term=q.trim().toLowerCase();
+ const found=term?entities.filter(e=>(e.name+" "+e.number+" "+e.type+" "+e.city+" "+e.keywords).toLowerCase().includes(term)):entities;
+ count.textContent=found.length+" entr"+(found.length===1?"y":"ies")+" found";
+ results.innerHTML="";
+ if(!found.length){results.innerHTML='<div class="empty">No matching entities were found. Check the spelling or try a registration number.</div>';return;}
+ found.forEach(e=>{const a=document.createElement('a');a.className='result';a.href=e.href;
+ const strong=document.createElement('strong');strong.textContent=e.name;
+ const meta=document.createElement('span');meta.className='meta';meta.textContent=e.number+" · "+e.type+" · "+e.city;
+ const status=document.createElement('div');status.style.marginTop='8px';status.innerHTML='<span class="pill">'+e.status+'</span>';
+ a.append(strong,meta,status);results.appendChild(a);});
+}
+form.addEventListener('submit',e=>{e.preventDefault();search(input.value)});
+input.addEventListener('input',()=>search(input.value));
+</script>
+</body></html>
