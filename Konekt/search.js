@@ -7,7 +7,7 @@
  function search(event){
   if(event)event.preventDefault();results.hidden=true;list.replaceChildren();
   let key;try{key=normalize(input.value)}catch(error){status.textContent=error.message;return}
-  const page=window.ARCHIVE_CATALOG.find(page=>normalize(page.originalUrl)===key);
+  const page=window.KONEKT_CATALOG.find(page=>normalize(page.originalUrl)===key);
   if(!page){status.textContent="No person with this name was found. Try another";return}
   status.textContent=page.captures.length+" archived capture"+(page.captures.length===1?"":"s")+" found.";
   document.getElementById("result-url").textContent=page.originalUrl;
