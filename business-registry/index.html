@@ -89,8 +89,7 @@ const entities=[
 const form=document.getElementById('searchForm'), input=document.getElementById('query'), results=document.getElementById('results'), count=document.getElementById('count');
 function search(q){
  const term=q.trim().toLowerCase();
- const found=term?entities.filter(e=>(e.name+" "+e.number+" "+e.type+" "+e.city+" "+e.keywords).toLowerCase().includes(term)):entities;
- count.textContent=found.length+" entr"+(found.length===1?"y":"ies")+" found";
+const found=term?entities.filter(e=>(e.name+" "+e.number+" "+e.type+" "+e.city+" "+e.keywords).toLowerCase().includes(term)):[]; count.textContent=found.length+" entr"+(found.length===1?"y":"ies")+" found";
  results.innerHTML="";
  if(!found.length){results.innerHTML='<div class="empty">No matching entities were found. Check the spelling or try a registration number.</div>';return;}
  found.forEach(e=>{const a=document.createElement('a');a.className='result';a.href=e.href;
