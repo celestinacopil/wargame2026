@@ -49,13 +49,309 @@ document.querySelectorAll("[data-logout]").forEach(button => {
   document.querySelectorAll("[data-challenge]").forEach(card=>{if(done[card.dataset.challenge]){card.querySelector(".badge").textContent="Completed";count++}});
   const counter=document.getElementById("progress");if(counter)counter.textContent=count+" / 6 challenges completed in this browser";
  }
- if(required&&document.body.dataset.page==="challenge"){
-  const challenge=JSON.parse(document.getElementById("challenge-data").textContent);
-  const form=document.getElementById("flag-form"),status=document.getElementById("flag-message"),accepted=document.getElementById("accepted-status");
-  function render(){const done=progress(required)[challenge.id];accepted.textContent=done?"Accepted in this browser: "+new Date(done).toLocaleString():"No accepted flag yet."}
+ 
+if (required && document.body.dataset.page === "challenge") {
+  const challenge = JSON.parse(
+    document.getElementById("challenge-data").textContent
+  );
+
+  const form = document.getElementById("flag-form");
+  const status = document.getElementById("flag-message");
+  const accepted = document.getElementById("accepted-status");
+  const input = document.getElementById("flag");
+
+  const isRemote = challenge.validation === "remote";
+
+  function render() {
+    const done = progress(required)[challenge.id];
+
+    if (isRemote) {
+      const completed = done && typeof done === "object"
+        ? done.objectives || {}
+        : {};
+
+      const total = challenge.requiredFlags || 1;
+      const count = Object.keys(completed).length;
+
+      accepted.textContent =
+        count + " / " + total + " flags accepted in this browser.";
+
+      if (count >= total) {
+        accepted.textContent += " Challenge completed!";
+      }
+
+    } else {
+      accepted.textContent = done
+        ? "Accepted in this browser: " +
+          new Date(done).toLocaleString()
+        : "No accepted flag yet.";
+    }
+  }
+
   render();
-  if(!challenge.enabled){form.hidden=true;return}
-  form.hidden=false;
-  form.addEventListener("submit",event=>{event.preventDefault();const input=document.getElementById("flag");if(!challenge.acceptedFlags.some(flag=>normalize(flag)===normalize(input.value))){message(status,"Incorrect flag. Check the evidence and try again.","error");return}const done=progress(required);if(done[challenge.id]){message(status,"Already completed. "+challenge.feedback,"success");return}done[challenge.id]=new Date().toISOString();const stored=save(required,done);message(status,challenge.feedback+(stored?"":" Browser storage is unavailable. This result will be lost on reload."),"success");input.value="";render()});
- }
+
+  if (!challenge.enabled) {
+    form.hidden = true;
+    return;
+  }
+
+  form.hidden = false;
+
+  // EXISTING LOCAL VALIDATION
+  // All other challenges continue to work as before.
+  if (!isRemote) {
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (!challenge.acceptedFlags.some(
+        flag => normalize(flag) === normalize(input.value)
+      )) {
+        message(
+          status,
+          "Incorrect flag. Check the evidence and try again.",
+          "error"
+        );
+        return;
+      }
+
+      const done = progress(required);
+
+      if (done[challenge.id]) {
+        message(
+          status,
+          "Already completed. " + challenge.feedback,
+          "success"
+        );
+        return;
+      }
+
+      done[challenge.id] = new Date().toISOString();
+
+      const stored = save(required, done);
+
+      message(
+        status,
+        challenge.feedback +
+          (stored
+            ? ""
+            : " Browser storage is unavailable."),
+        "success"
+      );
+
+      input.value = "";
+      render();
+    });
+
+    return;
+  }
+
+  // REMOTE VALIDATION
+  // Used for Challenge 03.
+
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbz8QSXWB9BYDkzIy3YRxAcgyArsc5Dy32RIl-YjmpOSLS7kQhGpSX-DEuhSvIXtuL9aow/exec";
+
+  const objectiveSelect =
+    document.getElementById("objective");
+
+  const submitButton =
+    form.querySelector('button[type="submit"]');
+
+  if (!objectiveSelect) {
+    message(
+      status,
+      "Objective selector is missing.",
+      "error"
+    );
+    return;
+  }
+
+  function refreshObjectives() {
+    const done = progress(required)[challenge.id];
+    const completed = done && typeof done === "object"
+      ? done.objectives || {}
+      : {};
+
+    Array.from(objectiveSelect.options).forEach(option => {
+      if (!option.value) return;
+
+      const isDone = Boolean(completed[option.value]);
+      option.disabled = isDone;
+    });
+
+    if (
+      objectiveSelect.value &&
+      completed[objectiveSelect.value]
+    ) {
+      objectiveSelect.value = "";
+    }
+
+    const total = challenge.requiredFlags || 1;
+
+    if (Object.keys(completed).length >= total) {
+      form.hidden = true;
+    }
+  }
+
+  refreshObjectives();
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const objective = objectiveSelect.value;
+    const flag = input.value.trim();
+
+    if (!objective || !flag) {
+      message(
+        status,
+        "Select an objective and enter a flag.",
+        "error"
+      );
+      return;
+    }
+
+    if (APPS_SCRIPT_URL.includes("PASTE_YOUR")) {
+      message(
+        status,
+        "The submission system is not configured.",
+        "error"
+      );
+      return;
+    }
+
+    submitButton.disabled = true;
+    message(status, "Checking your flag...");
+
+    const requestId =
+      "req_" + crypto.randomUUID().replace(/-/g, "");
+
+    const callbackName =
+      "wgFlagCallback_" +
+      requestId.replace(/[^A-Za-z0-9_]/g, "");
+
+    const script = document.createElement("script");
+
+    let finished = false;
+
+    function cleanup() {
+      script.remove();
+      delete window[callbackName];
+      submitButton.disabled = false;
+    }
+
+    const timeout = setTimeout(() => {
+      if (finished) return;
+      finished = true;
+
+      cleanup();
+
+      message(
+        status,
+        "The server did not respond. Please try again.",
+        "error"
+      );
+    }, 15000);
+
+    window[callbackName] = response => {
+      if (finished) return;
+      finished = true;
+
+      clearTimeout(timeout);
+      cleanup();
+
+      if (!response || !response.ok) {
+        message(
+          status,
+          response?.message || "Submission failed.",
+          "error"
+        );
+        return;
+      }
+
+      if (!response.correct) {
+        message(
+          status,
+          "Incorrect flag. Try again.",
+          "error"
+        );
+        return;
+      }
+
+      const done = progress(required);
+
+      if (
+        !done[challenge.id] ||
+        typeof done[challenge.id] !== "object"
+      ) {
+        done[challenge.id] = {
+          objectives: {}
+        };
+      }
+
+      if (!done[challenge.id].objectives) {
+        done[challenge.id].objectives = {};
+      }
+
+      done[challenge.id].objectives[objective] =
+        new Date().toISOString();
+
+      const stored = save(required, done);
+
+      input.value = "";
+
+      render();
+      refreshObjectives();
+
+      const completedCount = Object.keys(
+        done[challenge.id].objectives
+      ).length;
+
+      if (
+        completedCount >= (challenge.requiredFlags || 1)
+      ) {
+        message(
+          status,
+          "Correct! All three flags found. Challenge completed!" +
+            (stored ? "" : " Progress could not be saved."),
+          "success"
+        );
+      } else {
+        message(
+          status,
+          "Correct flag! Objective " + objective +
+            " completed." +
+            (stored ? "" : " Progress could not be saved."),
+          "success"
+        );
+      }
+    };
+
+    const url = new URL(APPS_SCRIPT_URL);
+
+    url.searchParams.set("team", required);
+    url.searchParams.set("challenge", challenge.id);
+    url.searchParams.set("objective", objective);
+    url.searchParams.set("flag", flag);
+    url.searchParams.set("requestId", requestId);
+    url.searchParams.set("callback", callbackName);
+
+    script.onerror = () => {
+      if (finished) return;
+      finished = true;
+
+      clearTimeout(timeout);
+      cleanup();
+
+      message(
+        status,
+        "Could not contact the server. Please try again.",
+        "error"
+      );
+    };
+
+    script.src = url.toString();
+    document.head.appendChild(script);
+  });
+}
+
 })();
