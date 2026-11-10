@@ -16,3 +16,12 @@ around the text to be highlighted :
 
 at the end, before the end of </main> :
 
+<button
+  type="button"
+  class="hint-button"
+        data-team="darsenia-cyber" 
+  data-source="source-name"
+  data-hint-id="example-label"
+>
+  Request a hint
+</button>
