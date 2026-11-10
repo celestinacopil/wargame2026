@@ -4,6 +4,9 @@
 
   <script src="catalog.js" defer></script>
   <script src="search.js" defer></script>
+
+  <link rel="stylesheet" href="../assets/hints.css">
+  <script src="../assets/hints.js" defer></script>
    
 </head>
   
@@ -13,7 +16,7 @@
 <div class="topbar">
 
   <a href="index.html" class="logo">k</a>
-
+ <span data-hint="search-elena"> 
   <form
     id="konekt-form"
     class="searchform"
@@ -32,6 +35,7 @@
 
     <button type="submit">Search</button>
   </form>
+  </span>
 
   <div class="toplabel">Konekt · Belvaria</div>
 
@@ -91,6 +95,17 @@
     </aside>
     
   </div>
+
+<button
+  type="button"
+  class="hint-button"
+        data-team="darsenia-cyber" 
+  data-source="konekt-homepage"
+  data-hint-id="search-elena"
+>
+  Request a hint
+</button>
+  
 </main>
 
 </body></html>
