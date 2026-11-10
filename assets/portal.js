@@ -44,11 +44,54 @@ document.querySelectorAll("[data-logout]").forEach(button => {
   form.addEventListener("submit",event=>{event.preventDefault();if(!chosen)return;if(password.value!==settings.roles[chosen].password){message(status,"Incorrect password. Please try again.","error");password.value="";password.focus();return}try{sessionStorage.setItem(key,chosen)}catch{message(status,"Allow session storage in this browser to enter the team space.","error");return}location.href=new URL(settings.roles[chosen].page,base).href});
   const requested=new URLSearchParams(location.search).get("role");if(requested)select(requested);
  }
- if(required&&document.body.dataset.page==="team"){
-  const done=progress(required);let count=0;
-  document.querySelectorAll("[data-challenge]").forEach(card=>{if(done[card.dataset.challenge]){card.querySelector(".badge").textContent="Completed";count++}});
-  const counter=document.getElementById("progress");if(counter)counter.textContent=count+" / 6 challenges completed in this browser";
- }
+
+if (required && document.body.dataset.page === "team") {
+  const done = progress(required);
+  let count = 0;
+
+  document.querySelectorAll("[data-challenge]").forEach(card => {
+    const id = card.dataset.challenge;
+    const result = done[id];
+
+    let completed = false;
+
+    if (id === "challenge-03" &&
+        required === "darsenia-cyber") {
+
+      const objectives =
+        result &&
+        typeof result === "object"
+          ? result.objectives || {}
+          : {};
+
+      const found = Object.keys(objectives).length;
+
+      completed = found >= 3;
+
+      if (found > 0 && !completed) {
+        card.querySelector(".badge").textContent =
+          found + " / 3 flags found";
+      }
+
+    } else {
+      completed = Boolean(result);
+    }
+
+    if (completed) {
+      card.querySelector(".badge").textContent =
+        "Completed";
+      count++;
+    }
+  });
+
+  const counter = document.getElementById("progress");
+
+  if (counter) {
+    counter.textContent =
+      count + " / 6 challenges completed in this browser";
+  }
+}
+
  
 if (required && document.body.dataset.page === "challenge") {
   const challenge = JSON.parse(
