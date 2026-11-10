@@ -1,6 +1,13 @@
-/* Add future Konekt profiles pages here. */
+
+"use strict";
+
 window.KONEKT_CATALOG = [
   {
-    profile: "elena_varek"
+    name: "Elena Varek",
+    username: "elena_varek",
+    initials: "EV",
+    description: "Vardos, Belvaria · Vesta Advisory",
+    file: "elena_varek.html",
+    aliases: ["Elena Varek", "Elena", "E. Varek"]
   }
 ];
