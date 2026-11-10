@@ -1,111 +1,33 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Konekt | Belvaria</title>
-
-  <link rel="stylesheet" href="style.css"> 
-
-  <script src="catalog.js" defer></script>
-  <script src="search.js" defer></script>
-
-  <link rel="stylesheet" href="../assets/hints.css">
-  <script src="../assets/hints.js" defer></script>
-   
-</head>
-  
-  
-  <body class="home-page">
-
-<div class="topbar">
-
-  <a href="index.html" class="logo">k</a>
- <span data-hint="search-elena"> 
-  <form
-    id="konekt-form"
-    class="searchform"
-    action="index.html"
-    method="get"
-  >
-    <input
-      id="konekt-search"
-      name="q"
-      type="search"
-      placeholder="Search Konekt"
-      autocomplete="off"
-      aria-label="Search people on Konekt"
-      required
-    >
-
-    <button type="submit">Search</button>
-  </form>
-  </span>
-
-  <div class="toplabel">Konekt · Belvaria</div>
-
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Konekt | Belvaria</title>
+<link rel="stylesheet" href="style.css">
+<script src="catalog.js" defer></script>
+<script src="search.js" defer></script>
+</head><body class="home-page">
+<div class="topbar"><a class="logo" href="index.html" aria-label="Konekt home">k</a>
+<form id="konekt-form"><label for="url">Person</label><div class="search-row">
+    <input id="url" name="url" type="text" placeholder="John Doe" autocomplete="url" spellcheck="false" required>
+    <button type="submit">Search</button></div></form>
+<p class="hint">Look up people you found out throughout your investigation.</p>
+<p id="status" role="status"></p><section id="results" hidden aria-labelledby="results-title"><h2 id="results-title">Profiles that match your search</h2><p id="result-url" class="address"></p><div id="capture-list"></div></section>
+<noscript><p>Enable JavaScript to search Konekt.</p></noscript>
+<div class="toplabel">Konekt · Belvaria</div></div>
+<main class="page"><div class="layout">
+<aside class="leftcol"><section class="card"><div class="profilemini"><div class="avatar blue">MK</div><div><strong>Marko K.</strong><div class="muted">Your Konekt feed</div></div></div>
+<div class="sidebar-link"><span class="sidebar-symbol">♙</span> Friends</div><div class="sidebar-link"><span class="sidebar-symbol">◷</span> Memories</div><div class="sidebar-link"><span class="sidebar-symbol">▣</span> Groups</div><div class="sidebar-link"><span class="sidebar-symbol">▤</span> Saved posts</div><div class="sidebar-link"><span class="sidebar-symbol">▦</span> Events</div></section>
+<section class="card"><div class="side-title">Your shortcuts</div><div class="side-item">🌉 Vardos Community <small>Local group · 12.4K members</small></div><div class="side-item">☕ Belvarian Food & Culture <small>Food and drink</small></div><div class="side-item">⚓ Harbour City Updates <small>Local news</small></div><div class="side-item">📚 Vardos University Alumni <small>Community</small></div></section>
+<p class="muted" style="padding:0 8px">About · Privacy · Terms · Konekt © 2026</p></aside>
+<div class="centercol">
+<section id="konekt-feed">
+<section class="card"><div class="welcome"><div class="avatar blue">MK</div><div class="compose-fake">What's on your mind, Marko?</div></div><div class="compose-actions"><span>▣ Photo/video</span><span>☺ Feeling/activity</span><span>▦ Life event</span></div></section>
+<section class="card"><h2>Stories <span class="muted">· See what's new</span></h2><div class="storyrow"><div class="story story-1">Vardos today</div><div class="story story-2">Weekend market</div><div class="story story-3">Local events</div><div class="story story-4">Coffee spots</div></div></section>
+<div class="feed-marker">Recent posts from your network</div>
+<article class="card post"><div class="posthead"><div class="avatar rose">AN</div><div><div class="postname">Ana Nestor</div><div class="postmeta">Today at 09:42 · 🌐 Public</div></div></div><p>Morning walk along the river before the city gets busy. The light was so lovely today. 🍂 Anyone else enjoying these cold but sunny mornings?</p><img class="post-photo " loading="lazy" src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=82" alt="Vardos riverfront"><div class="photo-caption">📍 Vardos riverfront</div><div class="engagement"><span>👍 ❤️ 126</span><span>18 comments · 4 shares</span></div><div class="reactions"><span>♡ Like</span><span>▤ Comment</span><span>↗ Share</span></div><div class="comment"><div class="avatar gold">MS</div><div class="comment-bubble"><strong>Mira Stojan</strong>This makes me want to go for a walk after work!</div></div></article><article class="card post"><div class="posthead"><div class="avatar green">PT</div><div><div class="postname">Petar Tomic</div><div class="postmeta">Yesterday at 18:14 · 🌐 Public</div></div></div><p>Reminder: the old town weekend market is back this Saturday! Local crafts, second-hand books, coffee, and plenty of good food. I will be there from 10. ☕</p><img class="post-photo " loading="lazy" src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1100&q=80" alt="Old Town Market, Vardos"><div class="photo-caption">📍 Old Town Market, Vardos</div><div class="engagement"><span>👍 ❤️ 48</span><span>7 comments · 2 shares</span></div><div class="reactions"><span>♡ Like</span><span>▤ Comment</span><span>↗ Share</span></div><div class="comment"><div class="avatar gold">MK</div><div class="comment-bubble"><strong>Marko K.</strong>Thanks for the reminder. See you there!</div></div></article><article class="card post"><div class="posthead"><div class="avatar blue">VL</div><div><div class="postname">Vardos City Library</div><div class="postmeta">Yesterday at 11:08 · 🌐 Public</div></div></div><p>Our winter reading programme starts next week. Free lectures, language cafés, and a small exhibition of local photographs. Registration opens on Thursday. 📚</p><img class="post-photo " loading="lazy" src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1000&q=80" alt="Vardos City Library · Community announcement"><div class="photo-caption">📍 Vardos City Library · Community announcement</div><div class="engagement"><span>👍 ❤️ 92</span><span>14 comments · 18 shares</span></div><div class="reactions"><span>♡ Like</span><span>▤ Comment</span><span>↗ Share</span></div></article><article class="card post"><div class="posthead"><div class="avatar gold">LV</div><div><div class="postname">Lena V.</div><div class="postmeta">Monday at 20:35 · 🌐 Public</div></div></div><p>Does anyone have recommendations for a quiet place to study near the university library? The usual café has become impossible during exam season 😅</p><div class="engagement"><span>👍 ❤️ 12</span><span>21 comments · 0 shares</span></div><div class="reactions"><span>♡ Like</span><span>▤ Comment</span><span>↗ Share</span></div><div class="comment"><div class="avatar gold">AN</div><div class="comment-bubble"><strong>Ana Nestor</strong>Try the reading room on Kamen Street. It closes at 8.</div></div></article><article class="card post"><div class="posthead"><div class="avatar green">HC</div><div><div class="postname">Harbour City Running Club</div><div class="postmeta">Monday at 08:00 · 🌐 Public</div></div></div><p>Sunday’s five-kilometre community run starts at 09:00 by the east pier. All levels welcome! Bring a light jacket, it is getting chilly by the waterfront.</p><img class="post-photo " loading="lazy" src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1200&q=80" alt="East pier · Harbour City"><div class="photo-caption">📍 East pier · Harbour City</div><div class="engagement"><span>👍 ❤️ 83</span><span>11 comments · 9 shares</span></div><div class="reactions"><span>♡ Like</span><span>▤ Comment</span><span>↗ Share</span></div></article><article class="card post"><div class="posthead"><div class="avatar gold">TV</div><div><div class="postname">Toma Velic</div><div class="postmeta">8 November at 16:27 · 🌐 Public</div></div></div><p>Finally found a small place that makes proper espresso without charging twice as much as everywhere else. Keeping this café on my list. ☕</p><img class="post-photo " loading="lazy" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1100&q=80" alt="A neighbourhood coffee shop"><div class="photo-caption">📍 A neighbourhood coffee shop</div><div class="engagement"><span>👍 ❤️ 34</span><span>8 comments · 1 shares</span></div><div class="reactions"><span>♡ Like</span><span>▤ Comment</span><span>↗ Share</span></div></article><article class="card post"><div class="posthead"><div class="avatar blue">BW</div><div><div class="postname">Belvaria Weekend Guide</div><div class="postmeta">7 November at 12:10 · 🌐 Public</div></div></div><p>Three ideas for this weekend: a visit to the waterfront, the photography exhibition at the civic gallery, or a long walk outside the city. What did we miss?</p><img class="post-photo " loading="lazy" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1300&q=82" alt="Weekend in the city"><div class="photo-caption">📍 Weekend in the city</div><div class="engagement"><span>👍 ❤️ 177</span><span>29 comments · 14 shares</span></div><div class="reactions"><span>♡ Like</span><span>▤ Comment</span><span>↗ Share</span></div></article></section>
+<div id="searchResults" class="card" hidden aria-live="polite"></div>
 </div>
-
-<main class="page">
-  <div class="layout">
-    
-    <aside class="leftcol">
-      <section class="card">
-        <div class="profilemini"><div class="avatar">MK</div><div><b>Marko K.</b><div class="muted">Your Konekt feed</div></div></div>
-        <div class="profilemini">◉　Friends</div><div class="profilemini">▧　Memories</div><div class="profilemini">▣　Groups</div><div class="profilemini">▤　Saved posts</div>
-      </section>
-      <section class="card"><h3>Shortcuts</h3><p class="muted">Vardos Community</p><p class="muted">Belvarian Food & Culture</p><p class="muted">Harbour City Updates</p></section>
-    </aside>
-    
-     <div class="centercol">
-    <section id="konekt-feed">
-      <section class="card">
-        <h1>Good afternoon, Marko</h1><p class="muted">What's happening in your network today?</p>
-        <div class="storyrow"><div class="story">Vardos today</div><div class="story">Weekend ideas</div><div class="story">Local events</div><div class="story">Food spots</div></div>
-      </section>
-      <section class="card post">
-        <div class="posthead"><div class="avatar">AN</div><div><div class="postname">Ana Nestor</div><div class="postmeta">2 hours ago · Public</div></div></div>
-        <p>Morning walk along the river before the city gets busy. Vardos really is beautiful this time of year.</p>
-        <div class="postimage">THE VARDOS RIVERFRONT</div><p class="engagement">👍 ❤️ 126 <span>18 comments · 4 shares</span></p>
-      </section>
-      <section class="card post">
-        <div class="posthead"><div class="avatar">PT</div><div><div class="postname">Petar Tomic</div><div class="postmeta">Yesterday · Friends</div></div></div>
-        <p>Reminder: the old town weekend market is back this Saturday. Local crafts, books, coffee and plenty of good food.</p>
-        <div class="engagement">👍 48 <span>7 comments</span></div>
-      </section>
-      <section class="card post">
-        <div class="posthead"><div class="avatar">LV</div><div><div class="postname">Lena V.</div><div class="postmeta">Yesterday · Public</div></div></div>
-        <p>Does anyone have recommendations for a quiet place to study near the university library?</p>
-        <div class="engagement">👍 12 <span>21 comments</span></div>
-      </section>
-      <section class="card post">
-        <div class="posthead"><div class="avatar">HC</div><div><div class="postname">Harbour City Running Club</div><div class="postmeta">Monday · Public group</div></div></div>
-        <p>Sunday's five-kilometre community run starts at 09:00 by the east pier. All levels welcome!</p>
-        <div class="engagement">👍 83 <span>11 comments · 9 shares</span></div>
-      </section>
-    </section>
-     
-       <div
-      id="searchResults"
-      class="card"
-      hidden
-      aria-live="polite"
-    ></div>
-       
-     </div>
-    
-    <aside class="rightcol">
-      <section class="card"><h3>Trending in Belvaria</h3><p><b>#VardosMarket</b><br><span class="muted">Local community</span></p><p><b>#HarbourWeekend</b><br><span class="muted">Events</span></p><p><b>#WinterRoutes</b><br><span class="muted">Travel</span></p></section>
-      <section class="card"><h3>Birthdays</h3><p class="muted">Niko Petrov and 2 others have birthdays today.</p></section>
-    </aside>
-    
-  </div>
-
-<button
-  type="button"
-  class="hint-button"
-        data-team="darsenia-cyber" 
-  data-source="konekt-homepage"
-  data-hint-id="search-elena"
->
-  Request a hint
-</button>
-  
-</main>
-
-</body></html>
+<aside class="rightcol"><section class="card"><h3>Trending in Belvaria</h3><p><strong>#VardosMarket</strong><br><span class="muted">2.1K posts this week</span></p><p><strong>#HarbourWeekend</strong><br><span class="muted">Events · 644 posts</span></p><p><strong>#AutumnInBelvaria</strong><br><span class="muted">Photos and travel</span></p><p><strong>#WinterRoutes</strong><br><span class="muted">Travel · Trending</span></p></section>
+<section class="card"><h3>Upcoming events</h3><div class="event-row"><div class="event-date">14<br>NOV</div><div><strong>Old Town Market</strong><div class="muted">Saturday · Vardos</div></div></div><div class="divider"></div><div class="event-row"><div class="event-date">21<br>NOV</div><div><strong>Maritime Heritage Talk</strong><div class="muted">Vardos Cultural Centre</div></div></div></section>
+<section class="card"><h3>Birthdays 🎂</h3><p><strong>Niko Petrov</strong> and 2 others have birthdays this week.</p></section>
+<section class="card"><h3>Contacts</h3><p>● <strong>Petar Tomic</strong><span class="online-dot"></span></p><p>● <strong>Ana Nestor</strong><span class="online-dot"></span></p><p>● <strong>Lena V.</strong></p></section></aside>
+</div></main></body></html>
