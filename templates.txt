@@ -10,3 +10,9 @@ inside <head> :
 
 around the text to be highlighted : 
 
+<span data-hint="example-label"> </span>
+
+---
+
+at the end, before the end of </main> :
+
