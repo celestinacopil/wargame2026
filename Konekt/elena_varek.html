@@ -4,47 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elena Varek | Konekt</title>
-<style>
-:root{--blue:#1877f2;--bg:#f0f2f5;--ink:#1c1e21;--muted:#65676b;--line:#dddfe2;--white:#fff}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Arial,Helvetica,sans-serif}
-.topbar{height:58px;background:#fff;box-shadow:0 1px 3px #0002;position:sticky;top:0;z-index:5;display:flex;align-items:center;padding:0 max(18px,calc((100% - 1120px)/2));gap:12px}
-.logo{width:40px;height:40px;border-radius:50%;background:var(--blue);color:white;font-size:30px;font-weight:bold;display:grid;place-items:center;line-height:1}
-.search{background:var(--bg);border-radius:22px;padding:10px 15px;color:var(--muted);width:220px}
-.toplabel{margin-left:auto;color:var(--muted);font-size:12px}
-.page{max-width:1000px;margin:18px auto;padding:0 14px}
-.cover{height:240px;border-radius:9px 9px 0 0;background:linear-gradient(120deg,#294b62,#7897a5 55%,#d3c7ad);position:relative;overflow:hidden}
-.cover:before,.cover:after{content:"";position:absolute;border-radius:50%;background:#ffffff12}
-.cover:before{width:360px;height:360px;right:8%;top:-180px}
-.cover:after{width:240px;height:240px;right:28%;bottom:-180px}
-.profilehead{background:#fff;padding:0 28px 16px;border-radius:0 0 9px 9px;box-shadow:0 1px 2px #0001}
-.profileline{display:flex;align-items:end;gap:18px;margin-top:-48px;position:relative}
-.avatar{width:150px;height:150px;border-radius:50%;border:5px solid #fff;background:linear-gradient(145deg,#d8c5b4,#8d9da2);display:grid;place-items:center;color:#fff;font-size:48px;font-weight:bold;flex:none}
-.person h1{font-size:30px;margin:0 0 3px}.person p{margin:0;color:var(--muted)}
-.actions{margin-left:auto;display:flex;gap:8px;padding-bottom:7px}
-.btn{background:var(--blue);color:white;border:0;border-radius:6px;padding:10px 16px;font-weight:bold}
-.btn.secondary{background:#e4e6eb;color:var(--ink)}
-.tabs{display:flex;gap:26px;border-top:1px solid var(--line);margin-top:18px;padding-top:14px;color:var(--muted);font-weight:bold}
-.tabs span:first-child{color:var(--blue);border-bottom:3px solid var(--blue);padding-bottom:12px}
-.columns{display:grid;grid-template-columns:350px minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
-.card{background:#fff;border-radius:9px;padding:16px;box-shadow:0 1px 2px #0001;margin-bottom:14px}
-.card h2{font-size:20px;margin:0 0 12px}
-.introline{padding:9px 0;border-bottom:1px solid #eee;color:#42464b}
-.introline:last-child{border:0}
-.introline b{color:var(--ink)}
-.posthead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.miniavatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(145deg,#d8c5b4,#8d9da2);display:grid;place-items:center;color:white;font-weight:bold}
-.postname{font-weight:bold}.postmeta{font-size:12px;color:var(--muted)}
-.post p{margin:10px 0;white-space:pre-line;font-size:15px}
-.post .tagged{color:var(--blue);font-weight:600}
-.postimage{height:190px;border-radius:7px;background:linear-gradient(130deg,#d6dfe3,#aab9be 45%,#e5ded0);display:flex;align-items:center;justify-content:center;text-align:center;color:#435664;padding:20px;font-weight:bold;letter-spacing:.02em}
-.engagement{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between}
-.reactions{padding-top:10px;color:var(--muted);font-size:13px;display:flex;justify-content:space-around}
-.reactions span{padding:5px 12px}
-.pinned{font-size:11px;color:var(--muted);font-weight:bold;text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px}
-.privacy{font-size:12px;color:var(--muted);margin-top:12px}
-@media(max-width:760px){.toplabel{display:none}.search{width:auto;flex:1}.cover{height:170px}.profilehead{padding:0 15px 14px}.profileline{align-items:center;flex-wrap:wrap;margin-top:-42px}.avatar{width:112px;height:112px;font-size:36px}.person h1{font-size:24px}.actions{margin:0 0 0 auto}.columns{grid-template-columns:1fr}.tabs{gap:18px;overflow:hidden}.page{padding:0 9px}}
-</style>
+
+<link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
 <div class="topbar">
