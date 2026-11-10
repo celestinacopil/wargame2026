@@ -39,13 +39,21 @@ h1{font-size:25px;margin:0 0 7px;color:#1c1e21}h2{font-size:18px;margin:0 0 12px
 
 
 
-  <form id="konekt-form"><label for="url">Person</label><div class="search-row">
-    <input id="url" name="url" type="text" placeholder="John Doe" autocomplete="url" spellcheck="false" required>
-    <button type="submit">Search</button></div></form>
-  <p class="hint">Look up people you found out throughout your investigation.</p>
-  <p id="status" role="status"></p><section id="results" hidden aria-labelledby="results-title">
-    <h2 id="results-title">Profiles that match your search</h2><p id="result-url" class="address"></p>
-    <div id="capture-list"></div></section><noscript><p>Enable JavaScript to search the archive.</p>
+<form id="konekt-form" class="searchform">
+  <input
+    id="konekt-search"
+    type="search"
+    placeholder="Search Konekt"
+    autocomplete="off"
+    aria-label="Search people on Konekt"
+    required
+  >
+  <button type="submit">Search</button>
+</form>
+
+
+  
+  <noscript><p>Enable JavaScript to search the archive.</p>
     </noscript> 
 
   
@@ -53,6 +61,7 @@ h1{font-size:25px;margin:0 0 7px;color:#1c1e21}h2{font-size:18px;margin:0 0 12px
 </div>
 <main class="page">
   <div class="layout">
+    
     <aside class="leftcol">
       <section class="card">
         <div class="profilemini"><div class="avatar">MK</div><div><b>Marko K.</b><div class="muted">Your Konekt feed</div></div></div>
@@ -60,7 +69,9 @@ h1{font-size:25px;margin:0 0 7px;color:#1c1e21}h2{font-size:18px;margin:0 0 12px
       </section>
       <section class="card"><h3>Shortcuts</h3><p class="muted">Vardos Community</p><p class="muted">Belvarian Food & Culture</p><p class="muted">Harbour City Updates</p></section>
     </aside>
-    <section>
+    
+     <div class="centercol">
+    <section id="konekt-feed">
       <section class="card">
         <h1>Good afternoon, Marko</h1><p class="muted">What's happening in your network today?</p>
         <div class="storyrow"><div class="story">Vardos today</div><div class="story">Weekend ideas</div><div class="story">Local events</div><div class="story">Food spots</div></div>
@@ -85,12 +96,22 @@ h1{font-size:25px;margin:0 0 7px;color:#1c1e21}h2{font-size:18px;margin:0 0 12px
         <p>Sunday's five-kilometre community run starts at 09:00 by the east pier. All levels welcome!</p>
         <div class="engagement">👍 83 <span>11 comments · 9 shares</span></div>
       </section>
-      <div id="searchResults" class="card" hidden aria-live="polite"></div>
     </section>
+     
+       <div
+      id="searchResults"
+      class="card"
+      hidden
+      aria-live="polite"
+    ></div>
+       
+     </div>
+    
     <aside class="rightcol">
       <section class="card"><h3>Trending in Belvaria</h3><p><b>#VardosMarket</b><br><span class="muted">Local community</span></p><p><b>#HarbourWeekend</b><br><span class="muted">Events</span></p><p><b>#WinterRoutes</b><br><span class="muted">Travel</span></p></section>
       <section class="card"><h3>Birthdays</h3><p class="muted">Niko Petrov and 2 others have birthdays today.</p></section>
     </aside>
+    
   </div>
 </main>
 
