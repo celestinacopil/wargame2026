@@ -127,8 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const confirmed = window.confirm(
-        "Request this hint for " + team + "?\n\n" +
-        "You will receive the hint instantly, and the organisers will be notified of your request."
+        "Are you sure you want to request a hint? You will receive the hint instantly, and the organisers will be notified of your request. The number of hints requested may matter for the final awards."
       );
 
       if (!confirmed) return;
