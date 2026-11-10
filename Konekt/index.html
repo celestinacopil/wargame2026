@@ -1,31 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Konekt | Belvaria</title><style>
-:root{--blue:#1877f2;--bg:#f0f2f5;--ink:#1c1e21;--muted:#65676b;--line:#dddfe2;--white:#fff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Arial,Helvetica,sans-serif}
-.topbar{height:58px;background:#fff;box-shadow:0 1px 3px #0002;position:sticky;top:0;z-index:5;display:flex;align-items:center;padding:0 max(18px,calc((100% - 1120px)/2));gap:12px}
-.logo{width:40px;height:40px;border-radius:12px;background:var(--blue);color:white;font-size:25px;font-weight:bold;display:grid;place-items:center}
-.searchform{display:flex;gap:7px;background:#f0f2f5;border-radius:24px;padding:4px 5px 4px 14px;width:min(440px,55vw)}
-.searchform input{border:0;outline:0;background:transparent;flex:1;min-width:0;font:14px Arial;color:#1c1e21}
-.searchform button{border:0;border-radius:20px;background:#1877f2;color:white;padding:8px 14px;font-weight:bold;cursor:pointer}
-.toplabel{margin-left:auto;color:#65676b;font-size:12px}
-.page{max-width:1000px;margin:18px auto;padding:0 14px}
-.layout{display:grid;grid-template-columns:245px minmax(0,1fr) 220px;gap:16px;align-items:start}
-.card{background:white;border-radius:9px;padding:16px;box-shadow:0 1px 2px #0001;margin-bottom:14px}
-h1{font-size:25px;margin:0 0 7px;color:#1c1e21}h2{font-size:18px;margin:0 0 12px}h3{font-size:15px;margin:0 0 5px}
-.muted{color:#65676b;font-size:12px}.profilemini{display:flex;align-items:center;gap:10px;padding:8px 0}
-.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#d8c5b4,#8d9da2);color:white;font-weight:bold;flex:none}
-.storyrow{display:flex;gap:10px;overflow:hidden}
-.story{min-width:100px;height:130px;border-radius:8px;padding:10px;color:white;display:flex;align-items:end;font-weight:bold;background:linear-gradient(145deg,#526e82,#a9b9b7)}
-.story:nth-child(2){background:linear-gradient(145deg,#8c6c5a,#d7b98f)}.story:nth-child(3){background:linear-gradient(145deg,#415c56,#b3b9a0)}.story:nth-child(4){background:linear-gradient(145deg,#656c8c,#c5b6b4)}
-.posthead{display:flex;align-items:center;gap:10px;margin-bottom:10px}.postname{font-weight:bold}.postmeta{font-size:12px;color:#65676b}
-.post p{font-size:15px;white-space:pre-line}.postimage{height:145px;border-radius:7px;display:grid;place-items:center;text-align:center;background:linear-gradient(130deg,#d6dfe3,#aab9be 45%,#e5ded0);color:#435664;font-weight:bold;letter-spacing:.03em}
-.engagement{border-top:1px solid #dddfe2;padding-top:9px;color:#65676b;font-size:12px;display:flex;justify-content:space-between}
-.result{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #eee}
-.result:last-child{border:0}.result .avatar{width:52px;height:52px}
-.result a{color:#1c1e21;text-decoration:none;font-weight:bold}.result a:hover{text-decoration:underline;color:#1877f2}
-.noresult{padding:14px;background:#f7f8fa;border-radius:7px;color:#65676b;font-size:13px}
-@media(max-width:850px){.layout{grid-template-columns:210px minmax(0,1fr)}.rightcol{display:none}}
-@media(max-width:620px){.layout{grid-template-columns:1fr}.leftcol{display:none}.toplabel{display:none}.topbar{padding:0 10px}.searchform{width:auto;flex:1}.page{padding:0 9px}}
-</style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Konekt | Belvaria</title>
+
+  <link rel="stylesheet" href="style.css"> 
 
   <script src="catalog.js" defer></script>
   <script src="search.js" defer></script>
