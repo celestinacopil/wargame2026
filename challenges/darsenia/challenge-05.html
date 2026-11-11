@@ -1,11 +1,55 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Darsenia challenge 05 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Darsenia challenge 05 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js?v=2" defer></script></head>
 <body data-page="challenge" data-role="darsenia-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header>
   <a class="breadcrumb" href="../../teams/darsenia-cyber.html">← Back to Darsenia cyber space</a>
-   <div class="actions"><a class="button" href="../../tools-darsenia/index.html">Investigation tools ↗</a></div>
-  <p class="tag blue">Darsenia / Cyber / Challenge 05</p><h1>Awaiting briefing</h1><span class="badge">Not released</span><section class="panel instructions"><h2>Instructions</h2><p>This challenge has not been released. Wait for the organisers to provide instructions.</p></section><section class="panel"><h2>Evidence</h2><p class="muted">No evidence released yet.</p><!-- Add evidence links here. --></section><section class="panel"><h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main><script id="challenge-data" type="application/json">{
+  <div class="actions"><a class="button" href="../../tools-darsenia/index.html">Investigation tools ↗</a></div>
+  <p class="tag blue">Darsenia / Cyber / Challenge 05</p>
+  <h1>What the photo remembers</h1>
+  <span class="badge">Available</span>
+
+  <section class="panel instructions">
+    <h2>Instructions</h2>
+    <p>HQ has approved the technical analysis requested in report 7731-HUM-2026-114. Unit 7731 has
+      copied the source's original photographs onto a forensic workstation.</p>
+    <p>A photo taken on a phone usually records <strong>when</strong> and <strong>where</strong> it was
+      taken, in hidden data called <strong>EXIF metadata</strong>. Use the workstation's
+      <code>exiftool</code> command to read it.</p>
+    <p>Find the GPS position where the photograph of the vessel was taken. According to the report,
+      the vessel was about 300 m from the photographer.</p>
+    <p>Flag format: latitude and longitude in <strong>decimal degrees, rounded to 2 decimals</strong>:
+      <code>FLAG{latitude,longitude}</code>, for example <code>FLAG{12.34,56.78}</code></p>
+  </section>
+
+  <section class="panel">
+    <h2>Evidence</h2>
+    <ul class="resource-list">
+      <li><a href="../../forensics/index.html" target="_blank" rel="noopener noreferrer">Forensic workstation (terminal with the source's files)</a></li>
+      <li><a href="evidence/intelligence-report-7731-HUM-2026-114.pdf" target="_blank" rel="noopener noreferrer">Military intelligence report 7731-HUM-2026-114 (SECRET II, PDF)</a></li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Investigation guidance</h2>
+    <ul>
+      <li>New to the terminal? Type <code>help</code>, then <code>ls</code> to see the files. Read the note left by Unit 7731 with <code>cat</code>.</li>
+      <li>Not every copy of a photo keeps its metadata. Messaging apps often strip it when they compress an image.</li>
+      <li>GPS coordinates are shown in degrees, minutes and seconds by default. Convert them to decimal degrees
+        (degrees + minutes/60 + seconds/3600), or check <code>man exiftool</code> for an option that does it for you.</li>
+      <li>The report warns that metadata can be faked. Does the position and time agree with what you found in challenge 02?
+        The VesselTrace <strong>distance calculator</strong> can help you check.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main><script id="challenge-data" type="application/json">{
   "id": "challenge-05",
-  "enabled": false,
-  "acceptedFlags": [],
-  "feedback": "Correct flag."
+  "enabled": true,
+  "acceptedHashes": [
+    "8337b1016a6b1ba72d98059af3a29f6dc2556150089d0e1d82df066d3ef1bace",
+    "280cb2f08ab27c61007c753360b990ec44dc8bc5a5a4af37c21d2ffe873a6a7c",
+    "270ded9c7a2840d9a18becfed97dd560bb9e1a71231b19b077e9d82e1e990791",
+    "3938365c2e52354560c9abf8a0dab1b76cbe776f3c1fef8346d8ff8b3102d1ba",
+    "5cbbf1854b413078f32b6294e8577044acfd44bf8f7f13a93fc3dbabd95fe7d6"
+  ],
+  "feedback": "Correct. The photo was taken on 2 December at 21:09 UTC inside the disputed zone, a few hundred metres from the vessel identified in challenge 02. The metadata matches the ship's own AIS record, so the source's account holds up. Metadata alone can be faked, but two independent sources now agree."
 }</script></body></html>

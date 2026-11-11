@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Forensic workstation | Darsenia Intelligence Command</title>
+<script src="files.js" defer></script>
+<script src="terminal.js" defer></script>
+<style>
+:root{--bg:#0b1117;--panel:#111a22;--text:#d6e2ea;--muted:#7f93a3;--green:#7ee08b;--blue:#79c0ff;--red:#ff8a80;--line:#22313d}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#06090d;color:var(--text);font:14px/1.45 Arial,Helvetica,sans-serif;display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;gap:12px;padding:10px 18px;background:#0f1923;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.bar strong{letter-spacing:.04em}
+.bar .class{color:#ff6b6b;font-weight:bold;font-size:12px;border:1px solid #ff6b6b;padding:2px 8px;border-radius:3px}
+.bar a{margin-left:auto;color:var(--blue);text-decoration:none;font-size:13px}
+.window{flex:1;display:flex;flex-direction:column;margin:16px;border:1px solid var(--line);border-radius:8px;overflow:hidden;min-height:0}
+.titlebar{background:#1a2530;padding:7px 12px;font:12px/1.4 Menlo,Consolas,monospace;color:var(--muted);display:flex;gap:6px;align-items:center}
+.dot{width:11px;height:11px;border-radius:50%;background:#3b4a57;display:inline-block}
+#terminal{flex:1;overflow-y:auto;background:var(--bg);padding:14px 16px;font:13.5px/1.5 Menlo,Consolas,"Courier New",monospace;cursor:text;min-height:0}
+.line{white-space:pre-wrap;word-break:break-word}
+.cmd{color:var(--green)}
+.head{color:var(--blue)}
+.err{color:var(--red)}
+.muted,.dir{color:var(--muted)}
+.dir{color:var(--blue)}
+.input-row{display:flex;align-items:baseline}
+#prompt{color:var(--green);white-space:pre}
+#command{flex:1;background:transparent;border:0;outline:0;color:var(--text);font:inherit;padding:0;caret-color:var(--green);min-width:40px}
+.examples{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 16px 0;font-size:13px;color:var(--muted)}
+.examples button{background:#16222c;color:var(--green);border:1px solid #2e4252;border-radius:4px;padding:5px 10px;font:12.5px Menlo,Consolas,monospace;cursor:pointer}
+.examples button:hover{background:#1d2d39;border-color:var(--green)}
+kbd{background:#1a2530;border:1px solid #2e4252;border-radius:3px;padding:0 5px;font:12px Menlo,Consolas,monospace;color:var(--text)}
+.foot{padding:0 18px 14px;color:var(--muted);font-size:11px}
+@media(max-width:600px){.window{margin:8px}#terminal{font-size:12px}}
+</style>
+</head>
+<body>
+  <div class="bar">
+    <span class="class">SECRET II</span>
+    <strong>DARSENIA INTELLIGENCE COMMAND · FORENSIC WORKSTATION</strong>
+    <a href="../challenges/darsenia/challenge-05.html">← Back to challenge 05</a>
+  </div>
+  <div class="examples" aria-label="Example commands">
+    <span>New to the terminal? Click a command to paste it, then press <kbd>Enter</kbd>:</span>
+    <button type="button" data-cmd="ls">ls</button>
+    <button type="button" data-cmd="cat handover_note.txt">cat handover_note.txt</button>
+    <button type="button" data-cmd="exiftool IMG_20261202_210947.jpg">exiftool IMG_20261202_210947.jpg</button>
+    <button type="button" data-cmd="help">help</button>
+  </div>
+  <div class="window">
+    <div class="titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp; analyst@dic-forensics: ~/evidence</div>
+    <div id="terminal" aria-label="Terminal">
+      <div id="screen" aria-live="polite"></div>
+      <div class="input-row">
+        <span id="prompt"></span>
+        <input id="command" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" aria-label="Terminal command">
+      </div>
+    </div>
+  </div>
+  <p class="foot">Fictional training environment for the Arctic Crisis wargame. This terminal imitates exiftool; no real files are read.</p>
+  <noscript><p style="padding:18px">Enable JavaScript to use the terminal.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Distance calculator | VesselTrace</title>
+<link rel="stylesheet" href="style.css">
+<script src="distance.js" defer></script>
+<style>
+.points{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.point label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}
+.point input{width:100%}
+.result{margin-top:18px;padding:16px;border-radius:4px;background:#e3f0f8;font-size:15px}
+.result strong{font-size:22px;color:var(--navy)}
+.result.error{background:var(--warnbg);color:var(--warn)}
+@media(max-width:760px){.points{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="top">
+  <a class="logo" href="index.html">Vessel<span>Trace</span></a>
+  <span class="tagline">Ship owner · manager · ISM · AIS position data</span>
+</div></header>
+<nav><div class="inner"><a href="index.html">Vessel search</a><a href="distance.html">Distance calculator</a><a href="index.html#about">About the data</a></div></nav>
+<main>
+  <div class="crumbs">HOME › TOOLS › DISTANCE CALCULATOR</div>
+
+  <section class="box hero">
+    <h1>Distance between two positions</h1>
+    <p class="lead">Enter the latitude and longitude of two positions to get the distance between them.
+      You can copy the values straight from a vessel's AIS position history.</p>
+
+    <form id="distance-form">
+      <div class="points">
+        <div class="point">
+          <h2>Position A</h2>
+          <label for="lat1">Latitude</label>
+          <input id="lat1" placeholder="72°41.00′N  or  72.6833" autocomplete="off" required>
+          <label for="lon1">Longitude</label>
+          <input id="lon1" placeholder="033°52.40′E  or  33.8733" autocomplete="off" required>
+        </div>
+        <div class="point">
+          <h2>Position B</h2>
+          <label for="lat2">Latitude</label>
+          <input id="lat2" placeholder="72°42.30′N  or  72.7050" autocomplete="off" required>
+          <label for="lon2">Longitude</label>
+          <input id="lon2" placeholder="033°58.60′E  or  33.9767" autocomplete="off" required>
+        </div>
+      </div>
+      <div class="bigsearch" style="margin-top:16px"><button type="submit">Calculate distance</button></div>
+    </form>
+
+    <div id="result" class="result" role="status" hidden></div>
+  </section>
+
+  <section class="box">
+    <div class="boxhead"><h2>Units</h2></div>
+    <div class="boxbody">
+      <p>Distances at sea are measured in <b>nautical miles (nm)</b>. 1 nautical mile = 1.852 km.</p>
+      <p>Accepted formats: degrees and decimal minutes (<code>72°41.00′N</code>, <code>72 41.0 N</code>) or decimal degrees (<code>72.6833</code>).
+        South latitudes and west longitudes are written with S / W or as negative numbers.</p>
+    </div>
+  </section>
+</main>
+<footer>VesselTrace · Maritime data service · Fictional environment for a wargame exercise. Not affiliated with any real vessel-tracking service.</footer>
+</body>
+</html>

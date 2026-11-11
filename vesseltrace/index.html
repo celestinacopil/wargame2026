@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>VesselTrace | Ship owner, manager and ISM database</title>
+<link rel="stylesheet" href="style.css">
+<script src="catalog.js" defer></script>
+<script src="search.js" defer></script>
+</head>
+<body>
+<header><div class="top">
+  <a class="logo" href="index.html">Vessel<span>Trace</span></a>
+  <span class="tagline">Ship owner · manager · ISM · AIS position data</span>
+</div></header>
+<nav><div class="inner"><a href="index.html">Vessel search</a><a href="distance.html">Distance calculator</a><a href="#about">About the data</a></div></nav>
+<main>
+  <div class="crumbs">HOME › SHIP DATABASE › SEARCH</div>
+
+  <section class="box hero">
+    <h1>Ship owner, manager and ISM data</h1>
+    <p class="lead">Search the vessel database by ship name, IMO number, MMSI, call sign or company. Each record shows registered ownership, management companies and recent AIS positions.</p>
+    <form class="bigsearch" id="search-form">
+      <input id="query" type="search" placeholder="Vessel name, IMO, MMSI or company" autocomplete="off" aria-label="Search vessels">
+      <button type="submit">Search</button>
+    </form>
+    <p class="hint">Partial names are accepted. Example: <b>AUR</b> or <b>9058177</b></p>
+  </section>
+
+  <section class="box">
+    <div class="boxhead"><h2>Search results</h2><span id="count" class="meta">Enter a search term</span></div>
+    <div class="boxbody scroll" id="results">
+      <div class="empty">Enter at least 2 characters to search the database.</div>
+    </div>
+  </section>
+
+  <section class="box" id="about">
+    <div class="boxhead"><h2>About the data</h2></div>
+    <div class="boxbody">
+      <p><b>IMO number</b>: a permanent 7-digit ship identifier. It stays the same when a ship changes name, flag or owner. The last digit is a check digit.</p>
+      <p><b>MMSI</b>: the 9-digit radio identity broadcast by a ship's AIS transponder. The first three digits identify the flag state.</p>
+      <p><b>AIS positions</b>: positions are received from coastal and satellite AIS stations. A ship can switch its transponder off, and a gap in the data is shown as such.</p>
+      <p class="notice">VesselTrace is a fictional training database created for the Arctic Crisis wargame. All vessels, companies, identifiers and positions are invented.</p>
+    </div>
+  </section>
+</main>
+<footer>VesselTrace · Maritime data service · Fictional environment for a wargame exercise. Not affiliated with any real vessel-tracking service.</footer>
+</body>
+</html>

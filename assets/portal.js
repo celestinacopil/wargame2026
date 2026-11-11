@@ -143,12 +143,72 @@ if (required && document.body.dataset.page === "challenge") {
   // EXISTING LOCAL VALIDATION
   // All other challenges continue to work as before.
   if (!isRemote) {
-    form.addEventListener("submit", event => {
+    // A challenge can list SHA-256 hashes ("acceptedHashes") instead of
+    // plain flags, so the answer is not readable in the page source.
+    // Hash of the lowercase, trimmed flag, e.g. printf '%s' 'flag{123}' | shasum -a 256
+    async function sha256(text) {
+      const bytes = new TextEncoder().encode(text);
+      // The browser's built-in hashing only works on https:// or localhost.
+      if (window.crypto && crypto.subtle) {
+        const digest = await crypto.subtle.digest("SHA-256", bytes);
+        return Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, "0")).join("");
+      }
+      return sha256Fallback(bytes);
+    }
+
+    // Plain-JavaScript SHA-256, used when the page is opened from a file:// address.
+    function sha256Fallback(bytes) {
+      const K = [];
+      const isPrime = n => { for (let d = 2; d * d <= n; d++) if (n % d === 0) return false; return true; };
+      for (let n = 2; K.length < 64; n++) if (isPrime(n)) K.push((Math.cbrt(n) % 1) * 2 ** 32 | 0);
+      const H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+
+      const length = bytes.length;
+      const padded = new Uint8Array(Math.ceil((length + 9) / 64) * 64);
+      padded.set(bytes);
+      padded[length] = 0x80;
+      new DataView(padded.buffer).setUint32(padded.length - 4, length * 8);
+
+      const rotr = (x, n) => (x >>> n) | (x << (32 - n));
+      const w = new Array(64);
+      for (let i = 0; i < padded.length; i += 64) {
+        for (let t = 0; t < 16; t++) w[t] = new DataView(padded.buffer).getUint32(i + t * 4);
+        for (let t = 16; t < 64; t++) {
+          const s0 = rotr(w[t - 15], 7) ^ rotr(w[t - 15], 18) ^ (w[t - 15] >>> 3);
+          const s1 = rotr(w[t - 2], 17) ^ rotr(w[t - 2], 19) ^ (w[t - 2] >>> 10);
+          w[t] = (w[t - 16] + s0 + w[t - 7] + s1) | 0;
+        }
+        let [a, b, c, d, e, f, g, h] = H;
+        for (let t = 0; t < 64; t++) {
+          const t1 = (h + (rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25)) + ((e & f) ^ (~e & g)) + K[t] + w[t]) | 0;
+          const t2 = ((rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22)) + ((a & b) ^ (a & c) ^ (b & c))) | 0;
+          h = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+        }
+        [a, b, c, d, e, f, g, h].forEach((v, j) => { H[j] = (H[j] + v) | 0; });
+      }
+      return H.map(v => (v >>> 0).toString(16).padStart(8, "0")).join("");
+    }
+
+    async function isCorrect(value) {
+      const answer = normalize(value);
+      if ((challenge.acceptedFlags || []).some(flag => normalize(flag) === answer)) return true;
+      if (!(challenge.acceptedHashes || []).length) return false;
+      return challenge.acceptedHashes.includes(await sha256(answer));
+    }
+
+    form.addEventListener("submit", async event => {
       event.preventDefault();
 
-      if (!challenge.acceptedFlags.some(
-        flag => normalize(flag) === normalize(input.value)
-      )) {
+      let correct;
+      try {
+        correct = await isCorrect(input.value);
+      } catch (error) {
+        console.error("Flag check failed:", error);
+        message(status, "The flag could not be checked in this browser. Please tell an organiser.", "error");
+        return;
+      }
+
+      if (!correct) {
         message(
           status,
           "Incorrect flag. Check the evidence and try again.",
