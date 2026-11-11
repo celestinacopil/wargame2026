@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../assets/hints.css">
+    <script src="../assets/hints.js" defer></script>
+
 <title>Konekt | Belvaria</title>
 <link rel="stylesheet" href="style.css">
 <script src="catalog.js" defer></script>
@@ -8,7 +11,7 @@
 <div class="topbar"><a class="logo" href="index.html" aria-label="Konekt home">k</a>
 <form id="konekt-form"><label for="url"></label><div class="search-row">
     <input id="url" name="url" type="text" placeholder="Search for your friends on Konekt" autocomplete="url" spellcheck="false" required>
-    <button type="submit">Search</button></div></form>
+    <button type="submit" data-hint="search-bar">Search</button></div></form>
 <p class="hint">Look up people you found out throughout your investigation.</p>
 <p id="status" role="status"></p><section id="results" hidden aria-labelledby="results-title"><h2 id="results-title">Profiles that match your search</h2><p id="result-url" class="address"></p><div id="capture-list"></div></section>
 <noscript><p>Enable JavaScript to search Konekt.</p></noscript>
@@ -30,4 +33,16 @@
 <section class="card"><h3>Upcoming events</h3><div class="event-row"><div class="event-date">14<br>NOV</div><div><strong>Old Town Market</strong><div class="muted">Saturday · Vardos</div></div></div><div class="divider"></div><div class="event-row"><div class="event-date">21<br>NOV</div><div><strong>Maritime Heritage Talk</strong><div class="muted">Vardos Cultural Centre</div></div></div></section>
 <section class="card"><h3>Birthdays 🎂</h3><p><strong>Niko Petrov</strong> and 2 others have birthdays this week.</p></section>
 <section class="card"><h3>Contacts</h3><p>● <strong>Petar Tomic</strong><span class="online-dot"></span></p><p>● <strong>Ana Nestor</strong><span class="online-dot"></span></p><p>● <strong>Lena V.</strong></p></section></aside>
-</div></main></body></html>
+</div>
+
+<button
+  type="button"
+  class="hint-button"
+        data-team="darsenia-cyber" 
+  data-source="konekt"
+  data-hint-id="search-bar"
+>
+  Request a hint
+</button>
+</main></body></html>
+
