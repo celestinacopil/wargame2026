@@ -55,7 +55,8 @@ if (required && document.body.dataset.page === "team") {
 
     let completed = false;
 
-    if (id === "challenge-03" &&
+    // The multi-flag corruption challenge (Darsenia 04) counts its 3 objectives.
+    if (id === "challenge-04" &&
         required === "darsenia-cyber") {
 
       const objectives =
@@ -249,7 +250,7 @@ if (required && document.body.dataset.page === "challenge") {
   }
 
   // REMOTE VALIDATION
-  // Used for Challenge 03.
+  // Used for Darsenia challenge 04 (corruption).
 
   const APPS_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbz8QSXWB9BYDkzIy3YRxAcgyArsc5Dy32RIl-YjmpOSLS7kQhGpSX-DEuhSvIXtuL9aow/exec";
@@ -432,7 +433,8 @@ if (required && document.body.dataset.page === "challenge") {
     const url = new URL(APPS_SCRIPT_URL);
 
     url.searchParams.set("team", required);
-    url.searchParams.set("challenge", challenge.id);
+    // remoteId lets a challenge move to a new slot while the server keeps its original ID.
+    url.searchParams.set("challenge", challenge.remoteId || challenge.id);
     url.searchParams.set("objective", objective);
     url.searchParams.set("flag", flag);
     url.searchParams.set("requestId", requestId);

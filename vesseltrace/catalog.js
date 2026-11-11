@@ -1,4 +1,4 @@
-/* VesselTrace: fictional ship database for Darsenia challenge 02.
+/* VesselTrace: fictional ship database for Darsenia challenge 03.
    All vessels, companies, IMO/MMSI numbers and positions are invented for the wargame.
 
    Answer design (organisers only):
@@ -8,7 +8,7 @@
    - Decoys: SEASTAR II was at the same spot, but on 28 Nov (wrong date). SEA STARLING was in the
      same region but ~50 nm away. SEAFALCON is the same ship type but was moored in Vardos.
    - Supporting clue: SEASTAR stopped transmitting AIS from 21:38 until 08:16 the next morning.
-   - SEASTAR was called NORTHLIGHT until Oct 2026. This links it to challenge 03, which names the Northlight.
+   - SEASTAR was called NORTHLIGHT until Oct 2026. This links it to challenge 04, which names the Northlight.
 
    Positions: times are UTC, newest first in the page. lat/lon are decimal degrees. */
 window.VESSELS = [

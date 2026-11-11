@@ -47,9 +47,9 @@ Some data files (`vesseltrace/catalog.js`, `forensics/files.js`) start with an *
 | | Darsenia | Belvaria |
 |---|---|---|
 | 01 | Built: compare news sources and timestamps (web archive) | Placeholder (planned: phishing) |
-| 02 | Built: identify a vessel from an intelligence report + VesselTrace | Placeholder |
-| 03 | Built: company ownership / corruption trail (remote flag check) | Placeholder |
-| 04 | Placeholder (planned: unmask disinformation) | Placeholder |
+| 02 | Placeholder | Placeholder |
+| 03 | Built: identify a vessel from an intelligence report + VesselTrace | Placeholder |
+| 04 | Built: company ownership / corruption trail (remote flag check) | Placeholder |
 | 05 | Built: EXIF analysis in the forensic terminal | Placeholder |
 | 06 | Placeholder (planned: PIN code race) | Placeholder |
 
@@ -66,7 +66,7 @@ Each challenge page ends with a `<script id="challenge-data" type="application/j
   ```
   Add one hash for each accepted spelling. `portal.js` contains a plain-JavaScript SHA-256 fallback for `file://` pages.
 - **`"acceptedFlags": [...]`** is the older plain-text check. Avoid it, because it reveals the answer.
-- **`"validation": "remote"`** checks flags via the Google Apps Script (used by Darsenia 03, with multiple objectives).
+- **`"validation": "remote"`** checks flags via the Google Apps Script (used by Darsenia 04, with multiple objectives). `"remoteId"` sends a different challenge ID to the server, so a challenge can move to another slot without breaking the server's answer lookup.
 - Don't put the answer in the `"feedback"` text either: it sits in the page source.
 - Local checks save progress only in the player's browser (`localStorage`) and do **not** notify the organisers. Moving all checks to the Apps Script is on the to-do list.
 
