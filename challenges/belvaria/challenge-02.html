@@ -6,9 +6,99 @@
   <p class="muted"> <a href="../evidence/Audio-Challenge.mov"> Here </a> is the audio file that you need to decypher.</p></section>
   
   
-  <section class="panel"><h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main><script id="challenge-data" type="application/json">{
+ <!-- FLAG SUBMISSION -->
+
+  <section class="panel">
+    <h2>Submit your findings</h2>
+
+    <p>
+      Submit each flag separately. You will
+      receive immediate feedback.
+    </p>
+
+    <form id="flag-form" hidden>
+
+      <label for="objective">
+        Select your objective
+      </label>
+
+      <select id="objective" required>
+        <option value="">
+          Choose an objective
+        </option>
+
+        <option value="1">
+          Flag 1: ??
+        </option>
+
+      </select>
+
+      <label for="flag">
+        Enter your flag
+      </label>
+
+      <input
+        id="flag"
+        type="text"
+        placeholder="FLAG{your_answer}"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        aria-describedby="flag-message"
+        required
+      >
+
+      <div class="actions">
+        <button
+          type="submit"
+          class="button primary">
+          Check flag
+        </button>
+      </div>
+
+      <p
+        id="flag-message"
+        class="message"
+        role="status">
+      </p>
+
+    </form>
+
+    <p
+      id="accepted-status"
+      class="note">
+    </p>
+
+    <p class="note">
+      Submissions are recorded for the organisers.
+      Accepted progress is also saved in this browser.
+    </p>
+  </section>
+
+  <noscript>
+    <p class="panel">
+      Enable JavaScript to use this portal.
+    </p>
+  </noscript>
+
+  <footer>
+    Fictional wargame organised by Sciences Po Cybersecurity Association.
+  </footer>
+
+</main>
+
+<!-- CHALLENGE CONFIGURATION -->
+
+<script
+  id="challenge-data"
+  type="application/json">
+{
   "id": "challenge-02",
-  "enabled": false,
-  "acceptedFlags": [],
-  "feedback": "Correct flag."
-}</script></body></html>
+  "remoteId": "challenge-02",
+  "enabled": true,
+  "validation": "remote",
+  "requiredFlags": 1,
+  "feedback": "Challenge completed."
+}
+</script>
+</body></html>
