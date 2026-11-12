@@ -14,11 +14,13 @@
     <p id="false-alarm-counter" class="note" hidden>False alarms: <strong id="false-alarm-count">0</strong></p>
 
     <details>
-      <summary>Aurora site cordon maintained <span class="badge">3 Dec 2026, 09:05</span></summary>
-      <p class="muted"><strong>From:</strong> coastguard-liaison@dcg.dr<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Aurora site cordon maintained</p>
-      <p>Hello security team,</p>
-      <p>The cordon around the Aurora remains in place. Patrol boats will rotate every six hours. Please keep the usual access list for the quay unchanged until the investigators say otherwise.</p>
-      <p>Coast Guard Liaison Office</p>
+      <summary>Mandatory security briefing, 10 December 2026 <span class="badge">3 Dec 2026, 09:05</span></summary>
+      <p class="muted"><strong>From:</strong> l.irsdottir@dcg.dr<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Mandatory security briefing, 10 December 2026</p>
+      <p>Dear colleagues,</p>
+      <p>A mandatory security briefing after the Aurora incident will take place on 10 December 2026. All staff must attend. Please confirm your attendance through the staff portal by 8 December.</p>
+      <p>Staff portal: <a href="#" data-inert-link>https://portal.dcg.dr/briefing</a></p>
+      <p>Lena Irsdottir<br>Communications &amp; Events Officer</p>
+      <p class="note link-note" role="status" hidden>This page is not available in the exercise.</p>
       <p class="note report-note" role="status" hidden>False alarm. This message is legitimate. This counts against your team's score.</p>
       <div class="actions report-controls" hidden><button type="button" class="button" data-report>Report as phishing</button></div>
     </details>
@@ -36,12 +38,12 @@
     </details>
 
     <details id="mail-alert" hidden>
-      <summary>Urgent: reset your password within 2 hours after the Aurora incident <span class="badge">3 Dec 2026, 10:15</span></summary>
-      <p class="muted"><strong>From:</strong> it-support@dcg-portal.dr<br><strong>Reply-To:</strong> d.kova@mail.bv<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Urgent: reset your password within 2 hours after the Aurora incident</p>
+      <summary>Confirm your attendance — mandatory Aurora security briefing <span class="badge">3 Dec 2026, 10:15</span></summary>
+      <p class="muted"><strong>From:</strong> l.irsdottir@dcg-portal.dr<br><strong>Reply-To:</strong> d.kova@mail.bv<br><strong>To:</strong> security@dcg.dr<br><strong>Subject:</strong> Confirm your attendance — mandatory Aurora security briefing</p>
       <p>Dear colleague,</p>
-      <p>Because of the Aurora incident, all DCG accounts must be checked. You must reset your password within 2 hours. If you do not, your account will be locked.</p>
-      <p>Reset your password here: <a id="trap-link" href="#">http://dcg-portal.dr/login</a></p>
-      <p>IT Support</p>
+      <p>All staff must confirm attendance for the briefing on 10 December. Confirm through the portal here: <a id="trap-link" href="#">http://dcg-portal.dr/confirm</a></p>
+      <p>Please complete this today.</p>
+      <p>Lena Irsdottir<br>Communications &amp; Events Officer</p>
       <div class="actions report-controls" hidden><button type="button" class="button" data-report>Report as phishing</button></div>
     </details>
 
@@ -76,10 +78,10 @@
       <ul>
         <li>The sender domain <code>dcg-portal.dr</code> is not the real staff portal <code>portal.dcg.dr</code>, and it is not the official site <code>dcg.dr</code>.</li>
         <li>The reply address is on a <code>.bv</code> (Belvaria) domain.</li>
-        <li>The message uses fake urgency: a 2-hour deadline.</li>
-        <li>The login link uses <code>http</code>, not <code>https</code>.</li>
+        <li>The message uses false urgency: "Please complete this today."</li>
+        <li>The link uses <code>http</code>, not <code>https</code>.</li>
+        <li>The real officer's genuine notice (the first email) points to <code>portal.dcg.dr</code>, not <code>dcg-portal.dr</code>.</li>
       </ul>
-      <p>Also, DCG never asks for a password reset by email.</p>
     </div>
     <div data-outcome="phished" hidden>
       <p class="error">You clicked the link in the phishing email. Belvaria is in.</p>

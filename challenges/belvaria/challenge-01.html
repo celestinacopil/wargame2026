@@ -1,18 +1,18 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script><script src="../../assets/challenge-log-config.js" defer></script></head>
-<body data-page="challenge" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 01</p>
+<body data-page="osint" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 01</p>
   <h1>Prepare the lure</h1>
   <span class="badge">Available</span>
   <section class="panel instructions">
     <h2>Instructions</h2>
-    <p>You want DCG staff to land on a fake login that looks like their real one. Using DCG's public pages only, work out three things and submit the third as your flag:</p>
+    <p>You are preparing a phishing email against DCG. Do open-source research on DCG's public pages only. Find three things:</p>
     <ol>
-      <li>DCG's official website domain.</li>
-      <li>DCG's real staff portal address (a subdomain of it).</li>
-      <li>A look-alike domain you could register that staff might confuse with the real portal.</li>
+      <li>A look-alike domain for the link in your email.</li>
+      <li>The person to impersonate: the one whose emails with links look normal to staff.</li>
+      <li>The motive: the event that makes staff act fast.</li>
     </ol>
     <p>Everything stays inside the game. Do not register a real domain and do not send a real message.</p>
-    <p>Flag format: <code>FLAG{look-alike-domain}</code></p>
+    <p class="note">Answers are not case sensitive. Your progress is saved in this browser.</p>
   </section>
   <section class="panel">
     <h2>How look-alike domains work</h2>
@@ -24,18 +24,104 @@
     <h2>Evidence</h2>
     <ul class="resource-list">
       <li>
-        <a href="../../www.dcg.dr/statement-03-12-26.html" target="_blank" rel="noopener noreferrer">DCG initial statement on the Aurora incident</a>
+        <a href="../../www.dcg.dr/coast-guard-report-03-12-26.html" target="_blank" rel="noopener noreferrer">DCG preliminary technical update (see its Official channels box)</a>
       </li>
       <li>
-        <a href="../../www.dcg.dr/coast-guard-report-03-12-26.html" target="_blank" rel="noopener noreferrer">DCG preliminary technical update on the Aurora incident</a>
+        <a href="../../www.dcg.dr/contacts.html" target="_blank" rel="noopener noreferrer">DCG departments and contacts</a>
+      </li>
+      <li>
+        <a href="../../www.dcg.dr/notices.html" target="_blank" rel="noopener noreferrer">DCG staff notices</a>
       </li>
     </ul>
   </section>
+
   <section class="panel">
-      <h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main>
+    <h2>Flag 1: Look-alike domain <span class="badge" data-status="f1">Not solved</span></h2>
+    <p>Which look-alike domain would you register for the fake login?</p>
+    <form data-flag="f1">
+      <label for="f1-input">Domain</label>
+      <input id="f1-input" type="text" placeholder="example.dr" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+      <div class="actions"><button type="submit" class="button primary">Check</button></div>
+      <p class="message" role="status" data-message="f1"></p>
+    </form>
+    <details>
+      <summary>Hint</summary>
+      <p>The real staff portal is a subdomain. Turn it into a separate domain you could register: move the word to the front and join it with a hyphen.</p>
+    </details>
+  </section>
+
+  <section class="panel">
+    <h2>Flag 2: Who to impersonate <span class="badge" data-status="f2">Not solved</span></h2>
+    <p>Whose name and email address would you use as the sender?</p>
+    <form data-flag="f2">
+      <label for="f2-input">Name or email address</label>
+      <input id="f2-input" type="text" placeholder="name or email" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+      <div class="actions"><button type="submit" class="button primary">Check</button></div>
+      <p class="message" role="status" data-message="f2"></p>
+    </form>
+    <details>
+      <summary>Hint</summary>
+      <p>Which role normally emails all staff with links and invitations? Check Communications &amp; Events.</p>
+    </details>
+  </section>
+
+  <section class="panel">
+    <h2>Flag 3: The motive <span class="badge" data-status="f3">Not solved</span></h2>
+    <p>Which event would make staff click quickly?</p>
+    <form data-flag="f3">
+      <label for="f3-input">Event</label>
+      <input id="f3-input" type="text" placeholder="event" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+      <div class="actions"><button type="submit" class="button primary">Check</button></div>
+      <p class="message" role="status" data-message="f3"></p>
+    </form>
+    <details>
+      <summary>Hint</summary>
+      <p>What recent notice forces every staff member to act through the portal, with a deadline?</p>
+    </details>
+  </section>
+
+  <section class="panel" id="lure-box" hidden>
+    <h2>Your lure is ready</h2>
+    <p class="success">Your lure is ready: a fake email from Lena Irsdottir about the security briefing, with a link to dcg-portal.dr. You have launched the attack. You only win if Darsenia clicks or fails to report it.</p>
+  </section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Answers are checked locally and are not sent to organisers.</footer></main>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
+  var ROLE = "belvaria-cyber";
+  var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
+  var key = prefix + "osint:" + ROLE + ":belvaria-01";
+  var progressKey = prefix + "progress:" + ROLE;
+  var memory = {};
+
+  var ANSWERS = {
+    f1: ["dcg-portal.dr"],
+    f2: ["l.irsdottir", "l.irsdottir@dcg.dr", "lena irsdottir"],
+    f3: ["security briefing", "security_briefing", "mandatory security briefing"]
+  };
+  var RIGHT = {
+    f1: "Correct. This domain is not the real portal, but it looks like it.",
+    f2: "Correct. Lena sends staff notices with links, so a message from her looks normal.",
+    f3: "Correct. A mandatory briefing with a deadline makes staff act fast."
+  };
+  var IDS = ["f1", "f2", "f3"];
+
+  function normalise(value) {
+    return value.trim().toLowerCase().replace(/\s+/g, " ");
+  }
+
+  function load() {
+    try {
+      var value = JSON.parse(localStorage.getItem(key));
+      if (value && typeof value === "object") return value;
+    } catch (e) {}
+    return memory;
+  }
+
+  function save(value) {
+    memory = value;
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+
   function logEvent(payload) {
     var url = window.CHALLENGE_LOG_URL;
     if (!url) return;
@@ -49,25 +135,65 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (e) {}
   }
 
-  document.addEventListener("submit", function (event) {
-    if (!event.target || event.target.id !== "flag-form") return;
-    var input = document.getElementById("flag");
-    if (!input || input.value.trim().toLowerCase() !== "flag{dcg-portal.dr}") return;
-    logEvent({
-      type: "challenge-event",
-      team: "belvaria-cyber",
-      challenge: "belvaria-01",
-      event: "solved",
-      ts: new Date().toISOString()
+  function markProgress() {
+    try {
+      var done = JSON.parse(localStorage.getItem(progressKey) || "{}");
+      if (!done || typeof done !== "object" || Array.isArray(done)) done = {};
+      if (!done["challenge-01"]) done["challenge-01"] = new Date().toISOString();
+      localStorage.setItem(progressKey, JSON.stringify(done));
+    } catch (e) {}
+  }
+
+  function showSolved(id) {
+    var form = document.querySelector('[data-flag="' + id + '"]');
+    form.querySelector("input").disabled = true;
+    form.querySelector("button").disabled = true;
+    var message = form.querySelector("[data-message]");
+    message.textContent = RIGHT[id];
+    message.className = "message success";
+    document.querySelector('[data-status="' + id + '"]').textContent = "Solved";
+  }
+
+  function checkAll(state, fresh) {
+    var all = IDS.every(function (id) { return state[id]; });
+    if (!all) return;
+    document.getElementById("lure-box").hidden = false;
+    markProgress();
+    if (fresh && !state.logged) {
+      state.logged = true;
+      save(state);
+      logEvent({
+        type: "challenge-event",
+        team: ROLE,
+        challenge: "belvaria-01",
+        event: "solved",
+        ts: new Date().toISOString()
+      });
+    }
+  }
+
+  var state = load();
+  IDS.forEach(function (id) { if (state[id]) showSolved(id); });
+  checkAll(state, false);
+
+  document.querySelectorAll("[data-flag]").forEach(function (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var id = form.dataset.flag;
+      var message = form.querySelector("[data-message]");
+      var value = normalise(form.querySelector("input").value);
+      if (ANSWERS[id].indexOf(value) === -1) {
+        message.textContent = "Not correct. Check the evidence and try again.";
+        message.className = "message error";
+        return;
+      }
+      state = load();
+      state[id] = true;
+      save(state);
+      showSolved(id);
+      checkAll(state, true);
     });
-  }, true);
+  });
 });
 </script>
-<script id="challenge-data" type="application/json">{
-  "id": "challenge-01",
-  "enabled": true,
-  "acceptedFlags": [
-    "FLAG{dcg-portal.dr}"
-  ],
-  "feedback": "Correct. This look-alike domain is your lure. The organisers will now plant an email using it in the DCG (Darsenia) mailbox. You have launched the attack, but you have not won yet: you win this challenge only if Darsenia clicks the link or fails to report the email before the round ends. If they spot it and report it, your attempt is blocked. You will find out next round."
-}</script></body></html>
+</body></html>
