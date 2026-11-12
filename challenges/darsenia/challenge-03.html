@@ -47,15 +47,102 @@
     </ul>
     <p>Use the <strong>VesselTrace</strong> ship database in your investigation tools. Its <strong>distance calculator</strong> tells you how far apart two positions are.</p>
   </section>
+<!-- FLAG SUBMISSION -->
 
   <section class="panel">
-    <h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main><script id="challenge-data" type="application/json">{
-  "id": "challenge-03",
+    <h2>Submit your findings</h2>
+
+    <p>
+      Submit each flag separately. You will
+      receive immediate feedback.
+    </p>
+
+    <form id="flag-form" hidden>
+
+      <label for="objective">
+        Select your objective
+      </label>
+
+      <select id="objective" required>
+        <option value="">
+          Choose an objective
+        </option>
+
+        <option value="1">
+          Flag 1: ????
+        </option>
+  
+      </select>
+
+      <label for="flag">
+        Enter your flag
+      </label>
+
+      <input
+        id="flag"
+        type="text"
+        placeholder="FLAG{your_answer}"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        aria-describedby="flag-message"
+        required
+      >
+
+      <div class="actions">
+        <button
+          type="submit"
+          class="button primary">
+          Check flag
+        </button>
+      </div>
+
+      <p
+        id="flag-message"
+        class="message"
+        role="status">
+      </p>
+
+    </form>
+
+    <p
+      id="accepted-status"
+      class="note">
+    </p>
+
+    <p class="note">
+      Submissions are recorded for the organisers.
+      Accepted progress is also saved in this browser.
+    </p>
+  </section>
+
+  <noscript>
+    <p class="panel">
+      Enable JavaScript to use this portal.
+    </p>
+  </noscript>
+
+  <footer>
+    Fictional wargame. Use only your assigned space.
+    Submissions are recorded for the organisers.
+  </footer>
+
+</main>
+
+<!-- CHALLENGE CONFIGURATION -->
+
+<script
+  id="challenge-data"
+  type="application/json">
+{
+  "id": "challenge-02",
+  "remoteId": "challenge-02",
   "enabled": true,
-  "acceptedHashes": [
-    "b6d889d3b0e16c84c02453d2d67d09b18a61bea98faa0687df0d999447cd7195",
-    "e1cf46fdd2a6b3761dce7cd08506808129e5f0b631d3320f15c3f174f8aee6e8",
-    "e0a14fe641106925a4294dd4ea8310672a7fbd3ff545df293e1a20a40710973a"
-  ],
-  "feedback": "Correct. The vessel's AIS history independently confirms the source's account: it was about 2 nautical miles from the Aurora that evening, then stopped transmitting its position for more than ten hours. This places the ship at the scene; it does not yet prove what it was doing there."
-}</script></body></html>
+  "validation": "remote",
+  "requiredFlags": 1,
+  "feedback": "Challenge completed."
+}
+</script>
+
+</body>
+</html>
