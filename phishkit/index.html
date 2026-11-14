@@ -93,9 +93,10 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
 
   <div class="sent" id="sent" hidden>
     <h3>Lure sent</h3>
-    <p><strong>Your lure is ready.</strong> Go back to <a href="../challenges/belvaria/challenge-01.html">Belvaria Challenge 1</a> and submit your three findings: the sender, the look-alike domain and the pretext.</p>
+    <p><strong>Your lure is ready.</strong> Go back to Belvaria Challenge 1. Your three findings (the sender, the look-alike domain and the pretext) will be recorded for you. If that does not work, submit them by hand.</p>
     <p>Your email will reach a DCG mailbox. You only win if Darsenia clicks or fails to report it.</p>
     <p>While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
+    <p><a class="btn" style="display:inline-block;text-decoration:none" href="../challenges/belvaria/challenge-01.html">Return to Challenge 1 →</a></p>
   </div>
 </main>
 <footer>Fictional tool created for the Arctic Crisis wargame. It does not send real messages.</footer>
@@ -248,6 +249,10 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
 
   $("deploy").addEventListener("click", () => {
     state.deployed = true;
+    // Tell the challenge page that a correct build was deployed. It reads this once.
+    try {
+      localStorage.setItem("wargame2026-v2:lureforge-deploy", JSON.stringify({ ready: true, ts: new Date().toISOString() }));
+    } catch (e) {}
     render();
     $("sent").scrollIntoView({ behavior: "smooth", block: "nearest" });
   });

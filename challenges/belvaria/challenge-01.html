@@ -48,6 +48,15 @@
     <p class="note">Submissions are recorded for the organisers. Accepted progress is also saved in this browser.</p>
   </section>
 
+  <section class="panel" id="auto-box" hidden>
+    <h2>Lure deployed</h2>
+    <p id="auto-status" class="message" role="status"></p>
+    <div id="sent-box" hidden>
+      <p class="success"><strong>Lure sent.</strong> Your email will reach a DCG mailbox. You only win if Darsenia clicks or fails to report it.</p>
+      <p>While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
+    </div>
+  </section>
+
   <noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript>
   <footer>Fictional wargame organised by Sciences Po Cybersecurity Association.</footer>
 </main>
@@ -62,5 +71,99 @@
   "requiredFlags": 3,
   "feedback": "Lure assembled."
 }
+</script>
+
+<script>
+// LureForge handoff. The tool leaves a marker in localStorage after a correct Deploy.
+// Here we read it once, then send the three findings through portal.js's own
+// objective form (fill + submit each, wait for each). The manual form stays as a fallback.
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+  var ROLE = "belvaria-cyber";
+  var ID = "challenge-01";
+  var TOTAL = 3;
+  var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
+  var MARKER = prefix + "lureforge-deploy";
+  var FLAGS = { 1: "FLAG{l.irsdottir}", 2: "FLAG{dcg-portal.dr}", 3: "FLAG{security_briefing}" };
+
+  function $(id) { return document.getElementById(id); }
+
+  function solvedMap() {
+    try {
+      var all = JSON.parse(localStorage.getItem(prefix + "progress:" + ROLE) || "{}");
+      var entry = all && all[ID];
+      return entry && typeof entry === "object" ? entry.objectives || {} : {};
+    } catch (e) { return {}; }
+  }
+
+  function status(text, kind) {
+    $("auto-box").hidden = false;
+    $("auto-status").textContent = text;
+    $("auto-status").className = "message " + (kind || "");
+  }
+
+  function showSent() {
+    $("auto-box").hidden = false;
+    $("sent-box").hidden = false;
+  }
+
+  function submitOne(id) {
+    return new Promise(function (resolve) {
+      var select = $("objective"), input = $("flag"), msg = $("flag-message"), form = $("flag-form");
+      if (solvedMap()[id]) { resolve({ ok: true }); return; }
+      select.value = id;
+      input.value = FLAGS[id];
+      msg.textContent = "";
+      msg.className = "message";
+      form.hidden = false;
+      form.requestSubmit();
+      var tries = 0;
+      var timer = setInterval(function () {
+        tries++;
+        if (solvedMap()[id]) { clearInterval(timer); resolve({ ok: true }); return; }
+        if (msg.classList.contains("error")) { clearInterval(timer); resolve({ ok: false, msg: msg.textContent }); return; }
+        if (tries > 150) { clearInterval(timer); resolve({ ok: false, msg: "No answer from the server." }); }
+      }, 150);
+    });
+  }
+
+  function readMarker() {
+    try {
+      var m = JSON.parse(localStorage.getItem(MARKER) || "null");
+      return m && m.ready === true ? m : null;
+    } catch (e) { return null; }
+  }
+  function clearMarker() {
+    try { localStorage.removeItem(MARKER); } catch (e) {}
+  }
+
+  async function autoSubmit() {
+    clearMarker(); // run only once
+    status("Your lure was deployed in LureForge. Recording your three findings...", "");
+    for (var i = 1; i <= TOTAL; i++) {
+      var r = await submitOne(String(i));
+      if (!r.ok) {
+        status("Could not record your findings automatically: " + r.msg + " Use the form below to submit them by hand.", "error");
+        return;
+      }
+    }
+    status("Your three findings are recorded for the organisers.", "success");
+    showSent();
+  }
+
+  // Also show the hook when the three objectives were recorded earlier or by hand.
+  function syncSolved() {
+    if (Object.keys(solvedMap()).length >= TOTAL) {
+      if ($("auto-status").textContent === "") status("Your three findings are recorded for the organisers.", "success");
+      showSent();
+    }
+  }
+
+  if (readMarker()) autoSubmit(); else syncSolved();
+  ["accepted-status"].forEach(function (id) {
+    var el = $(id);
+    if (el) new MutationObserver(syncSolved).observe(el, { childList: true, characterData: true, subtree: true });
+  });
+});
 </script>
 </body></html>
