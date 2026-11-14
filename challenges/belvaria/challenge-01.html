@@ -1,198 +1,130 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script><script src="../../assets/challenge-log-config.js" defer></script></head>
-<body data-page="osint" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 01</p>
-  <h1>Prepare the lure</h1>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
+<body data-page="challenge" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 01</p>
+  <h1>Build the lure</h1>
   <span class="badge">Available</span>
+
   <section class="panel instructions">
     <h2>Instructions</h2>
-    <p>You are preparing a phishing email against DCG. Do open-source research on DCG's public pages only. Find three things:</p>
+    <p>Belvaria's first move: get inside the Darsenian Coast Guard (DCG) to watch their investigation and find who leaked.</p>
+    <p>You cannot break in by force. Instead, trick a DCG insider into clicking a link that looks like their real staff portal. This is called <strong>phishing</strong>.</p>
+    <p>Do recon only, using public sources and a leaked DCG file. Use Seekr to find them. Then build the lure.</p>
+    <p>You need three things:</p>
     <ol>
-      <li>A look-alike domain for the link in your email.</li>
-      <li>The person to impersonate: the one whose emails with links look normal to staff.</li>
-      <li>The motive: the event that makes staff act fast.</li>
+      <li><strong>Sender to impersonate:</strong> a DCG person whose emails with links look normal to staff.</li>
+      <li><strong>Look-alike domain:</strong> a separate domain that looks like the real staff portal.</li>
+      <li><strong>Pretext:</strong> the event that makes staff act fast.</li>
     </ol>
-    <p>Everything stays inside the game. Do not register a real domain and do not send a real message.</p>
-    <p class="note">Answers are not case sensitive. Your progress is saved in this browser.</p>
+    <p>Flag formats: <code>FLAG{l.irsdottir}</code> style. For the domain, write the full domain. For the pretext, join words with an underscore.</p>
+    <p class="note">Everything stays inside the game. Do not register a real domain and do not send a real message.</p>
   </section>
-  <section class="panel">
-    <h2>How look-alike domains work</h2>
-    <p>The real staff portal is a subdomain of the real domain (word + dot + domain), controlled by the real owner. A look-alike is a separate domain you register that reuses the same words in a different shape.</p>
-    <p>To build one from a subdomain: take the subdomain word, move it to the front, join it to the main name with a hyphen, keep the ending.</p>
-    <p>Example (a different company): real portal <code>mail.northstar.dr</code> becomes look-alike <code>northstar-mail.dr</code>.</p>
-  </section>
+
   <section class="panel">
     <h2>Evidence</h2>
     <ul class="resource-list">
-      <li>
-        <a href="../../www.dcg.dr/coast-guard-report-03-12-26.html" target="_blank" rel="noopener noreferrer">DCG preliminary technical update (see its Official channels box)</a>
-      </li>
-      <li>
-        <a href="../../www.dcg.dr/contacts.html" target="_blank" rel="noopener noreferrer">DCG departments and contacts</a>
-      </li>
-      <li>
-        <a href="../../www.dcg.dr/notices.html" target="_blank" rel="noopener noreferrer">DCG staff notices</a>
-      </li>
+      <li><a href="../../search/index.html" target="_blank" rel="noopener noreferrer">Seekr, the search engine</a></li>
     </ul>
   </section>
 
+  <!-- FLAG SUBMISSION -->
   <section class="panel">
-    <h2>Flag 1: Look-alike domain <span class="badge" data-status="f1">Not solved</span></h2>
-    <p>Which look-alike domain would you register for the fake login?</p>
-    <form data-flag="f1">
-      <label for="f1-input">Domain</label>
-      <input id="f1-input" type="text" placeholder="example.dr" autocomplete="off" autocapitalize="none" spellcheck="false" required>
-      <div class="actions"><button type="submit" class="button primary">Check</button></div>
-      <p class="message" role="status" data-message="f1"></p>
+    <h2>The lure builder</h2>
+    <p>Submit each objective separately. You will get immediate feedback. When all three are solved, your lure appears below.</p>
+
+    <form id="flag-form" hidden>
+      <label for="objective">Select your objective</label>
+      <select id="objective" required>
+        <option value="">Choose an objective</option>
+        <option value="1">Objective 1: Sender to impersonate</option>
+        <option value="2">Objective 2: Look-alike domain</option>
+        <option value="3">Objective 3: Pretext (the event)</option>
+      </select>
+
+      <label for="flag">Enter your flag</label>
+      <input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required>
+
+      <div class="actions"><button type="submit" class="button primary">Check flag</button></div>
+      <p id="flag-message" class="message" role="status"></p>
     </form>
-    <details>
-      <summary>Hint</summary>
-      <p>The real staff portal is a subdomain. Turn it into a separate domain you could register: move the word to the front and join it with a hyphen.</p>
-    </details>
+
+    <p id="accepted-status" class="note"></p>
+    <p class="note">Submissions are recorded for the organisers. Accepted progress is also saved in this browser.</p>
   </section>
 
-  <section class="panel">
-    <h2>Flag 2: Who to impersonate <span class="badge" data-status="f2">Not solved</span></h2>
-    <p>Whose name and email address would you use as the sender?</p>
-    <form data-flag="f2">
-      <label for="f2-input">Name or email address</label>
-      <input id="f2-input" type="text" placeholder="name or email" autocomplete="off" autocapitalize="none" spellcheck="false" required>
-      <div class="actions"><button type="submit" class="button primary">Check</button></div>
-      <p class="message" role="status" data-message="f2"></p>
-    </form>
-    <details>
-      <summary>Hint</summary>
-      <p>Which role normally emails all staff with links and invitations? Check Communications &amp; Events.</p>
-    </details>
-  </section>
-
-  <section class="panel">
-    <h2>Flag 3: The motive <span class="badge" data-status="f3">Not solved</span></h2>
-    <p>Which event would make staff click quickly?</p>
-    <form data-flag="f3">
-      <label for="f3-input">Event</label>
-      <input id="f3-input" type="text" placeholder="event" autocomplete="off" autocapitalize="none" spellcheck="false" required>
-      <div class="actions"><button type="submit" class="button primary">Check</button></div>
-      <p class="message" role="status" data-message="f3"></p>
-    </form>
-    <details>
-      <summary>Hint</summary>
-      <p>What recent notice forces every staff member to act through the portal, with a deadline?</p>
-    </details>
-  </section>
-
+  <!-- LURE PREVIEW: hidden until all 3 objectives are solved -->
   <section class="panel" id="lure-box" hidden>
     <h2>Your lure is ready</h2>
-    <p class="success">Your lure is ready: a fake email from Lena Irsdottir about the security briefing, with a link to dcg-portal.dr. You have launched the attack. You only win if Darsenia clicks or fails to report it.</p>
-  </section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Answers are checked locally and are not sent to organisers.</footer></main>
+    <p>This is the phishing email you built:</p>
+    <div id="lure-email" style="border:1px solid #8884;border-radius:8px;padding:16px;margin:12px 0;">
+      <p style="margin:0 0 4px;"><strong>From:</strong> <span id="lure-from"></span></p>
+      <p style="margin:0 0 4px;"><strong>Reply-To:</strong> d.kova@mail.bv</p>
+      <p style="margin:0 0 12px;"><strong>Subject:</strong> <span id="lure-subject"></span></p>
+      <p>Dear colleague,</p>
+      <p>All staff must attend the mandatory Aurora security briefing. Please confirm your attendance here:</p>
+      <p><a href="#" id="lure-link" style="pointer-events:none;"></a></p>
+      <p>Please complete this today.</p>
+      <p style="margin-bottom:0;">Lena Irsdottir<br>Communications &amp; Events Officer</p>
+    </div>
+    <p class="success"><strong>Lure sent.</strong> It will reach a DCG mailbox. While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
+  </section>
+
+  <noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript>
+  <footer>Fictional wargame organised by Sciences Po Cybersecurity Association.</footer>
+</main>
+
+<!-- CHALLENGE CONFIGURATION -->
+<script id="challenge-data" type="application/json">
+{
+  "id": "challenge-01",
+  "remoteId": "challenge-01",
+  "enabled": true,
+  "validation": "remote",
+  "requiredFlags": 3,
+  "feedback": "Lure assembled."
+}
+</script>
+
 <script>
+// Shows the lure preview once portal.js has saved all 3 objectives.
+// It only reads portal.js's saved progress. It never sees the flags.
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
   var ROLE = "belvaria-cyber";
+  var ID = "challenge-01";
+  var TOTAL = 3;
   var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
-  var key = prefix + "osint:" + ROLE + ":belvaria-01";
-  var progressKey = prefix + "progress:" + ROLE;
-  var memory = {};
+  var box = document.getElementById("lure-box");
 
-  var ANSWERS = {
-    f1: ["dcg-portal.dr"],
-    f2: ["l.irsdottir", "l.irsdottir@dcg.dr", "lena irsdottir"],
-    f3: ["security briefing", "security_briefing", "mandatory security briefing"]
-  };
-  var RIGHT = {
-    f1: "Correct. This domain is not the real portal, but it looks like it.",
-    f2: "Correct. Lena sends staff notices with links, so a message from her looks normal.",
-    f3: "Correct. A mandatory briefing with a deadline makes staff act fast."
-  };
-  var IDS = ["f1", "f2", "f3"];
-
-  function normalise(value) {
-    return value.trim().toLowerCase().replace(/\s+/g, " ");
-  }
-
-  function load() {
+  function solvedCount() {
     try {
-      var value = JSON.parse(localStorage.getItem(key));
-      if (value && typeof value === "object") return value;
-    } catch (e) {}
-    return memory;
-  }
-
-  function save(value) {
-    memory = value;
-    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
-  }
-
-  function logEvent(payload) {
-    var url = window.CHALLENGE_LOG_URL;
-    if (!url) return;
-    try {
-      fetch(url, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
-      }).catch(function () {});
-    } catch (e) {}
-  }
-
-  function markProgress() {
-    try {
-      var done = JSON.parse(localStorage.getItem(progressKey) || "{}");
-      if (!done || typeof done !== "object" || Array.isArray(done)) done = {};
-      if (!done["challenge-01"]) done["challenge-01"] = new Date().toISOString();
-      localStorage.setItem(progressKey, JSON.stringify(done));
-    } catch (e) {}
-  }
-
-  function showSolved(id) {
-    var form = document.querySelector('[data-flag="' + id + '"]');
-    form.querySelector("input").disabled = true;
-    form.querySelector("button").disabled = true;
-    var message = form.querySelector("[data-message]");
-    message.textContent = RIGHT[id];
-    message.className = "message success";
-    document.querySelector('[data-status="' + id + '"]').textContent = "Solved";
-  }
-
-  function checkAll(state, fresh) {
-    var all = IDS.every(function (id) { return state[id]; });
-    if (!all) return;
-    document.getElementById("lure-box").hidden = false;
-    markProgress();
-    if (fresh && !state.logged) {
-      state.logged = true;
-      save(state);
-      logEvent({
-        type: "challenge-event",
-        team: ROLE,
-        challenge: "belvaria-01",
-        event: "solved",
-        ts: new Date().toISOString()
-      });
+      var all = JSON.parse(localStorage.getItem(prefix + "progress:" + ROLE) || "{}");
+      var entry = all && all[ID];
+      var objectives = entry && typeof entry === "object" ? entry.objectives || {} : {};
+      return Object.keys(objectives).length;
+    } catch (e) {
+      return 0;
     }
   }
 
-  var state = load();
-  IDS.forEach(function (id) { if (state[id]) showSolved(id); });
-  checkAll(state, false);
+  function fill() {
+    // The email only appears after all three objectives, so it can show the answers.
+    document.getElementById("lure-from").textContent = "Lena Irsdottir <l.irsdottir@dcg-portal.dr>";
+    document.getElementById("lure-subject").textContent = "Confirm your attendance — mandatory Aurora security briefing";
+    document.getElementById("lure-link").textContent = "http://dcg-portal.dr/confirm";
+  }
 
-  document.querySelectorAll("[data-flag]").forEach(function (form) {
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      var id = form.dataset.flag;
-      var message = form.querySelector("[data-message]");
-      var value = normalise(form.querySelector("input").value);
-      if (ANSWERS[id].indexOf(value) === -1) {
-        message.textContent = "Not correct. Check the evidence and try again.";
-        message.className = "message error";
-        return;
-      }
-      state = load();
-      state[id] = true;
-      save(state);
-      showSolved(id);
-      checkAll(state, true);
-    });
+  function update() {
+    if (solvedCount() >= TOTAL && box.hidden) {
+      fill();
+      box.hidden = false;
+    }
+  }
+
+  update();
+  // portal.js rewrites these two elements after each submission.
+  ["accepted-status", "flag-message"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) new MutationObserver(update).observe(el, { childList: true, characterData: true, subtree: true });
   });
 });
 </script>
