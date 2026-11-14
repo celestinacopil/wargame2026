@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>LureForge | Phishing kit (Belvaria cyber ops)</title>
+<style>
+:root{--bg:#0b0d10;--panel:#12161b;--text:#d5dbe1;--muted:#8a96a3;--red:#e8a0a0;--green:#7bd88f;--orange:#f0a35e;--stop:#ff7b7b;--line:#2b323a}
+*{box-sizing:border-box}
+body{margin:0;background:#06080a;color:var(--text);font:14px/1.5 "Courier New",Consolas,monospace}
+.bar{display:flex;align-items:center;gap:12px;padding:10px 18px;background:#14100f;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.bar strong{letter-spacing:.08em;color:#fff}
+.bar .class{color:var(--stop);font-weight:bold;font-size:12px;border:1px solid var(--stop);padding:2px 8px;border-radius:3px}
+.bar a{margin-left:auto;color:var(--red);text-decoration:none;font-size:13px}
+main{max-width:860px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:22px;color:#fff;margin:6px 0 4px}
+h3{color:var(--red);font-size:14px;letter-spacing:1px;text-transform:uppercase;margin:26px 0 8px}
+.hint{color:var(--muted);font-size:13px;margin:0 0 10px}
+.tg-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.tg{text-align:left;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:12px;font:inherit;cursor:pointer}
+.tg:hover{border-color:#6d7884}
+.tg[aria-pressed="true"]{border-color:var(--red);background:#1d1416}
+.tg b{display:block;color:#fff}
+.tg span{display:block;font-size:12px;color:var(--muted)}
+.readout{min-height:22px;margin:10px 0 0;font-size:13px}
+.good{color:var(--green)}.bad{color:var(--orange)}.stop{color:var(--stop)}
+input[type="text"]{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:9px;font:inherit;width:100%;max-width:340px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{background:#2a1d1d;color:#fff;border:1px solid var(--red);border-radius:6px;padding:9px 14px;font:inherit;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opt{display:block;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:6px 0;cursor:pointer}
+.opt input{margin-right:8px}
+.opt small{color:var(--muted);display:block;margin-left:24px}
+.email{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;font-size:13px}
+.email p{margin:0 0 4px}
+.email .body{white-space:pre-wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.meters{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:8px}
+.meter-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.track{height:12px;background:#1b2128;border-radius:6px;overflow:hidden}
+.fill{height:100%;width:0;transition:width .25s}
+.fill.cred{background:var(--green)}.fill.risk{background:var(--stop)}
+.sent{border:1px solid var(--green);border-radius:8px;padding:14px;margin-top:18px}
+.sent h3{color:var(--green);margin-top:0}
+.sent a{color:var(--red)}
+footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size:12px}
+</style>
+</head>
+<body>
+<div class="bar"><strong>LUREFORGE</strong><span class="class">BELVARIA CYBER OPS</span><a href="../challenges/belvaria/challenge-01.html">← Back to Belvaria Challenge 1</a></div>
+<main>
+  <h1>LureForge: phishing kit</h1>
+  <p class="hint">Build your lure here. Nothing in this tool sends a real message. When your build is ready, go back to the challenge and submit your findings.</p>
+
+  <h3>1. Target: who do you impersonate?</h3>
+  <p class="hint">Pick the person whose emails with links look normal to DCG staff.</p>
+  <div class="tg-row" id="targets"></div>
+  <p class="readout" id="target-readout" aria-live="polite"></p>
+
+  <h3>2. Domain: register a look-alike</h3>
+  <p class="hint">The real staff portal is <code>portal.dcg.dr</code>. Register a different domain that looks like it.</p>
+  <div class="row">
+    <input type="text" id="domain-input" placeholder="example.dr" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Look-alike domain">
+    <button type="button" class="btn" id="domain-btn">Register</button>
+  </div>
+  <p class="readout" id="domain-readout" aria-live="polite"></p>
+
+  <h3>3. Pretext: why should staff click?</h3>
+  <label class="opt"><input type="radio" name="pretext" value="update">Account update<small>Generic. Staff see this kind of message all the time.</small></label>
+  <label class="opt"><input type="radio" name="pretext" value="invoice">Unpaid invoice<small>Creates worry, but few DCG staff handle invoices.</small></label>
+  <label class="opt"><input type="radio" name="pretext" value="briefing">Mandatory Aurora security briefing<small>Ties to the DCG staff notice. Everyone must act, with a deadline.</small></label>
+  <p class="readout" id="pretext-readout" aria-live="polite"></p>
+
+  <h3>Live email preview</h3>
+  <div class="email" id="email">
+    <p><b>From:</b> <span id="e-from"></span></p>
+    <p><b>Reply-To:</b> d.kova@mail.bv</p>
+    <p><b>Subject:</b> <span id="e-subject"></span></p>
+    <div class="body" id="e-body"></div>
+  </div>
+
+  <h3>Meters</h3>
+  <div class="meters">
+    <div><div class="meter-label"><span>Credibility</span><span id="m-cred-n">0 / 100</span></div><div class="track"><div class="fill cred" id="m-cred"></div></div></div>
+    <div><div class="meter-label"><span>Detection risk</span><span id="m-risk-n">0 / 100</span></div><div class="track"><div class="fill risk" id="m-risk"></div></div></div>
+  </div>
+  <p class="hint" style="margin-top:8px">Detection risk goes up when something does not match. This is what Darsenia checks when it defends.</p>
+
+  <div class="row" style="margin-top:18px">
+    <button type="button" class="btn" id="deploy" disabled>Deploy lure</button>
+    <span class="hint" id="deploy-note" style="margin:0">Deploy unlocks when your target, domain and pretext are all convincing.</span>
+  </div>
+
+  <div class="sent" id="sent" hidden>
+    <h3>Lure sent</h3>
+    <p><strong>Your lure is ready.</strong> Go back to <a href="../challenges/belvaria/challenge-01.html">Belvaria Challenge 1</a> and submit your three findings: the sender, the look-alike domain and the pretext.</p>
+    <p>Your email will reach a DCG mailbox. You only win if Darsenia clicks or fails to report it.</p>
+    <p>While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
+  </div>
+</main>
+<footer>Fictional tool created for the Arctic Crisis wargame. It does not send real messages.</footer>
+
+<script>
+"use strict";
+(() => {
+  const REAL_DOMAINS = ["portal.dcg.dr", "dcg.dr"];
+  const GOOD_DOMAIN = "dcg-portal.dr";
+
+  const TARGETS = [
+    { id: "lena", name: "Lena Irsdottir", role: "Communications & Events Officer", local: "l.irsdottir", cred: 40, risk: 0, tone: "good",
+      note: "Strong choice. She sends staff notices, invitations and registration links, so a message from her looks normal." },
+    { id: "mara", name: "Mara Toft", role: "IT & Systems Administrator", local: "m.toft", cred: 10, risk: 30, tone: "bad",
+      note: "Weak. IT never emails password resets, so an account message from IT looks suspicious and staff are warned about it." },
+    { id: "petr", name: "Petr Halvorsen", role: "Director, Maritime Safety", local: "p.halvorsen", cred: 15, risk: 25, tone: "bad",
+      note: "Too senior. Staff rarely get link emails from a director, so they would stop and ask why." },
+    { id: "jon", name: "Jon Aalto", role: "Search & Rescue Coordinator", local: "j.aalto", cred: 10, risk: 20, tone: "bad",
+      note: "Off-topic. He runs rescue operations, not staff events, so a briefing email from him looks odd." }
+  ];
+
+  const PRETEXTS = {
+    update: { cred: 5, risk: 25, tone: "bad", path: "/verify",
+      subject: "Action required: account update",
+      line: "Your account needs an update. Please verify your details here:",
+      note: "Generic. Staff see these all the time and many have learned to distrust them." },
+    invoice: { cred: 10, risk: 20, tone: "bad", path: "/invoice",
+      subject: "Unpaid invoice 4471",
+      line: "Invoice 4471 is unpaid. Please review it here:",
+      note: "Few DCG staff handle invoices, so most will not expect this." },
+    briefing: { cred: 25, risk: 0, tone: "good", path: "/confirm",
+      subject: "Confirm your attendance — mandatory Aurora security briefing",
+      line: "All staff must attend the mandatory Aurora security briefing on 10 December. Please confirm your attendance here:",
+      note: "Highest urgency. It matches the real DCG staff notice, so staff expect it and have a deadline." }
+  };
+
+  const state = { target: null, domain: "", pretext: null, deployed: false };
+  const $ = id => document.getElementById(id);
+  function say(el, text, tone) { el.textContent = text; el.className = "readout " + (tone || ""); }
+
+  // ---------- domain ----------
+  function cleanDomain(text) {
+    return text.trim().toLowerCase().replace(/^[a-z]+:\/\//, "").replace(/\/.*$/, "").replace(/^www\./, "");
+  }
+  function checkDomain(text) {
+    const d = cleanDomain(text);
+    if (!d) return { kind: "empty" };
+    if (REAL_DOMAINS.includes(d)) return { kind: "real", d };
+    if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(d)) return { kind: "invalid", d };
+    if (d === GOOD_DOMAIN) return { kind: "good", d };
+    return { kind: "weak", d };
+  }
+  function domainScore() {
+    const c = checkDomain(state.domain);
+    if (c.kind === "good") return { cred: 35, risk: 10 };
+    if (c.kind === "weak") return { cred: 0, risk: 35 };
+    return { cred: 0, risk: 0 };
+  }
+
+  // ---------- render ----------
+  function render() {
+    const t = TARGETS.find(x => x.id === state.target) || null;
+    const p = state.pretext ? PRETEXTS[state.pretext] : null;
+    const hasDomain = state.domain !== "";
+
+    document.querySelectorAll("#targets .tg").forEach(b =>
+      b.setAttribute("aria-pressed", String(b.dataset.id === state.target)));
+
+    const link = "http://" + (hasDomain ? state.domain : "(your domain)") + (p ? p.path : "/...");
+    $("e-from").textContent = t
+      ? t.name + " <" + t.local + "@" + (hasDomain ? state.domain : "(your domain)") + ">"
+      : "(choose a target)";
+    $("e-subject").textContent = p ? p.subject : "(choose a pretext)";
+    $("e-body").textContent = p
+      ? "Dear colleague,\n\n" + p.line + "\n" + link + "\n\nPlease complete this today.\n\n" +
+        (t ? t.name + "\n" + t.role : "(sender)")
+      : "(choose a pretext to write the message)";
+
+    const ds = domainScore();
+    const cred = (t ? t.cred : 0) + ds.cred + (p ? p.cred : 0);
+    const risk = (t ? t.risk : 0) + ds.risk + (p ? p.risk : 0);
+    $("m-cred").style.width = cred + "%";
+    $("m-risk").style.width = risk + "%";
+    $("m-cred-n").textContent = cred + " / 100";
+    $("m-risk-n").textContent = risk + " / 100";
+
+    const ready = state.target === "lena" && checkDomain(state.domain).kind === "good" && state.pretext === "briefing";
+    $("deploy").disabled = !ready || state.deployed;
+    $("deploy-note").textContent = state.deployed
+      ? "Lure deployed."
+      : ready
+        ? "All three choices are convincing. Ready to deploy."
+        : "Deploy unlocks when your target, domain and pretext are all convincing.";
+    $("sent").hidden = !state.deployed;
+  }
+
+  // ---------- events ----------
+  TARGETS.forEach(t => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "tg";
+    b.dataset.id = t.id;
+    b.setAttribute("aria-pressed", "false");
+    const n = document.createElement("b"); n.textContent = t.name;
+    const r = document.createElement("span"); r.textContent = t.role;
+    const e = document.createElement("span"); e.textContent = t.local + "@dcg.dr";
+    b.append(n, r, e);
+    b.addEventListener("click", () => {
+      state.target = t.id;
+      state.deployed = false;
+      say($("target-readout"), t.note, t.tone);
+      render();
+    });
+    $("targets").appendChild(b);
+  });
+
+  function showDomainCheck() {
+    const c = checkDomain($("domain-input").value);
+    const out = $("domain-readout");
+    if (c.kind === "empty") say(out, "Type a domain you would register.", "");
+    else if (c.kind === "real") say(out, "That is the real portal. You cannot register it.", "stop");
+    else if (c.kind === "invalid") say(out, "That is not a valid domain name.", "bad");
+    else if (c.kind === "good") say(out, "Look-alike. Available. Convincing: it reuses the real portal's words.", "good");
+    else say(out, "Available, but not convincing. It does not look like the real portal.", "bad");
+    return c;
+  }
+  $("domain-input").addEventListener("input", showDomainCheck);
+  function registerDomain() {
+    const c = showDomainCheck();
+    if (c.kind === "good" || c.kind === "weak") {
+      state.domain = c.d;
+      state.deployed = false;
+      const out = $("domain-readout");
+      out.textContent = "Registered: " + c.d + ". " + out.textContent;
+      render();
+    }
+  }
+  $("domain-btn").addEventListener("click", registerDomain);
+  $("domain-input").addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); registerDomain(); }
+  });
+
+  document.querySelectorAll('input[name="pretext"]').forEach(r =>
+    r.addEventListener("change", () => {
+      state.pretext = r.value;
+      state.deployed = false;
+      say($("pretext-readout"), PRETEXTS[r.value].note, PRETEXTS[r.value].tone);
+      render();
+    }));
+
+  $("deploy").addEventListener("click", () => {
+    state.deployed = true;
+    render();
+    $("sent").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
