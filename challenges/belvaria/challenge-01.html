@@ -1,5 +1,39 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script>
+<style>
+  #bench { background: #0b0d10; color: #d5dbe1; border: 1px solid #2b323a; border-radius: 10px; padding: 18px; margin: 18px 0; font-family: "Courier New", Consolas, monospace; }
+  #bench h2 { color: #fff; margin-top: 0; }
+  #bench h3 { color: #e8a0a0; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin: 22px 0 8px; }
+  #bench .hint { color: #8a96a3; font-size: 13px; margin: 0 0 10px; }
+  #bench .tg-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+  #bench .tg { text-align: left; background: #12161b; color: #d5dbe1; border: 1px solid #2b323a; border-radius: 8px; padding: 12px; font: inherit; cursor: pointer; }
+  #bench .tg:hover { border-color: #6d7884; }
+  #bench .tg[aria-pressed="true"] { border-color: #e8a0a0; background: #1d1416; }
+  #bench .tg b { display: block; color: #fff; }
+  #bench .tg span { display: block; font-size: 12px; color: #8a96a3; }
+  #bench .readout { min-height: 22px; margin: 10px 0 0; font-size: 13px; }
+  #bench .good { color: #7bd88f; }
+  #bench .bad { color: #f0a35e; }
+  #bench .stop { color: #ff7b7b; }
+  #bench input[type="text"] { background: #12161b; color: #d5dbe1; border: 1px solid #2b323a; border-radius: 6px; padding: 9px; font: inherit; width: 100%; max-width: 340px; }
+  #bench .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  #bench .btn { background: #2a1d1d; color: #fff; border: 1px solid #e8a0a0; border-radius: 6px; padding: 9px 14px; font: inherit; cursor: pointer; }
+  #bench .btn:disabled { opacity: .4; cursor: not-allowed; }
+  #bench .opt { display: block; background: #12161b; border: 1px solid #2b323a; border-radius: 8px; padding: 10px 12px; margin: 6px 0; cursor: pointer; }
+  #bench .opt input { margin-right: 8px; }
+  #bench .opt small { color: #8a96a3; display: block; margin-left: 24px; }
+  #bench .email { background: #12161b; border: 1px solid #2b323a; border-radius: 8px; padding: 14px; font-size: 13px; }
+  #bench .email p { margin: 0 0 4px; }
+  #bench .email .body { white-space: pre-wrap; margin-top: 12px; padding-top: 12px; border-top: 1px solid #2b323a; }
+  #bench .meters { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 8px; }
+  #bench .meter-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+  #bench .track { height: 12px; background: #1b2128; border-radius: 6px; overflow: hidden; }
+  #bench .fill { height: 100%; width: 0; transition: width .25s; }
+  #bench .fill.cred { background: #7bd88f; }
+  #bench .fill.risk { background: #ff7b7b; }
+  #bench .sent { border: 1px solid #7bd88f; border-radius: 8px; padding: 14px; margin-top: 18px; color: #d5dbe1; }
+  #bench .sent h3 { color: #7bd88f; margin-top: 0; }
+</style></head>
 <body data-page="challenge" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a><p class="tag red">Belvaria / Cyber / Challenge 01</p>
   <h1>Build the lure</h1>
   <span class="badge">Available</span>
@@ -8,14 +42,8 @@
     <h2>Instructions</h2>
     <p>Belvaria's first move: get inside the Darsenian Coast Guard (DCG) to watch their investigation and find who leaked.</p>
     <p>You cannot break in by force. Instead, trick a DCG insider into clicking a link that looks like their real staff portal. This is called <strong>phishing</strong>.</p>
-    <p>Do recon only, using public sources and a leaked DCG file. Use Seekr to find them. Then build the lure.</p>
-    <p>You need three things:</p>
-    <ol>
-      <li><strong>Sender to impersonate:</strong> a DCG person whose emails with links look normal to staff.</li>
-      <li><strong>Look-alike domain:</strong> a separate domain that looks like the real staff portal.</li>
-      <li><strong>Pretext:</strong> the event that makes staff act fast.</li>
-    </ol>
-    <p>Flag formats: for the sender, <code>FLAG{first-initial.lastname}</code>. For the domain, write the full domain. For the pretext, join words with an underscore.</p>
+    <p>Do recon only, using public sources and a leaked DCG file. Use Seekr to find them. Then build the lure in the workbench below.</p>
+    <p>You need three things: a <strong>sender</strong> to impersonate, a <strong>look-alike domain</strong>, and a <strong>pretext</strong> (the event that makes staff act fast). Watch the two meters: you want high credibility and low detection risk.</p>
     <p class="note">Everything stays inside the game. Do not register a real domain and do not send a real message.</p>
   </section>
 
@@ -26,10 +54,61 @@
     </ul>
   </section>
 
-  <!-- FLAG SUBMISSION -->
+  <section id="bench" aria-label="Attacker's workbench">
+    <h2>Attacker's workbench</h2>
+    <p class="hint">Phishing kit. Fictional. Nothing here sends a real message.</p>
+
+    <h3>1. Target: who do you impersonate?</h3>
+    <p class="hint">Pick the person whose emails with links look normal to DCG staff.</p>
+    <div class="tg-row" id="targets"></div>
+    <p class="readout" id="target-readout" aria-live="polite"></p>
+
+    <h3>2. Domain: register a look-alike</h3>
+    <p class="hint">The real staff portal is <code>portal.dcg.dr</code>. Register a different domain that looks like it.</p>
+    <div class="row">
+      <input type="text" id="domain-input" placeholder="example.dr" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Look-alike domain">
+      <button type="button" class="btn" id="domain-btn">Register</button>
+    </div>
+    <p class="readout" id="domain-readout" aria-live="polite"></p>
+
+    <h3>3. Pretext: why should staff click?</h3>
+    <label class="opt"><input type="radio" name="pretext" value="update">Account update<small>Generic. Staff see this kind of message all the time.</small></label>
+    <label class="opt"><input type="radio" name="pretext" value="invoice">Unpaid invoice<small>Creates worry, but few DCG staff handle invoices.</small></label>
+    <label class="opt"><input type="radio" name="pretext" value="briefing">Mandatory Aurora security briefing<small>Ties to the DCG staff notice. Everyone must act, with a deadline.</small></label>
+    <p class="readout" id="pretext-readout" aria-live="polite"></p>
+
+    <h3>Live email preview</h3>
+    <div class="email" id="email">
+      <p><b>From:</b> <span id="e-from"></span></p>
+      <p><b>Reply-To:</b> d.kova@mail.bv</p>
+      <p><b>Subject:</b> <span id="e-subject"></span></p>
+      <div class="body" id="e-body"></div>
+    </div>
+
+    <h3>Meters</h3>
+    <div class="meters">
+      <div><div class="meter-label"><span>Credibility</span><span id="m-cred-n">0</span></div><div class="track"><div class="fill cred" id="m-cred"></div></div></div>
+      <div><div class="meter-label"><span>Detection risk</span><span id="m-risk-n">0</span></div><div class="track"><div class="fill risk" id="m-risk"></div></div></div>
+    </div>
+    <p class="hint" style="margin-top:8px">Detection risk goes up when something does not match. This is what Darsenia checks when it defends.</p>
+
+    <div class="row" style="margin-top:18px">
+      <button type="button" class="btn" id="deploy" disabled>Deploy lure</button>
+      <span class="hint" id="deploy-note" style="margin:0">Deploy unlocks when your target, domain and pretext are all convincing.</span>
+    </div>
+    <p class="readout" id="deploy-status" aria-live="polite"></p>
+
+    <div class="sent" id="sent" hidden>
+      <h3>Lure sent</h3>
+      <p>Your email will reach a DCG mailbox. You have launched the attack. You only win if Darsenia clicks or fails to report it.</p>
+      <p>While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
+    </div>
+  </section>
+
+  <!-- FLAG SUBMISSION (Deploy uses this same form; you can also use it by hand) -->
   <section class="panel">
-    <h2>The lure builder</h2>
-    <p>Submit each objective separately. You will get immediate feedback. When all three are solved, your lure appears below.</p>
+    <h2>Record your findings</h2>
+    <p>Deploying the lure records your three findings for you. If that fails, record them here by hand: submit each objective separately.</p>
 
     <form id="flag-form" hidden>
       <label for="objective">Select your objective</label>
@@ -51,23 +130,6 @@
     <p class="note">Submissions are recorded for the organisers. Accepted progress is also saved in this browser.</p>
   </section>
 
-  <!-- LURE PREVIEW: hidden until all 3 objectives are solved -->
-  <section class="panel" id="lure-box" hidden>
-    <h2>Your lure is ready</h2>
-    <p>This is the phishing email you built:</p>
-    <div id="lure-email" style="border:1px solid #8884;border-radius:8px;padding:16px;margin:12px 0;">
-      <p style="margin:0 0 4px;"><strong>From:</strong> <span id="lure-from"></span></p>
-      <p style="margin:0 0 4px;"><strong>Reply-To:</strong> d.kova@mail.bv</p>
-      <p style="margin:0 0 12px;"><strong>Subject:</strong> <span id="lure-subject"></span></p>
-      <p>Dear colleague,</p>
-      <p>All staff must attend the mandatory Aurora security briefing. Please confirm your attendance here:</p>
-      <p><a href="#" id="lure-link" style="pointer-events:none;"></a></p>
-      <p>Please complete this today.</p>
-      <p style="margin-bottom:0;">Lena Irsdottir<br>Communications &amp; Events Officer</p>
-    </div>
-    <p class="success"><strong>Lure sent.</strong> It will reach a DCG mailbox. While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
-  </section>
-
   <noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript>
   <footer>Fictional wargame organised by Sciences Po Cybersecurity Association.</footer>
 </main>
@@ -85,46 +147,245 @@
 </script>
 
 <script>
-// Shows the lure preview once portal.js has saved all 3 objectives.
-// It only reads portal.js's saved progress. It never sees the flags.
+// Attacker's workbench. Pure JavaScript, no libraries.
+// The choices are checked here for feedback only. The server is the real gate:
+// Deploy sends the three flags through portal.js's own form.
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
+
   var ROLE = "belvaria-cyber";
   var ID = "challenge-01";
   var TOTAL = 3;
   var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
-  var box = document.getElementById("lure-box");
+  var REAL_DOMAINS = ["portal.dcg.dr", "dcg.dr"];
+  var GOOD_DOMAIN = "dcg-portal.dr";
+  var FLAGS = { 1: "FLAG{l.irsdottir}", 2: "FLAG{dcg-portal.dr}", 3: "FLAG{security_briefing}" };
 
-  function solvedCount() {
+  var TARGETS = [
+    { id: "lena", name: "Lena Irsdottir", role: "Communications & Events Officer", local: "l.irsdottir", cred: 40, risk: 0, tone: "good",
+      note: "Strong choice. She sends staff notices, invitations and registration links, so a message from her looks normal." },
+    { id: "mara", name: "Mara Toft", role: "IT & Systems Administrator", local: "m.toft", cred: 10, risk: 30, tone: "bad",
+      note: "Weak. IT never emails password resets, so an account message from IT looks suspicious and staff are warned about it." },
+    { id: "petr", name: "Petr Halvorsen", role: "Director, Maritime Safety", local: "p.halvorsen", cred: 15, risk: 25, tone: "bad",
+      note: "Too senior. Staff rarely get link emails from a director, so they would stop and ask why." },
+    { id: "jon", name: "Jon Aalto", role: "Search & Rescue Coordinator", local: "j.aalto", cred: 10, risk: 20, tone: "bad",
+      note: "Off-topic. He runs rescue operations, not staff events, so a briefing email from him looks odd." }
+  ];
+
+  var PRETEXTS = {
+    update: { cred: 5, risk: 25, tone: "bad", path: "/verify",
+      subject: "Action required: account update",
+      line: "Your account needs an update. Please verify your details here:",
+      note: "Generic. Staff see these all the time and many have learned to distrust them." },
+    invoice: { cred: 10, risk: 20, tone: "bad", path: "/invoice",
+      subject: "Unpaid invoice 4471",
+      line: "Invoice 4471 is unpaid. Please review it here:",
+      note: "Few DCG staff handle invoices, so most will not expect this." },
+    briefing: { cred: 25, risk: 0, tone: "good", path: "/confirm",
+      subject: "Confirm your attendance — mandatory Aurora security briefing",
+      line: "All staff must attend the mandatory Aurora security briefing on 10 December. Please confirm your attendance here:",
+      note: "Highest urgency. It matches the real DCG staff notice, so staff expect it and have a deadline." }
+  };
+
+  var state = { target: null, domain: "", pretext: null, deployed: false, busy: false };
+
+  function $(id) { return document.getElementById(id); }
+  function say(el, text, tone) { el.textContent = text; el.className = "readout " + (tone || ""); }
+
+  // ---------- saved progress written by portal.js ----------
+  function solvedMap() {
     try {
       var all = JSON.parse(localStorage.getItem(prefix + "progress:" + ROLE) || "{}");
       var entry = all && all[ID];
-      var objectives = entry && typeof entry === "object" ? entry.objectives || {} : {};
-      return Object.keys(objectives).length;
-    } catch (e) {
-      return 0;
+      return entry && typeof entry === "object" ? entry.objectives || {} : {};
+    } catch (e) { return {}; }
+  }
+  function solvedCount() { return Object.keys(solvedMap()).length; }
+
+  // ---------- domain ----------
+  function cleanDomain(text) {
+    return text.trim().toLowerCase().replace(/^[a-z]+:\/\//, "").replace(/\/.*$/, "").replace(/^www\./, "");
+  }
+  function checkDomain(text) {
+    var d = cleanDomain(text);
+    if (!d) return { kind: "empty" };
+    if (REAL_DOMAINS.indexOf(d) !== -1) return { kind: "real", d: d };
+    if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(d)) return { kind: "invalid", d: d };
+    if (d === GOOD_DOMAIN) return { kind: "good", d: d };
+    return { kind: "weak", d: d };
+  }
+  function domainScore() {
+    var c = checkDomain(state.domain);
+    if (c.kind === "good") return { cred: 35, risk: 10 };
+    if (c.kind === "weak") return { cred: 0, risk: 35 };
+    return { cred: 0, risk: 0 };
+  }
+
+  // ---------- render ----------
+  function getTarget() {
+    return TARGETS.filter(function (t) { return t.id === state.target; })[0] || null;
+  }
+
+  function render() {
+    var t = getTarget();
+    var p = state.pretext ? PRETEXTS[state.pretext] : null;
+    var domainOk = state.domain !== "";
+
+    // target cards
+    document.querySelectorAll("#targets .tg").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.id === state.target));
+    });
+
+    // email preview
+    var link = "http://" + (domainOk ? state.domain : "(your domain)") + (p ? p.path : "/...");
+    $("e-from").textContent = t
+      ? t.name + " <" + t.local + "@" + (domainOk ? state.domain : "(your domain)") + ">"
+      : "(choose a target)";
+    $("e-subject").textContent = p ? p.subject : "(choose a pretext)";
+    $("e-body").textContent = p
+      ? "Dear colleague,\n\n" + p.line + "\n" + link + "\n\nPlease complete this today.\n\n" +
+        (t ? t.name + "\n" + t.role : "(sender)")
+      : "(choose a pretext to write the message)";
+
+    // meters
+    var ds = domainScore();
+    var cred = (t ? t.cred : 0) + ds.cred + (p ? p.cred : 0);
+    var risk = (t ? t.risk : 0) + ds.risk + (p ? p.risk : 0);
+    $("m-cred").style.width = cred + "%";
+    $("m-risk").style.width = risk + "%";
+    $("m-cred-n").textContent = cred + " / 100";
+    $("m-risk-n").textContent = risk + " / 100";
+
+    // deploy button
+    var ready = state.target === "lena" && checkDomain(state.domain).kind === "good" && state.pretext === "briefing";
+    $("deploy").disabled = !ready || state.busy || state.deployed;
+    $("deploy-note").textContent = state.deployed
+      ? "Lure deployed."
+      : ready
+        ? "All three choices are convincing. Ready to deploy."
+        : "Deploy unlocks when your target, domain and pretext are all convincing.";
+    $("sent").hidden = !state.deployed;
+  }
+
+  // ---------- events ----------
+  var row = $("targets");
+  TARGETS.forEach(function (t) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "tg";
+    b.dataset.id = t.id;
+    b.setAttribute("aria-pressed", "false");
+    var n = document.createElement("b"); n.textContent = t.name;
+    var r = document.createElement("span"); r.textContent = t.role;
+    var e = document.createElement("span"); e.textContent = t.local + "@dcg.dr";
+    b.appendChild(n); b.appendChild(r); b.appendChild(e);
+    b.addEventListener("click", function () {
+      state.target = t.id;
+      say($("target-readout"), t.note, t.tone);
+      render();
+    });
+    row.appendChild(b);
+  });
+
+  function showDomainCheck() {
+    var c = checkDomain($("domain-input").value);
+    var out = $("domain-readout");
+    if (c.kind === "empty") say(out, "Type a domain you would register.", "");
+    else if (c.kind === "real") say(out, "That is the real portal. You cannot register it.", "stop");
+    else if (c.kind === "invalid") say(out, "That is not a valid domain name.", "bad");
+    else if (c.kind === "good") say(out, "Look-alike. Available. Convincing: it reuses the real portal's words.", "good");
+    else say(out, "Available, but not convincing. It does not look like the real portal.", "bad");
+    return c;
+  }
+  $("domain-input").addEventListener("input", showDomainCheck);
+  function registerDomain() {
+    var c = showDomainCheck();
+    if (c.kind === "good" || c.kind === "weak") {
+      state.domain = c.d;
+      var out = $("domain-readout");
+      out.textContent = "Registered: " + c.d + ". " + out.textContent;
+      render();
     }
   }
+  $("domain-btn").addEventListener("click", registerDomain);
+  $("domain-input").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); registerDomain(); }
+  });
 
-  function fill() {
-    // The email only appears after all three objectives, so it can show the answers.
-    document.getElementById("lure-from").textContent = "Lena Irsdottir <l.irsdottir@dcg-portal.dr>";
-    document.getElementById("lure-subject").textContent = "Confirm your attendance — mandatory Aurora security briefing";
-    document.getElementById("lure-link").textContent = "http://dcg-portal.dr/confirm";
+  document.querySelectorAll('input[name="pretext"]').forEach(function (r) {
+    r.addEventListener("change", function () {
+      state.pretext = r.value;
+      say($("pretext-readout"), PRETEXTS[r.value].note, PRETEXTS[r.value].tone);
+      render();
+    });
+  });
+
+  // ---------- Deploy: send the 3 flags through portal.js's own form ----------
+  function submitOne(id) {
+    return new Promise(function (resolve) {
+      var select = $("objective"), input = $("flag"), msg = $("flag-message"), form = $("flag-form");
+      if (solvedMap()[id]) { resolve({ ok: true }); return; }
+      select.value = id;
+      input.value = FLAGS[id];
+      msg.textContent = "";
+      msg.className = "message";
+      form.hidden = false;
+      form.requestSubmit();
+      var tries = 0;
+      var timer = setInterval(function () {
+        tries++;
+        if (solvedMap()[id]) { clearInterval(timer); resolve({ ok: true }); return; }
+        if (msg.classList.contains("error")) { clearInterval(timer); resolve({ ok: false, msg: msg.textContent }); return; }
+        if (tries > 150) { clearInterval(timer); resolve({ ok: false, msg: "No answer from the server." }); }
+      }, 150);
+    });
   }
 
-  function update() {
-    if (solvedCount() >= TOTAL && box.hidden) {
-      fill();
-      box.hidden = false;
+  $("deploy").addEventListener("click", async function () {
+    if (state.busy || state.deployed) return;
+    state.busy = true;
+    state.deployed = true;
+    render();
+    var out = $("deploy-status");
+    say(out, "Sending the lure and recording your three findings...", "");
+    var failed = null;
+    for (var i = 1; i <= TOTAL; i++) {
+      var r = await submitOne(String(i));
+      if (!r.ok) { failed = r.msg; break; }
     }
+    state.busy = false;
+    if (failed) {
+      state.deployed = false;
+      say(out, "Could not record all findings: " + failed + " Use the form below to record them by hand, then deploy again.", "bad");
+    } else {
+      say(out, "Your three findings are recorded for the organisers.", "good");
+    }
+    render();
+  });
+
+  // ---------- already solved (reload, or recorded by hand) ----------
+  function syncSolved() {
+    if (state.deployed || solvedCount() < TOTAL) return;
+    state.target = "lena";
+    state.domain = GOOD_DOMAIN;
+    state.pretext = "briefing";
+    state.deployed = true;
+    $("domain-input").value = GOOD_DOMAIN;
+    var radio = document.querySelector('input[name="pretext"][value="briefing"]');
+    if (radio) radio.checked = true;
+    say($("target-readout"), TARGETS[0].note, "good");
+    showDomainCheck();
+    say($("pretext-readout"), PRETEXTS.briefing.note, "good");
+    say($("deploy-status"), "Your three findings are recorded for the organisers.", "good");
+    render();
   }
 
-  update();
-  // portal.js rewrites these two elements after each submission.
+  render();
+  syncSolved();
+  // portal.js rewrites these elements after each submission.
   ["accepted-status", "flag-message"].forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) new MutationObserver(update).observe(el, { childList: true, characterData: true, subtree: true });
+    var el = $(id);
+    if (el) new MutationObserver(syncSolved).observe(el, { childList: true, characterData: true, subtree: true });
   });
 });
 </script>
