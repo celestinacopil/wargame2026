@@ -28,6 +28,8 @@ This repo is the website for **Arctic Crisis**, a fictional wargame run by the S
 | `government/` | Briefs for government teams |
 | `organisers.html` | Organiser console (Apps Script iframe) |
 | `tools-darsenia/` | Hub page listing Darsenia's investigation tools |
+| `phishkit/` | **LureForge**, the Belvaria phishing-kit tool that Belvaria challenge 01 links to (see the tools table below) |
+| `leaks/` | In-world leaked documents (pasted copies of internal files), searchable in Seekr |
 
 ### In-game fictional tools and sources
 | Path | Tool |
@@ -38,7 +40,9 @@ This repo is the website for **Arctic Crisis**, a fictional wargame run by the S
 | `konekt/` | **Konekt** social network |
 | `vesseltrace/` | **VesselTrace** ship database (owner/manager/ISM data, AIS position history) + distance calculator. Data lives in `vesseltrace/catalog.js` |
 | `forensics/` | Fake Linux terminal that imitates `exiftool`. Evidence metadata is in `forensics/files.js`, the command logic in `terminal.js` |
-| `ministriaenergiye.bv/`, `www.deuters.com/`, `www.belvariatoday.bv/`, `www.dcg.dr/` | Fictional ministry, news and coast-guard websites |
+| `phishkit/` | **LureForge**, a standalone phishing-kit tool for Belvaria cyber (no login). Players build a fake email (target, look-alike domain, pretext) and see credibility and detection-risk meters. A correct build hands off to Belvaria challenge 01 through a `localStorage` marker. All logic is inline in `phishkit/index.html` |
+| `leaks/` | Leaked in-world documents. `leaks/dcg-it-bulletin.html` is a pasted copy of an internal Coast Guard IT bulletin, indexed in Seekr |
+| `ministriaenergiye.bv/`, `www.deuters.com/`, `www.belvariatoday.bv/`, `www.dcg.dr/` | Fictional ministry, news and coast-guard websites. The coast-guard site also has `contacts.html` (departments and staff directory) and `notices.html` (staff notices), both indexed in Seekr and used as open-source research material |
 
 Some data files (`vesseltrace/catalog.js`, `forensics/files.js`) start with an **organiser comment** explaining how the puzzle works. Keep these up to date when you change the data.
 
@@ -46,7 +50,7 @@ Some data files (`vesseltrace/catalog.js`, `forensics/files.js`) start with an *
 
 | | Darsenia | Belvaria |
 |---|---|---|
-| 01 | Built: compare news sources and timestamps (web archive) | Placeholder (planned: phishing) |
+| 01 | Built: compare news sources and timestamps (web archive) | Built: phishing lure builder (OSINT recon in Seekr, then the LureForge tool in `phishkit/`; remote flag check, 3 objectives) |
 | 02 | Placeholder | Placeholder |
 | 03 | Built: identify a vessel from an intelligence report + VesselTrace | Placeholder |
 | 04 | Built: company ownership / corruption trail (remote flag check) | Placeholder |
