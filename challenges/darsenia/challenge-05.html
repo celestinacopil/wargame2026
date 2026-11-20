@@ -4,18 +4,30 @@
   <a class="breadcrumb" href="../../teams/darsenia-cyber.html">← Back to Darsenia cyber space</a>
   <div class="actions"><a class="button" href="../../tools-darsenia/index.html">Investigation tools ↗</a></div>
   <p class="tag blue">Darsenia / Cyber / Challenge 05</p>
-  <h1>What the photo remembers</h1>
+  <h1>What the satellite saw</h1>
   <span class="badge">Available</span>
 
   <section class="panel instructions">
     <h2>Instructions</h2>
-    <p>HQ has approved the technical analysis requested in report 7731-HUM-2026-114. Unit 7731 has
-      copied the source's original photographs onto a forensic workstation.</p>
-    <p>A photo taken on a phone usually records <strong>when</strong> and <strong>where</strong> it was
-      taken, in hidden data called <strong>EXIF metadata</strong>. Use the workstation's
-      <code>exiftool</code> command to read it.</p>
-    <p>Find the GPS position where the photograph of the vessel was taken. According to the report,
-      the vessel was about 300 m from the photographer.</p>
+    <p>An operation like the attack on the <em>Aurora</em> needs orders. Darsenian intelligence believes
+      Belvaria did not send them through its own military channels. Instead, it rented the messaging
+      service of a <strong>private, civilian satellite</strong>, so that nothing would point back to
+      the Belvarian state.</p>
+    <p>Darsenian intelligence has got hold of image files that this satellite sent down to Earth on
+      2 December 2026. HQ will not say how. The files are on a forensic workstation.</p>
+    <p>The satellite is a <strong>radar satellite</strong> (also called SAR). In December the Arctic is
+      in <strong>polar night</strong>: the sun does not rise, and an ordinary camera sees nothing.
+      A radar satellite sends out its own radio signal and records the echo, so it can see in the
+      dark and through clouds. Ships show up as bright dots on the dark sea.</p>
+    <p>Like phone photos, satellite images carry hidden data called <strong>metadata</strong>. Use the
+      workstation's <code>exiftool</code> command to read it. Find the image taken at the time of the
+      source's account in challenge 03 (2 December, around <strong>21:10 UTC</strong>), then:</p>
+    <ol>
+      <li>find out <strong>which satellite</strong> took it and who operates it. This is not part of the
+        flag, but note it down: it tells HQ whose records to go after.</li>
+      <li>find the <strong>position of the satellite</strong> (not of the ships) when it took the image.
+        If the satellite was overhead at that moment, it could also have relayed orders to the ships.</li>
+    </ol>
     <p>Flag format: latitude and longitude in <strong>decimal degrees, rounded to 2 decimals</strong>:
       <code>FLAG{latitude,longitude}</code>, for example <code>FLAG{12.34,56.78}</code></p>
   </section>
@@ -23,20 +35,24 @@
   <section class="panel">
     <h2>Evidence</h2>
     <ul class="resource-list">
-      <li><a href="../../forensics/index.html" target="_blank" rel="noopener noreferrer">Forensic workstation (terminal with the source's files)</a></li>
-      <li><a href="evidence/intelligence-report-7731-HUM-2026-114.pdf" target="_blank" rel="noopener noreferrer">Military intelligence report 7731-HUM-2026-114 (SECRET II, PDF)</a></li>
+      <li><a href="../../forensics/index.html" target="_blank" rel="noopener noreferrer">Forensic workstation (terminal with the recovered satellite images)</a></li>
+      <li><a href="evidence/ISB2_SAR_20261202T211014.jpg" target="_blank" rel="noopener noreferrer">View the recovered radar image of 2 December, evening (original file)</a></li>
     </ul>
   </section>
 
   <section class="panel">
     <h2>Investigation guidance</h2>
     <ul>
-      <li>New to the terminal? Type <code>help</code>, then <code>ls</code> to see the files. Read the note left by Unit 7731 with <code>cat</code>.</li>
-      <li>Not every copy of a photo keeps its metadata. Messaging apps often strip it when they compress an image.</li>
+      <li>New to the terminal? Type <code>help</code>, then <code>ls</code> to see the files. Read the evidence note with <code>cat</code>.</li>
+      <li>There is more than one image. Check when each was taken: <code>exiftool -DateTimeOriginal *.jpg</code> shows the date of every image at once.</li>
+      <li>Not every copy of an image keeps its metadata. Email and messaging apps often strip it when they make an image smaller.</li>
+      <li>A satellite flies about 500 km up, so its radio can reach ships far below it, not only the ones directly underneath.</li>
+      <li>Metadata uses camera words even for a satellite. Think about what "Make" and "Camera Model Name" mean when the camera is in space.</li>
+      <li>A radar satellite does not look straight down: it looks <strong>sideways</strong>, so it can be hundreds of kilometres from what it photographs. Read every tag. One gives the centre of the picture, another gives the satellite's own position. Only one of them is the answer.</li>
       <li>GPS coordinates are shown in degrees, minutes and seconds by default. Convert them to decimal degrees
         (degrees + minutes/60 + seconds/3600), or check <code>man exiftool</code> for an option that does it for you.</li>
-      <li>The report warns that metadata can be faked. Does the position and time agree with what you found in challenge 03?
-        The VesselTrace <strong>distance calculator</strong> can help you check.</li>
+      <li>Does the image agree with challenge 03? Look up where the <em>Aurora</em> and the vessel you identified were at 21:10 in
+        <strong>VesselTrace</strong>, and compare with the centre of the picture. How many bright dots can you see?</li>
     </ul>
   </section>
 
@@ -45,11 +61,8 @@
   "id": "challenge-05",
   "enabled": true,
   "acceptedHashes": [
-    "8337b1016a6b1ba72d98059af3a29f6dc2556150089d0e1d82df066d3ef1bace",
-    "280cb2f08ab27c61007c753360b990ec44dc8bc5a5a4af37c21d2ffe873a6a7c",
-    "270ded9c7a2840d9a18becfed97dd560bb9e1a71231b19b077e9d82e1e990791",
-    "3938365c2e52354560c9abf8a0dab1b76cbe776f3c1fef8346d8ff8b3102d1ba",
-    "5cbbf1854b413078f32b6294e8577044acfd44bf8f7f13a93fc3dbabd95fe7d6"
+    "3b2e75b50ff4c61795884268a975dec64853fbbb6ca9357cc777fc6c31f6e1b6",
+    "ffa96161bc82de21b3bc9d0bf6ac352a68708484602c3daa265751a4ad1a009d"
   ],
-  "feedback": "Correct. The photo was taken on 2 December at 21:09 UTC inside the disputed zone, a few hundred metres from the vessel identified in challenge 03. The metadata matches the ship's own AIS record, so the source's account holds up. Metadata alone can be faked, but two independent sources now agree."
+  "feedback": "Correct. At 21:10 UTC on 2 December this civilian satellite was passing over the area, well within radio range of the two ships in its image: the Aurora and the vessel from challenge 03. It was in the right place at the right moment to relay orders. If its operator keeps a log of the messages it transmitted, that log could prove who gave them."
 }</script></body></html>

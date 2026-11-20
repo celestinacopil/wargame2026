@@ -24,7 +24,8 @@ This repo is the website for **Arctic Crisis**, a fictional wargame run by the S
 | `assets/government-*.js` | Embeds the Google Apps Script decision room for government teams |
 | `teams/*.html` | Each team's dashboard (challenge cards) |
 | `challenges/<country>/challenge-0N.html` | One page per challenge, 6 per country |
-| `challenges/darsenia/evidence/` | Evidence files (PDFs etc.) for the Darsenia challenges |
+| `challenges/<country>/evidence/` | Evidence files (PDFs, images, audio) for each country's challenges |
+| `challenges/darsenia/dcg-inbox.html` | Darsenia's phishing-defence mailbox: the defending side of Belvaria challenge 01 (report the phishing email, avoid false alarms) |
 | `government/` | Briefs for government teams |
 | `organisers.html` | Organiser console (Apps Script iframe) |
 | `tools-darsenia/` | Hub page listing Darsenia's investigation tools |
@@ -39,7 +40,7 @@ This repo is the website for **Arctic Crisis**, a fictional wargame run by the S
 | `business-registry/` | Belvarian business register |
 | `konekt/` | **Konekt** social network |
 | `vesseltrace/` | **VesselTrace** ship database (owner/manager/ISM data, AIS position history) + distance calculator. Data lives in `vesseltrace/catalog.js` |
-| `forensics/` | Fake Linux terminal that imitates `exiftool`. Evidence metadata is in `forensics/files.js`, the command logic in `terminal.js` |
+| `forensics/` | Fake Linux terminal that imitates `exiftool`, loaded with radar satellite images for Darsenia 05. Evidence metadata is in `forensics/files.js`, the command logic in `terminal.js` (its `help` text explains the main options, including `-n`). The key image also exists as a real file in `challenges/darsenia/evidence/`, tagged with real exiftool. If you change the metadata, change both so they match |
 | `phishkit/` | **LureForge**, a standalone phishing-kit tool for Belvaria cyber (no login). Players build a fake email (target, look-alike domain, pretext) and see credibility and detection-risk meters. A correct build hands off to Belvaria challenge 01 through a `localStorage` marker. All logic is inline in `phishkit/index.html` |
 | `leaks/` | Leaked in-world documents. `leaks/dcg-it-bulletin.html` is a pasted copy of an internal Coast Guard IT bulletin, indexed in Seekr |
 | `ministriaenergiye.bv/`, `www.deuters.com/`, `www.belvariatoday.bv/`, `www.dcg.dr/` | Fictional ministry, news and coast-guard websites. The coast-guard site also has `contacts.html` (departments and staff directory) and `notices.html` (staff notices), both indexed in Seekr and used as open-source research material |
@@ -50,11 +51,11 @@ Some data files (`vesseltrace/catalog.js`, `forensics/files.js`) start with an *
 
 | | Darsenia | Belvaria |
 |---|---|---|
-| 01 | Built: compare news sources and timestamps (web archive) | Built: phishing lure builder (OSINT recon in Seekr, then the LureForge tool in `phishkit/`; remote flag check, 3 objectives) |
-| 02 | Placeholder | Placeholder |
-| 03 | Built: identify a vessel from an intelligence report + VesselTrace | Placeholder |
-| 04 | Built: company ownership / corruption trail (remote flag check) | Placeholder |
-| 05 | Built: EXIF analysis in the forensic terminal | Placeholder |
+| 01 | Built: compare news sources and timestamps (web archive). Remote check | Built: phishing lure builder (OSINT recon in Seekr, then the LureForge tool in `phishkit/`). Remote check, 3 objectives |
+| 02 | Placeholder (flag form already enabled, remote) | Placeholder (flag form already enabled, remote) |
+| 03 | Built: identify a vessel from an intelligence report + VesselTrace. Remote check | Placeholder |
+| 04 | Built: company ownership / corruption trail. Remote check, 3 objectives | Not released: audio evidence uploaded, idea not settled |
+| 05 | Built: "What the satellite saw": read a radar satellite image's metadata in the forensic terminal to place the satellite Belvaria used to relay orders. Local hash check | Built: decode an intercepted conversation and image to locate the whistleblower. Remote check, 2 objectives (flag format text still unfinished) |
 | 06 | Placeholder (planned: PIN code race) | Placeholder |
 
 Darsenia's challenges form one investigation chain, and later challenges build on earlier answers. **Keep names, dates, times, coordinates and companies consistent** across challenges and tools. Check the existing data files before inventing anything new.
@@ -70,9 +71,9 @@ Each challenge page ends with a `<script id="challenge-data" type="application/j
   ```
   Add one hash for each accepted spelling. `portal.js` contains a plain-JavaScript SHA-256 fallback for `file://` pages.
 - **`"acceptedFlags": [...]`** is the older plain-text check. Avoid it, because it reveals the answer.
-- **`"validation": "remote"`** checks flags via the Google Apps Script (used by Darsenia 04, with multiple objectives). `"remoteId"` sends a different challenge ID to the server, so a challenge can move to another slot without breaking the server's answer lookup.
+- **`"validation": "remote"`** checks flags via the Google Apps Script and records submissions for the organisers. Most built challenges now use it. The page needs an objective `<select id="objective">` and `"requiredFlags"`. The server looks answers up by team + `"remoteId"` (or `"id"`) + objective, so **every challenge of the same country needs a unique `remoteId`**, and the answers must be added to the Apps Script. `"remoteId"` lets a challenge move to another slot without breaking that lookup.
 - Don't put the answer in the `"feedback"` text either: it sits in the page source.
-- Local checks save progress only in the player's browser (`localStorage`) and do **not** notify the organisers. Moving all checks to the Apps Script is on the to-do list.
+- Local checks support only **one** flag box per challenge, save progress only in the player's browser (`localStorage`) and do **not** notify the organisers. Moving all checks to the Apps Script is on the to-do list.
 
 ## Conventions
 
@@ -91,5 +92,8 @@ Each challenge page ends with a `<script id="challenge-data" type="application/j
 
 ## Known issues
 
-- In `search/database.js`, two entries link to `../archive/` and `../Konekt/`. The real folders are `web-archive/` and lowercase `konekt/`, so these links break on GitHub Pages.
+- In `search/database.js`, one entry links to `../archive/`. The real folder is `web-archive/`, so this link breaks on GitHub Pages.
+- **`remoteId` clash:** Darsenia 03 and Darsenia 04 both send `"remoteId": "challenge-03"`, so the server checks both against the same answers. One of them needs a new ID, plus a matching entry in the Apps Script.
+- `challenges/darsenia/dcg-inbox.html` uses plain-text `acceptedFlags`, and its visible text shows the finished phishing email, which reveals Belvaria challenge 01's answers. No team page links to it yet.
+- The organiser comment in `forensics/files.js` (like the one in `vesseltrace/catalog.js`) contains the answer. Players who read the repo can find it.
 - There is no investigation-tools page for Belvaria yet.

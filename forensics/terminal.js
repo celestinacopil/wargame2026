@@ -1,5 +1,5 @@
 "use strict";
-/* A fake Linux terminal that imitates exiftool, for Darsenia challenge 05.
+/* A fake Linux terminal that imitates exiftool, for Darsenia challenge 05 (satellite imagery).
    Files and metadata come from files.js. Nothing here touches real files. */
 (() => {
   const FILES = window.EVIDENCE.files;
@@ -74,13 +74,18 @@
       "",
       "  ls                  list the files",
       "  cat <file>          read a text file",
-      "  exiftool <file>     read a photo's metadata",
+      "  exiftool <file>     read an image's hidden metadata",
+      "  exiftool -n <file>  same, but show numbers as plain numbers:",
+      "                      GPS positions in decimal degrees (e.g. 12.3456)",
+      "                      instead of degrees, minutes and seconds",
       "  man exiftool        more exiftool options",
       "  clear               clear the screen",
       "",
       "Examples:",
-      "  exiftool IMG_20261202_210947.jpg",
-      "  exiftool -gps:all IMG_20261202_210947.jpg",
+      "  exiftool ISB2_SAR_20261202T094207.jpg",
+      "  exiftool -gps:all ISB2_SAR_20261202T094207.jpg",
+      "  exiftool -n -gps:all ISB2_SAR_20261202T094207.jpg",
+      "  exiftool -DateTimeOriginal *.jpg",
       "",
       "Tips: press Tab to complete a file name, and the Up arrow to repeat a command."
     ]);
@@ -163,8 +168,7 @@
       if (e.missing) { print(a + ": cannot open (No such file or directory)"); return; }
       e.files.forEach(({ file, path }) => {
         if (file.type === "text") print(path + ": ASCII text");
-        else if (file.name.startsWith("received")) print(path + ": JPEG image data, JFIF standard 1.01, baseline, precision 8, 1600x1200, components 3");
-        else print(path + ": JPEG image data, Exif standard: [TIFF image data, little-endian, direntries=11, manufacturer=Lumen, model=Lumen X12 Pro], baseline, precision 8, 4000x3000, components 3");
+        else print(path + ": " + (file.magic || "JPEG image data"));
       });
     });
   }
@@ -250,7 +254,7 @@
       printLines([
         "Syntax:  exiftool [OPTIONS] FILE",
         "",
-        "Example: exiftool IMG_20261202_210947.jpg",
+        "Example: exiftool ISB2_SAR_20261202T094207.jpg",
         "Type 'man exiftool' for the options supported in this terminal, or 'ls' to list the files."
       ]);
       return;
@@ -402,7 +406,7 @@
     "Darsenia Intelligence Command - Forensic Workstation DIC-FW-03",
     "Authorised use only. All activity is logged.",
     "",
-    "Evidence for report 7731-HUM-2026-114 has been loaded into ~/evidence.",
+    "Recovered satellite images for report 7731-HUM-2026-114 are in ~/evidence.",
     "",
     "Start by typing  ls  and pressing Enter to see the files.",
     "Type  help  at any time to see what you can do.",
