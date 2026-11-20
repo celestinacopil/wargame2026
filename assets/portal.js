@@ -253,7 +253,7 @@ if (required && document.body.dataset.page === "challenge") {
   // Used for Darsenia challenge 04 (corruption).
 
   const APPS_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbz8QSXWB9BYDkzIy3YRxAcgyArsc5Dy32RIl-YjmpOSLS7kQhGpSX-DEuhSvIXtuL9aow/exec";
+    "https://script.google.com/macros/s/AKfycbwb4m4N8jiYNhhN1AcGyQyrMbuD7ImJ8icZyAAMZ-IbW7HekwA5q4_nINPNYlv249E7xA/exec";
 
   const objectiveSelect =
     document.getElementById("objective");
