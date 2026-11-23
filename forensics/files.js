@@ -1,13 +1,13 @@
-/* Fake evidence files for the forensic terminal (Darsenia challenge 05: "What the satellite saw").
+/* Fake evidence files for the forensic terminal (Aldeia challenge 05: "What the satellite saw").
    The terminal reads the metadata below. The key image also exists as a real file with the same
-   metadata: challenges/darsenia/evidence/ISB2_SAR_20261202T211014.jpg (players with a real
+   metadata: challenges/aldeia/evidence/ISB2_SAR_20261202T211014.jpg (players with a real
    exiftool get the same answer).
 
    Answer design (organisers only):
    - Story: ISBRYN-2 is a civilian radar satellite run by a shady commercial operator
-     (Nordaurel Space Imaging) that also sells a store-and-forward messaging service. Belvaria used
+     (Nordaurel Space Imaging) that also sells a store-and-forward messaging service. Bessarovia used
      it to relay encrypted commands to SEASTAR during the black-ops sabotage, to hide state
-     involvement. Darsenian intelligence got hold of image files the satellite downlinked (how is
+     involvement. Aldeian intelligence got hold of image files the satellite downlinked (how is
      not disclosed). Placing the satellite above the area at 21:10 ties it to the operation; its
      message log is a possible lead for a later challenge.
    - It is polar night at 72.7 N in December, so only a radar (SAR) satellite can image the ships.
@@ -166,7 +166,7 @@
           "These image files were downlinked by a civilian radar satellite",
           "on 2 DEC 2026. We obtained them on 04 DEC. How is not disclosed.",
           "",
-          "We believe Belvaria rents this satellite's messaging service to",
+          "We believe Bessarovia rents this satellite's messaging service to",
           "send encrypted commands to its ships, hiding behind a private",
           "company. Identify the satellite and place it at the time of the",
           "source's account (2 DEC, around 21:10 UTC).",
@@ -175,7 +175,7 @@
           "*_web.jpg          smaller copy that was forwarded around first.",
           "",
           "Analysts: use exiftool. Type 'help' if you are new to the terminal.",
-          "-- SIGINT Desk, Darsenia Intelligence Command",
+          "-- SIGINT Desk, Aldeia Intelligence Command",
           ""
         ].join("\n")
       }
