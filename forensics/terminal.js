@@ -1,5 +1,5 @@
 "use strict";
-/* A fake Linux terminal that imitates exiftool, for Darsenia challenge 05 (satellite imagery).
+/* A fake Linux terminal that imitates exiftool, for Aldeia challenge 05 (satellite imagery).
    Files and metadata come from files.js. Nothing here touches real files. */
 (() => {
   const FILES = window.EVIDENCE.files;
@@ -403,7 +403,7 @@
   term.addEventListener("click", () => { if (!window.getSelection().toString()) input.focus(); });
 
   printLines([
-    "Darsenia Intelligence Command - Forensic Workstation DIC-FW-03",
+    "Aldeia Intelligence Command - Forensic Workstation DIC-FW-03",
     "Authorised use only. All activity is logged.",
     "",
     "Recovered satellite images for report 7731-HUM-2026-114 are in ~/evidence.",
