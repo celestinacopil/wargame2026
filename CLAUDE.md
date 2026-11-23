@@ -97,3 +97,7 @@ Each challenge page ends with a `<script id="challenge-data" type="application/j
 - `challenges/darsenia/dcg-inbox.html` uses plain-text `acceptedFlags`, and its visible text shows the finished phishing email, which reveals Belvaria challenge 01's answers. No team page links to it yet.
 - The organiser comment in `forensics/files.js` (like the one in `vesseltrace/catalog.js`) contains the answer. Players who read the repo can find it.
 - There is no investigation-tools page for Belvaria yet.
+
+## Changes Nov 23rd
+- All the references to Belvaria have been replaced with Bessarovia, and Darsenia has been replaced with Aldeia, including in the names of folders and inside links
+- Darsnian Coast Guard (DCG) became Aldeian Coast Guard (ACG), including in the folder www.acg.ad and inside links
