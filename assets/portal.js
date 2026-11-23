@@ -55,9 +55,9 @@ if (required && document.body.dataset.page === "team") {
 
     let completed = false;
 
-    // The multi-flag corruption challenge (Darsenia 04) counts its 3 objectives.
+    // The multi-flag corruption challenge (Aldeia 04) counts its 3 objectives.
     if (id === "challenge-04" &&
-        required === "darsenia-cyber") {
+        required === "Aldeia-cyber") {
 
       const objectives =
         result &&
@@ -250,7 +250,7 @@ if (required && document.body.dataset.page === "challenge") {
   }
 
   // REMOTE VALIDATION
-  // Used for Darsenia challenge 04 (corruption).
+  // Used for Aldeia challenge 04 (corruption).
 
   const APPS_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbwb4m4N8jiYNhhN1AcGyQyrMbuD7ImJ8icZyAAMZ-IbW7HekwA5q4_nINPNYlv249E7xA/exec";
