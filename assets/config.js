@@ -4,9 +4,9 @@
 window.WARGAME = {
   storagePrefix: "wargame2026-v2:",
   roles: {
-    "darsenia-government": { name: "Darsenia | Government", password: "darsenia2026", page: "teams/darsenia-government.html", country: "Darsenia", cyber: false },
-    "darsenia-cyber": { name: "Darsenia | Cyber team", password: "darsenia2026", page: "teams/darsenia-cyber.html", country: "Darsenia", cyber: true },
-    "belvaria-government": { name: "Belvaria | Government", password: "belvaria2026", page: "teams/belvaria-government.html", country: "Belvaria", cyber: false },
-    "belvaria-cyber": { name: "Belvaria | Cyber team", password: "belvaria2026", page: "teams/belvaria-cyber.html", country: "Belvaria", cyber: true }
+    "aldeia-government": { name: "Aldeia | Government", password: "aldeia2026", page: "teams/aldeia-government.html", country: "Aldeia", cyber: false },
+    "aldeia-cyber": { name: "Aldeia | Cyber team", password: "aldeia2026", page: "teams/aldeia-cyber.html", country: "Aldeia", cyber: true },
+    "bessarovia-government": { name: "Bessarovia | Government", password: "bessarovia2026", page: "teams/bessarovia-government.html", country: "Bessarovia", cyber: false },
+    "bessarovia-cyber": { name: "Bessarovia | Cyber team", password: "bessarovia2026", page: "teams/bessarovia-cyber.html", country: "Bessarovia", cyber: true }
   }
 };
