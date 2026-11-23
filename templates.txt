@@ -25,3 +25,8 @@ at the end, before the end of </main> :
 >
   Request a hint
 </button>
+
+
+
+
+*** FLAG SUBMISSION ***
