@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "https://script.google.com/macros/s/AKfycbwb4m4N8jiYNhhN1AcGyQyrMbuD7ImJ8icZyAAMZ-IbW7HekwA5q4_nINPNYlv249E7xA/exec";
 
   const VALID_TEAMS = [
-    "darsenia-government",
-    "darsenia-cyber",
-    "belvaria-government",
-    "belvaria-cyber"
+    "aldeia-government",
+    "aldeia-cyber",
+    "bessarovia-government",
+    "bessarovia-cyber"
   ];
 
  function getTeam(button) {
