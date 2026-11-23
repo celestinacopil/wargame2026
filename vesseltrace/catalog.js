@@ -1,4 +1,4 @@
-/* VesselTrace: fictional ship database for Darsenia challenge 03.
+/* VesselTrace: fictional ship database for Aldeia challenge 03.
    All vessels, companies, IMO/MMSI numbers and positions are invented for the wargame.
 
    Answer design (organisers only):
@@ -16,17 +16,17 @@ window.VESSELS = [
     name: "SEASTAR", imo: "9473822", mmsi: "616999412", callsign: "D6FS7",
     flag: "Comoros", type: "Offshore Support Vessel", status: "Active",
     gt: "2,980", dwt: "3,450", loa: "71.9 m", beam: "16.0 m", draught: "5.8 m",
-    built: "2009", builder: "Kestrel Yard, Vardos (Belvaria)", homeport: "Moroni",
+    built: "2009", builder: "Kestrel Yard, Vardos (Bessarovia)", homeport: "Moroni",
     formerNames: ["NORTHLIGHT (2009-2026, renamed Oct 2026)"],
     livery: "Dark grey hull; white superstructure aft; orange deck crane",
     equipment: "1 × 15 t knuckle-boom deck crane (aft); A-frame on stern; moon pool",
-    owner:   { name: "Belvarian Maritime Ltd.", address: "18 Port Avenue, Vardos, Belvaria", since: "Sep 2019" },
-    manager: { name: "Belvarian Maritime Ltd.", address: "18 Port Avenue, Vardos, Belvaria", since: "Sep 2019" },
-    ism:     { name: "Port Avenue Ship Management Ltd.", address: "18 Port Avenue, Vardos, Belvaria", since: "Mar 2020" },
+    owner:   { name: "Bessarovian Maritime Ltd.", address: "18 Port Avenue, Vardos, Bessarovia", since: "Sep 2019" },
+    manager: { name: "Bessarovian Maritime Ltd.", address: "18 Port Avenue, Vardos, Bessarovia", since: "Sep 2019" },
+    ism:     { name: "Port Avenue Ship Management Ltd.", address: "18 Port Avenue, Vardos, Bessarovia", since: "Mar 2020" },
     portCalls: [
-      { port: "Vardos (Belvaria)", arrived: "2026-12-03 15:52", departed: "" },
-      { port: "Vardos (Belvaria)", arrived: "2026-11-24 09:10", departed: "2026-12-02 14:02" },
-      { port: "Harbour City (Belvaria)", arrived: "2026-11-19 07:45", departed: "2026-11-23 18:30" }
+      { port: "Vardos (Bessarovia)", arrived: "2026-12-03 15:52", departed: "" },
+      { port: "Vardos (Bessarovia)", arrived: "2026-11-24 09:10", departed: "2026-12-02 14:02" },
+      { port: "Harbour City (Bessarovia)", arrived: "2026-11-19 07:45", departed: "2026-11-23 18:30" }
     ],
     positions: [
       { t: "2026-12-03 15:40", lat: 70.9712, lon: 30.0951, sog: 4.1, cog: 188, nav: "Underway using engine", area: "Vardos approaches" },
@@ -41,17 +41,17 @@ window.VESSELS = [
   },
   {
     name: "AURORA", imo: "9058177", mmsi: "263990120", callsign: "DRAU3",
-    flag: "Darsenia", type: "Research / Survey Vessel", status: "Active (damaged)",
+    flag: "Aldeia", type: "Research / Survey Vessel", status: "Active (damaged)",
     gt: "1,840", dwt: "720", loa: "64.2 m", beam: "13.1 m", draught: "4.9 m",
-    built: "1993", builder: "Halvik Shipyard (Darsenia)", homeport: "Halvik",
+    built: "1993", builder: "Halvik Shipyard (Aldeia)", homeport: "Halvik",
     formerNames: [],
     livery: "White hull with blue stripe; white superstructure forward",
     equipment: "Multibeam echo sounder; seismic survey compartment; 1 × 5 t crane",
-    owner:   { name: "Darsenian Institute of Marine Geosciences", address: "2 Harbour Road, Halvik, Darsenia", since: "1993" },
-    manager: { name: "Darsenian Institute of Marine Geosciences", address: "2 Harbour Road, Halvik, Darsenia", since: "1993" },
-    ism:     { name: "Halvik Ship Services", address: "40 Quay Street, Halvik, Darsenia", since: "2015" },
+    owner:   { name: "Aldeian Institute of Marine Geosciences", address: "2 Harbour Road, Halvik, Aldeia", since: "1993" },
+    manager: { name: "Aldeian Institute of Marine Geosciences", address: "2 Harbour Road, Halvik, Aldeia", since: "1993" },
+    ism:     { name: "Halvik Ship Services", address: "40 Quay Street, Halvik, Aldeia", since: "2015" },
     portCalls: [
-      { port: "Halvik (Darsenia)", arrived: "2026-11-25 16:20", departed: "2026-11-28 07:00" }
+      { port: "Halvik (Aldeia)", arrived: "2026-11-25 16:20", departed: "2026-11-28 07:00" }
     ],
     positions: [
       { t: "2026-12-03 07:30", lat: 72.6835, lon: 33.8735, sog: 0.0, cog: 0, nav: "Not under command", area: "Disputed zone (survey area)" },
@@ -74,7 +74,7 @@ window.VESSELS = [
     manager: { name: "Arcturus Tankers Ltd.", address: "Triq il-Port, Valletta, Malta", since: "2016" },
     ism:     { name: "Meridian Tanker Services", address: "Limassol, Cyprus", since: "2019" },
     portCalls: [
-      { port: "Vardos (Belvaria)", arrived: "2026-11-26 10:00", departed: "2026-11-27 22:15" }
+      { port: "Vardos (Bessarovia)", arrived: "2026-11-26 10:00", departed: "2026-11-27 22:15" }
     ],
     positions: [
       { t: "2026-12-02 21:10", lat: 71.3300, lon: 24.5000, sog: 12.4, cog: 262, nav: "Underway using engine", area: "Open sea (westbound)" },
@@ -85,17 +85,17 @@ window.VESSELS = [
   },
   {
     name: "SEA STARLING", imo: "9630511", mmsi: "263114800", callsign: "DRSL2",
-    flag: "Darsenia", type: "Fishing Vessel (Stern Trawler)", status: "Active",
+    flag: "Aldeia", type: "Fishing Vessel (Stern Trawler)", status: "Active",
     gt: "1,120", dwt: "640", loa: "48.5 m", beam: "11.2 m", draught: "5.1 m",
-    built: "2014", builder: "Halvik Shipyard (Darsenia)", homeport: "Halvik",
+    built: "2014", builder: "Halvik Shipyard (Aldeia)", homeport: "Halvik",
     formerNames: [],
     livery: "Dark blue hull; white wheelhouse forward",
     equipment: "Trawl gantry (stern); net drums",
-    owner:   { name: "Halvik Fishermen's Cooperative", address: "7 Net Lane, Halvik, Darsenia", since: "2014" },
-    manager: { name: "Halvik Fishermen's Cooperative", address: "7 Net Lane, Halvik, Darsenia", since: "2014" },
-    ism:     { name: "Halvik Ship Services", address: "40 Quay Street, Halvik, Darsenia", since: "2018" },
+    owner:   { name: "Halvik Fishermen's Cooperative", address: "7 Net Lane, Halvik, Aldeia", since: "2014" },
+    manager: { name: "Halvik Fishermen's Cooperative", address: "7 Net Lane, Halvik, Aldeia", since: "2014" },
+    ism:     { name: "Halvik Ship Services", address: "40 Quay Street, Halvik, Aldeia", since: "2018" },
     portCalls: [
-      { port: "Halvik (Darsenia)", arrived: "2026-11-27 13:00", departed: "2026-11-30 05:40" }
+      { port: "Halvik (Aldeia)", arrived: "2026-11-27 13:00", departed: "2026-11-30 05:40" }
     ],
     positions: [
       { t: "2026-12-03 06:40", lat: 72.1200, lon: 31.9000, sog: 3.2, cog: 140, nav: "Engaged in fishing", area: "Northern fishing grounds" },
@@ -105,17 +105,17 @@ window.VESSELS = [
   },
   {
     name: "SEAFALCON", imo: "9174282", mmsi: "277402500", callsign: "BVSF1",
-    flag: "Belvaria", type: "Offshore Support Vessel", status: "Active",
+    flag: "Bessarovia", type: "Offshore Support Vessel", status: "Active",
     gt: "2,610", dwt: "3,100", loa: "68.0 m", beam: "15.5 m", draught: "5.6 m",
-    built: "1999", builder: "Kestrel Yard, Vardos (Belvaria)", homeport: "Vardos",
+    built: "1999", builder: "Kestrel Yard, Vardos (Bessarovia)", homeport: "Vardos",
     formerNames: [],
     livery: "Dark grey hull; white superstructure forward; yellow deck crane",
     equipment: "1 × 10 t deck crane (forward); towing winch",
-    owner:   { name: "Vardos Offshore Services Ltd.", address: "3 Dock Road, Vardos, Belvaria", since: "1999" },
-    manager: { name: "Vardos Offshore Services Ltd.", address: "3 Dock Road, Vardos, Belvaria", since: "1999" },
-    ism:     { name: "Vardos Offshore Services Ltd.", address: "3 Dock Road, Vardos, Belvaria", since: "2008" },
+    owner:   { name: "Vardos Offshore Services Ltd.", address: "3 Dock Road, Vardos, Bessarovia", since: "1999" },
+    manager: { name: "Vardos Offshore Services Ltd.", address: "3 Dock Road, Vardos, Bessarovia", since: "1999" },
+    ism:     { name: "Vardos Offshore Services Ltd.", address: "3 Dock Road, Vardos, Bessarovia", since: "2008" },
     portCalls: [
-      { port: "Vardos (Belvaria)", arrived: "2026-11-29 12:10", departed: "2026-12-05 08:00" }
+      { port: "Vardos (Bessarovia)", arrived: "2026-11-29 12:10", departed: "2026-12-05 08:00" }
     ],
     positions: [
       { t: "2026-12-03 06:40", lat: 70.9745, lon: 30.0810, sog: 0.0, cog: 0, nav: "Moored", area: "Port of Vardos" },
