@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Belvaria challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
-<body data-page="challenge" data-role="belvaria-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/belvaria-cyber.html">← Back to Belvaria cyber space</a>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Bessarovia challenge 01 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
+<body data-page="challenge" data-role="bessarovia-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/bessarovia-cyber.html">← Back to Bessarovia cyber space</a>
   <div class="actions"><a class="button" href="../../.../tools-bessarovia/index.html">Launch cyber tools ↗</a></div>
-  <p class="tag red">Belvaria / Cyber / Challenge 01</p>
+  <p class="tag red">Bessarovia / Cyber / Challenge 01</p>
   <h1>Build the lure</h1>
   <span class="badge">Available</span>
 
   <section class="panel instructions">
     <h2>Instructions</h2>
-    <p>Belvaria's first move: get inside the Darsenian Coast Guard (DCG) to watch their investigation and find who leaked.</p>
+    <p>Bessarovia's first move: get inside the Aldeian Coast Guard (DCG) to watch their investigation and find who leaked.</p>
     <p>You cannot break in by force. Instead, trick a DCG insider into clicking a link that looks like their real staff portal. This is called <strong>phishing</strong>.</p>
     <p>Do recon only, using public sources and a leaked DCG file. Use Seekr to find them. Then build the lure in the Attacker's Workbench.</p>
     <p>You need three things: a <strong>sender</strong> to impersonate, a <strong>look-alike domain</strong>, and a <strong>pretext</strong> (the event that makes staff act fast). The workbench tells you when your build is convincing. Then come back here and submit your three findings.</p>
@@ -52,7 +52,7 @@
     <h2>Lure deployed</h2>
     <p id="auto-status" class="message" role="status"></p>
     <div id="sent-box" hidden>
-      <p class="success"><strong>Lure sent.</strong> Your email will reach a DCG mailbox. You only win if Darsenia clicks or fails to report it.</p>
+      <p class="success"><strong>Lure sent.</strong> Your email will reach a DCG mailbox. You only win if Aldeia clicks or fails to report it.</p>
       <p>While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
     </div>
   </section>
@@ -79,7 +79,7 @@
 // objective form (fill + submit each, wait for each). The manual form stays as a fallback.
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
-  var ROLE = "belvaria-cyber";
+  var ROLE = "bessarovia-cyber";
   var ID = "challenge-01";
   var TOTAL = 3;
   var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
