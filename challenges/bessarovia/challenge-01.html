@@ -8,9 +8,9 @@
 
   <section class="panel instructions">
     <h2>Instructions</h2>
-    <p>Bessarovia's first move: get inside the Aldeian Coast Guard (DCG) to watch their investigation and find who leaked.</p>
-    <p>You cannot break in by force. Instead, trick a DCG insider into clicking a link that looks like their real staff portal. This is called <strong>phishing</strong>.</p>
-    <p>Do recon only, using public sources and a leaked DCG file. Use Seekr to find them. Then build the lure in the Attacker's Workbench.</p>
+    <p>Bessarovia's first move: get inside the Aldeian Coast Guard (ACG) to watch their investigation and find who leaked.</p>
+    <p>You cannot break in by force. Instead, trick a ACG insider into clicking a link that looks like their real staff portal. This is called <strong>phishing</strong>.</p>
+    <p>Do recon only, using public sources and a leaked ACG file. Use Seekr to find them. Then build the lure in the Attacker's Workbench.</p>
     <p>You need three things: a <strong>sender</strong> to impersonate, a <strong>look-alike domain</strong>, and a <strong>pretext</strong> (the event that makes staff act fast). The workbench tells you when your build is convincing. Then come back here and submit your three findings.</p>
     <p>Write each flag as <code>FLAG{your answer}</code>. For the sender use <code>first-initial.lastname</code>, for the domain write the full domain, and for the pretext join the words with an underscore.</p>
     <p class="note">Everything stays inside the game. Do not register a real domain and do not send a real message.</p>
@@ -52,8 +52,8 @@
     <h2>Lure deployed</h2>
     <p id="auto-status" class="message" role="status"></p>
     <div id="sent-box" hidden>
-      <p class="success"><strong>Lure sent.</strong> Your email will reach a DCG mailbox. You only win if Aldeia clicks or fails to report it.</p>
-      <p>While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
+      <p class="success"><strong>Lure sent.</strong> Your email will reach a ACG mailbox. You only win if Aldeia clicks or fails to report it.</p>
+      <p>While you are inside, you notice a ACG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
     </div>
   </section>
 
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var TOTAL = 3;
   var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
   var MARKER = prefix + "lureforge-deploy";
-  var FLAGS = { 1: "FLAG{l.irsdottir}", 2: "FLAG{dcg-portal.dr}", 3: "FLAG{security_briefing}" };
+  var FLAGS = { 1: "FLAG{l.irsdottir}", 2: "FLAG{acg-portal.dr}", 3: "FLAG{security_briefing}" };
 
   function $(id) { return document.getElementById(id); }
 
