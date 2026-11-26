@@ -4,8 +4,9 @@
    Answer design (organisers only):
    - The informant's photos show part of a name ("SEA...") on 2 Dec 2026 around 21:10 UTC.
    - Players look up AURORA to get its position at that time (72°41.0'N 033°52.4'E).
-   - Only SEASTAR (IMO 9473822) was within a few nautical miles of the Aurora at 21:10 on 2 Dec.
-   - Decoys: SEASTAR II was at the same spot, but on 28 Nov (wrong date). SEA STARLING was in the
+   - Only SEASTAR (IMO 9473822) was next to the Aurora at 21:10 on 2 Dec (about 0.4 km / 0.2 nm away).
+     It must be the closest match, so players aren't pulled towards a decoy.
+   - Decoys: SEASTAR II passed nearby (~1.4 km), but on 28 Nov (wrong date). SEA STARLING was in the
      same region but ~50 nm away. SEAFALCON is the same ship type but was moored in Vardos.
    - Supporting clue: SEASTAR stopped transmitting AIS from 21:38 until 08:16 the next morning.
    - SEASTAR was called NORTHLIGHT until Oct 2026. This links it to challenge 04, which names the Northlight.
@@ -32,8 +33,8 @@ window.VESSELS = [
       { t: "2026-12-03 15:40", lat: 70.9712, lon: 30.0951, sog: 4.1, cog: 188, nav: "Underway using engine", area: "Vardos approaches" },
       { t: "2026-12-03 08:16", lat: 72.3617, lon: 33.2000, sog: 12.6, cog: 214, nav: "Underway using engine", area: "Open sea" },
       { gap: "No AIS position received for 10 h 38 min (2 Dec 21:38 to 3 Dec 08:16 UTC)" },
-      { t: "2026-12-02 21:38", lat: 72.7100, lon: 34.0017, sog: 0.4, cog: 75, nav: "Underway using engine", area: "Disputed zone (survey area)" },
-      { t: "2026-12-02 21:10", lat: 72.7050, lon: 33.9767, sog: 2.1, cog: 68, nav: "Underway using engine", area: "Disputed zone (survey area)" },
+      { t: "2026-12-02 21:38", lat: 72.6868, lon: 33.8902, sog: 0.4, cog: 75, nav: "Underway using engine", area: "Disputed zone (survey area)" },
+      { t: "2026-12-02 21:10", lat: 72.6860, lon: 33.8800, sog: 2.1, cog: 68, nav: "Underway using engine", area: "Disputed zone (survey area)" },
       { t: "2026-12-02 20:30", lat: 72.6483, lon: 33.7350, sog: 6.0, cog: 41, nav: "Underway using engine", area: "Disputed zone" },
       { t: "2026-12-02 18:40", lat: 72.3400, lon: 33.0950, sog: 11.2, cog: 32, nav: "Underway using engine", area: "Open sea" },
       { t: "2026-12-02 14:05", lat: 70.9790, lon: 30.0904, sog: 6.3, cog: 15, nav: "Underway using engine", area: "Vardos approaches" }

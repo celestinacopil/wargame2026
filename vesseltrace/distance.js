@@ -6,7 +6,7 @@
   // Turns "72°41.00′N", "72 41.0 N", "72.6833" or "-33.5" into decimal degrees.
   // Returns NaN if the text can't be read or is out of range.
   function parse(text, isLat) {
-    // A copied table cell holds two lines ("72°42.30′N" and "72.7050"); use the first.
+    // A copied table cell holds two lines ("72°41.16′N" and "72.6860"); use the first.
     let s = (String(text).split(/\r?\n/).map(x => x.trim()).find(Boolean) || "").toUpperCase();
     if (!s) return NaN;
 

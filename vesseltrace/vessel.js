@@ -14,7 +14,7 @@
     return;
   }
 
-  // 72.705 -> 72°42.30′N (the usual format on AIS sites)
+  // 72.686 -> 72°41.16′N (the usual format on AIS sites)
   function dm(value, pos, neg, degWidth) {
     const hemi = value >= 0 ? pos : neg;
     const a = Math.abs(value);
