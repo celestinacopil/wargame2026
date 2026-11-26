@@ -183,13 +183,25 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
     $("m-cred-n").textContent = cred + " / 100";
     $("m-risk-n").textContent = risk + " / 100";
 
-    const ready = state.target === "lena" && checkDomain(state.domain).kind === "good" && state.pretext === "briefing";
+    // Tell the player exactly what is still missing.
+    const typed = checkDomain($("domain-input").value);
+    const unregistered = (typed.kind === "good" || typed.kind === "weak") && typed.d !== state.domain;
+    const missing = [];
+    if (!t) missing.push("choose a target");
+    else if (state.target !== "lena") missing.push("choose a more convincing target");
+    if (unregistered) missing.push("click Register to use your domain");
+    else if (!hasDomain) missing.push("register your domain");
+    else if (checkDomain(state.domain).kind !== "good") missing.push("register a more convincing domain");
+    if (!p) missing.push("choose a pretext");
+    else if (state.pretext !== "briefing") missing.push("choose a more convincing pretext");
+
+    const ready = missing.length === 0;
     $("deploy").disabled = !ready || state.deployed;
     $("deploy-note").textContent = state.deployed
       ? "Lure deployed."
       : ready
         ? "All three choices are convincing. Ready to deploy."
-        : "Deploy unlocks when your target, domain and pretext are all convincing.";
+        : "Still needed: " + missing.join(", ") + ".";
     $("sent").hidden = !state.deployed;
   }
 
@@ -221,18 +233,22 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
     else if (c.kind === "invalid") say(out, "That is not a valid domain name.", "bad");
     else if (c.kind === "good") say(out, "Look-alike. Available. Convincing: it reuses the real portal's words.", "good");
     else say(out, "Available, but not convincing. It does not look like the real portal.", "bad");
+    if (c.kind === "good" || c.kind === "weak") {
+      out.textContent = c.d === state.domain
+        ? "Registered: " + c.d + ". " + out.textContent
+        : out.textContent + " Click Register to use it.";
+    }
     return c;
   }
-  $("domain-input").addEventListener("input", showDomainCheck);
+  $("domain-input").addEventListener("input", () => { showDomainCheck(); render(); });
   function registerDomain() {
-    const c = showDomainCheck();
+    const c = checkDomain($("domain-input").value);
     if (c.kind === "good" || c.kind === "weak") {
       state.domain = c.d;
       state.deployed = false;
-      const out = $("domain-readout");
-      out.textContent = "Registered: " + c.d + ". " + out.textContent;
-      render();
     }
+    showDomainCheck();
+    render();
   }
   $("domain-btn").addEventListener("click", registerDomain);
   $("domain-input").addEventListener("keydown", e => {
