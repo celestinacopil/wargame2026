@@ -47,28 +47,28 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
 </style>
 </head>
 <body>
-<div class="bar"><strong>LUREFORGE</strong><span class="class">BELVARIA CYBER OPS</span><a href="../challenges/bessarovia/challenge-01.html">← Back to Bessarovia Challenge 1</a></div>
+<div class="bar"><strong>LUREFORGE</strong><span class="class">BESSAROVIA CYBER OPS</span><a href="../challenges/bessarovia/challenge-01.html">← Back to Bessarovia Challenge 1</a></div>
 <main>
   <h1>LureForge: phishing kit</h1>
   <p class="hint">Build your lure here. Nothing in this tool sends a real message. When your build is ready, go back to the challenge and submit your findings.</p>
 
   <h3>1. Target: who do you impersonate?</h3>
-  <p class="hint">Pick the person whose emails with links look normal to DCG staff.</p>
+  <p class="hint">Pick the person whose emails with links look normal to ACG staff.</p>
   <div class="tg-row" id="targets"></div>
   <p class="readout" id="target-readout" aria-live="polite"></p>
 
   <h3>2. Domain: register a look-alike</h3>
-  <p class="hint">The real staff portal is <code>portal.dcg.dr</code>. Register a different domain that looks like it.</p>
+  <p class="hint">The real staff portal is <code>portal.acg.ad</code>. Register a different domain that looks like it.</p>
   <div class="row">
-    <input type="text" id="domain-input" placeholder="example.dr" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Look-alike domain">
+    <input type="text" id="domain-input" placeholder="example.ad" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Look-alike domain">
     <button type="button" class="btn" id="domain-btn">Register</button>
   </div>
   <p class="readout" id="domain-readout" aria-live="polite"></p>
 
   <h3>3. Pretext: why should staff click?</h3>
   <label class="opt"><input type="radio" name="pretext" value="update">Account update<small>Generic. Staff see this kind of message all the time.</small></label>
-  <label class="opt"><input type="radio" name="pretext" value="invoice">Unpaid invoice<small>Creates worry, but few DCG staff handle invoices.</small></label>
-  <label class="opt"><input type="radio" name="pretext" value="briefing">Mandatory Aurora security briefing<small>Ties to the DCG staff notice. Everyone must act, with a deadline.</small></label>
+  <label class="opt"><input type="radio" name="pretext" value="invoice">Unpaid invoice<small>Creates worry, but few ACG staff handle invoices.</small></label>
+  <label class="opt"><input type="radio" name="pretext" value="briefing">Mandatory Aurora security briefing<small>Ties to the ACG staff notice. Everyone must act, with a deadline.</small></label>
   <p class="readout" id="pretext-readout" aria-live="polite"></p>
 
   <h3>Live email preview</h3>
@@ -94,8 +94,8 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
   <div class="sent" id="sent" hidden>
     <h3>Lure sent</h3>
     <p><strong>Your lure is ready.</strong> Go back to Bessarovia Challenge 1. Your three findings (the sender, the look-alike domain and the pretext) will be recorded for you. If that does not work, submit them by hand.</p>
-    <p>Your email will reach a DCG mailbox. You only win if Aldeia clicks or fails to report it.</p>
-    <p>While you are inside, you notice a DCG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
+    <p>Your email will reach a ACG mailbox. You only win if Aldeia clicks or fails to report it.</p>
+    <p>While you are inside, you notice a ACG officer has been messaging an outside Twitter account. Your next job: identify them.</p>
     <p><a class="btn" style="display:inline-block;text-decoration:none" href="../challenges/bessarovia/challenge-01.html">Return to Challenge 1 →</a></p>
   </div>
 </main>
@@ -104,8 +104,8 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
 <script>
 "use strict";
 (() => {
-  const REAL_DOMAINS = ["portal.dcg.dr", "dcg.dr"];
-  const GOOD_DOMAIN = "dcg-portal.dr";
+  const REAL_DOMAINS = ["portal.acg.ad", "acg.ad"];
+  const GOOD_DOMAIN = "acg-portal.ad";
 
   const TARGETS = [
     { id: "lena", name: "Lena Irsdottir", role: "Communications & Events Officer", local: "l.irsdottir", cred: 40, risk: 0, tone: "good",
@@ -126,11 +126,11 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
     invoice: { cred: 10, risk: 20, tone: "bad", path: "/invoice",
       subject: "Unpaid invoice 4471",
       line: "Invoice 4471 is unpaid. Please review it here:",
-      note: "Few DCG staff handle invoices, so most will not expect this." },
+      note: "Few ACG staff handle invoices, so most will not expect this." },
     briefing: { cred: 25, risk: 0, tone: "good", path: "/confirm",
       subject: "Confirm your attendance — mandatory Aurora security briefing",
       line: "All staff must attend the mandatory Aurora security briefing on 10 December. Please confirm your attendance here:",
-      note: "Highest urgency. It matches the real DCG staff notice, so staff expect it and have a deadline." }
+      note: "Highest urgency. It matches the real ACG staff notice, so staff expect it and have a deadline." }
   };
 
   const state = { target: null, domain: "", pretext: null, deployed: false };
@@ -202,7 +202,7 @@ footer{max-width:860px;margin:0 auto;padding:0 16px 30px;color:#6d7884;font-size
     b.setAttribute("aria-pressed", "false");
     const n = document.createElement("b"); n.textContent = t.name;
     const r = document.createElement("span"); r.textContent = t.role;
-    const e = document.createElement("span"); e.textContent = t.local + "@dcg.dr";
+    const e = document.createElement("span"); e.textContent = t.local + "@acg.ad";
     b.append(n, r, e);
     b.addEventListener("click", () => {
       state.target = t.id;
