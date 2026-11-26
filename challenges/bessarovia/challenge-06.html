@@ -1,8 +1,115 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Bessarovia challenge 06 | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
-<body data-page="challenge" data-role="bessarovia-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/bessarovia-cyber.html">← Back to Bessarovia cyber space</a><p class="tag red">Bessarovia / Cyber / Challenge 06</p><h1>Awaiting briefing</h1><span class="badge">Not released</span><section class="panel instructions"><h2>Instructions</h2><p>This challenge has not been released. Wait for the organisers to provide instructions.</p></section><section class="panel"><h2>Evidence</h2><p class="muted">No evidence released yet.</p><!-- Add evidence links here. --></section><section class="panel"><h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main><script id="challenge-data" type="application/json">{
+<body data-page="challenge" data-role="bessarovia-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header><a class="breadcrumb" href="../../teams/bessarovia-cyber.html">← Back to Bessarovia cyber space</a><p class="tag red">Bessarovia / Cyber / Challenge 06</p>
+  <h1>Race to the evidence</h1><span class="badge">Available</span><section class="panel instructions">
+     <h2>Instructions</h2>
+     <p>You may wan’t to go look at @IceCurtain’s twitter account. The whistleblower may have posted relevant information...
+     <p>Find out the hour and date of the sabotage order. </p> 
+     <p>FYI : This is a timed challenge, the first team to find the flag wins the points, the other has to stop. </p>
+     <p>If the Aldeian team finds out the flag, it will constitute final proof that the Aurora incident was deliberately caused by the 
+        Bessarovian government. However, if Bessarovia finds out the flag faster, they have the means to permanently remove the incriminating
+        evidence. </p> 
+     <p>Flag format: <code>FLAG{00:00_DD/MM/YYYY}</code> </p>
+</p></section>
+   <section class="panel"><h2>Investigation guidelines</h2>
+      <p class="muted">???</p>
+   </section>
+ <!-- FLAG SUBMISSION -->
+
+  <section class="panel">
+    <h2>Submit your findings</h2>
+
+    <p>
+      Submit each flag separately. You will
+      receive immediate feedback.
+    </p>
+
+    <form id="flag-form" hidden>
+
+      <label for="objective">
+        Select your objective
+      </label>
+
+      <select id="objective" required>
+        <option value="">
+          Choose an objective
+        </option>
+
+        <option value="1">
+          Flag 1: Time and date
+        </option>
+  
+      </select>
+
+      <label for="flag">
+        Enter your flag
+      </label>
+
+      <input
+        id="flag"
+        type="text"
+        placeholder="FLAG{your_answer}"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        aria-describedby="flag-message"
+        required
+      >
+
+      <div class="actions">
+        <button
+          type="submit"
+          class="button primary">
+          Check flag
+        </button>
+      </div>
+
+      <p
+        id="flag-message"
+        class="message"
+        role="status">
+      </p>
+
+    </form>
+
+    <p
+      id="accepted-status"
+      class="note">
+    </p>
+
+    <p class="note">
+      Submissions are recorded for the organisers.
+      Accepted progress is also saved in this browser.
+    </p>
+  </section>
+
+  <noscript>
+    <p class="panel">
+      Enable JavaScript to use this portal.
+    </p>
+  </noscript>
+
+  <footer>
+    Fictional wargame. Use only your assigned space.
+    Submissions are recorded for the organisers.
+  </footer>
+
+</main>
+
+<!-- CHALLENGE CONFIGURATION -->
+
+<script
+  id="challenge-data"
+  type="application/json">
+{
   "id": "challenge-06",
-  "enabled": false,
-  "acceptedFlags": [],
-  "feedback": "Correct flag."
-}</script></body></html>
+  "remoteId": "challenge-06",
+  "enabled": true,
+  "validation": "remote",
+  "requiredFlags": 1,
+  "feedback": "Challenge completed."
+}
+</script>   
+
+</script></body></html>
+
