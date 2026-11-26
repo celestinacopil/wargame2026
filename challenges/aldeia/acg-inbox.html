@@ -39,9 +39,9 @@
 
     <details id="mail-alert" hidden>
       <summary>Confirm your attendance — mandatory Aurora security briefing <span class="badge">3 Dec 2026, 10:15</span></summary>
-      <p class="muted"><strong>From:</strong> l.irsdottir@acg-portal.ad<br><strong>Reply-To:</strong> d.kova@mail.bv<br><strong>To:</strong> security@acg.ad<br><strong>Subject:</strong> Confirm your attendance — mandatory Aurora security briefing</p>
+      <p class="muted"><strong>From:</strong> l.irsdottir@portal-acg.ad<br><strong>Reply-To:</strong> d.kova@mail.bv<br><strong>To:</strong> security@acg.ad<br><strong>Subject:</strong> Confirm your attendance — mandatory Aurora security briefing</p>
       <p>Dear colleague,</p>
-      <p>All staff must confirm attendance for the briefing on 10 December. Confirm through the portal here: <a id="trap-link" href="#">http://acg-portal.ad/confirm</a></p>
+      <p>All staff must confirm attendance for the briefing on 10 December. Confirm through the portal here: <a id="trap-link" href="#">http://portal-acg.ad/confirm</a></p>
       <p>Please complete this today.</p>
       <p>Lena Irsdottir<br>Communications &amp; Events Officer</p>
       <div class="actions report-controls" hidden><button type="button" class="button" data-report>Report as phishing</button></div>
@@ -76,11 +76,11 @@
       <p class="success">Correct. You reported the malicious email. Reported in time: intrusion blocked.</p>
       <p>These are the tells:</p>
       <ul>
-        <li>The sender domain <code>acg-portal.ad</code> is not the real staff portal <code>portal.acg.ad</code>, and it is not the official site <code>acg.ad</code>.</li>
+        <li>The sender domain <code>portal-acg.ad</code> is not the real staff portal <code>portal.acg.ad</code>, and it is not the official site <code>acg.ad</code>.</li>
         <li>The reply address is on a <code>.bv</code> (Bessarovia) domain.</li>
         <li>The message uses false urgency: "Please complete this today."</li>
         <li>The link uses <code>http</code>, not <code>https</code>.</li>
-        <li>The real officer's genuine notice (the first email) points to <code>portal.acg.ad</code>, not <code>acg-portal.ad</code>.</li>
+        <li>The real officer's genuine notice (the first email) points to <code>portal.acg.ad</code>, not <code>portal-acg.ad</code>.</li>
       </ul>
     </div>
     <div data-outcome="phished" hidden>
@@ -91,7 +91,7 @@
   </section>
   <dialog id="lose-dialog" aria-labelledby="lose-title" style="max-width:560px;background:var(--panel);color:var(--text);border:1px solid #ffaaaa;border-radius:10px;padding:25px">
     <h2 id="lose-title" class="error">You clicked a phishing link</h2>
-    <p>The domain was <code>acg-portal.ad</code>. It is not the real staff portal <code>portal.acg.ad</code>, and it is not the official site <code>acg.ad</code>. The reply address was on <code>.bv</code>. The message used fake urgency and an <code>http</code> link.</p>
+    <p>The domain was <code>portal-acg.ad</code>. It is not the real staff portal <code>portal.acg.ad</code>, and it is not the official site <code>acg.ad</code>. The reply address was on <code>.bv</code>. The message used fake urgency and an <code>http</code> link.</p>
     <p>In the game, Bessarovia is now inside ACG.</p>
     <div class="actions"><button type="button" class="button primary" id="lose-close">Close</button></div>
   </dialog><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main>
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
     banner.textContent = "Decision recorded. The mailbox is locked.";
     if (!fresh) return;
     if (outcome === "win") {
-      document.getElementById("flag").value = "FLAG{email3_acg-portal.ad}";
+      document.getElementById("flag").value = "FLAG{email3_portal-acg.ad}";
       document.getElementById("flag-form").requestSubmit();
     } else if (typeof dialog.showModal === "function") {
       dialog.showModal();
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
   "id": "acg-inbox",
   "enabled": true,
   "acceptedFlags": [
-    "FLAG{email3_acg-portal.ad}"
+    "FLAG{email3_portal-acg.ad}"
   ],
   "feedback": "Correct. Reported in time: intrusion blocked. If it is missed or the link is clicked, Bessarovia gets in."
 }</script></body></html>
