@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Aldeia challenge 02: phishing defence | Arctic Crisis</title><link rel="stylesheet" href="../../assets/style.css"><script src="../../assets/config.js" defer></script><script src="../../assets/portal.js" defer></script></head>
+<body data-page="challenge" data-role="aldeia-cyber"><main class="container"><header class="masthead"><div><p class="eyebrow">Wargame 2026 / Arctic Crisis</p><a class="brand" href="../../index.html">ARCTIC CRISIS</a></div><button class="button" type="button" data-logout hidden>Exit space</button></header>
+  <a class="breadcrumb" href="challenge-02.html">← Back to Challenge 2</a>
+  <p class="tag blue">Aldeia / Cyber / Challenge 02 / Extra</p>
+  <h1>Phishing defence</h1>
+
+  <section class="panel instructions">
+    <h2>Instructions</h2>
+    <p>Reporting the phishing message in the analysis tool records your result automatically. Only use the form below if that did not work.</p>
+    <p>The code is shown in the tool after you quarantine the message.</p>
+    <div class="actions"><a class="button" href="../../mailscope/index.html">Open the mailbox ↗</a></div>
+  </section>
+
+  <section class="panel">
+    <h2>Backup: submit your code by hand</h2>
+    <form id="flag-form" hidden>
+      <label for="objective">Select your objective</label>
+      <select id="objective" required>
+        <option value="">Choose an objective</option>
+        <option value="1">Defence: quarantine the phishing message</option>
+      </select>
+
+      <label for="flag">Enter your flag</label>
+      <input id="flag" type="text" placeholder="FLAG{your_code}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required>
+
+      <div class="actions"><button type="submit" class="button primary">Check flag</button></div>
+      <p id="flag-message" class="message" role="status"></p>
+    </form>
+
+    <p id="accepted-status" class="note"></p>
+    <p class="note">Submissions are recorded for the organisers. Accepted progress is also saved in this browser.</p>
+  </section>
+
+  <noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript>
+  <footer>Fictional wargame organised by Sciences Po Cybersecurity Association.</footer>
+</main>
+
+<!-- CHALLENGE CONFIGURATION -->
+<script id="challenge-data" type="application/json">
+{
+  "id": "challenge-02-defence",
+  "remoteId": "challenge-02-defence",
+  "enabled": true,
+  "validation": "remote",
+  "requiredFlags": 1,
+  "feedback": "Phishing message quarantined."
+}
+</script>
+
+<script>
+// MailScope handoff. Challenge 2 loads this page in a hidden frame (?auto=1) after the
+// phishing message is reported. It sends the result through portal.js's own form, then
+// tells Challenge 2 what happened. portal.js is not changed.
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+  if (location.search.indexOf("auto=1") === -1 || window.parent === window) return;
+
+  var ROLE = "aldeia-cyber";
+  var ID = "challenge-02-defence";
+  var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
+  var CODE = "FLAG{quarantine_portal-acg.ad}";
+
+  function $(id) { return document.getElementById(id); }
+  function solved() {
+    try {
+      var all = JSON.parse(localStorage.getItem(prefix + "progress:" + ROLE) || "{}");
+      return !!(all[ID] && all[ID].objectives && all[ID].objectives["1"]);
+    } catch (e) { return false; }
+  }
+  function report(ok, text) {
+    window.parent.postMessage({ type: "mailscope-result", ok: ok, text: text }, location.origin === "null" ? "*" : location.origin);
+  }
+
+  if (solved()) { report(true, "Already recorded on this browser. Nothing new was sent."); return; }
+
+  var msg = $("flag-message");
+  $("objective").value = "1";
+  $("flag").value = CODE;
+  $("flag-form").requestSubmit();
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries++;
+    if (solved()) { clearInterval(timer); report(true, "Your defence result is recorded for the organisers."); return; }
+    if (msg.classList.contains("error")) { clearInterval(timer); report(false, msg.textContent); return; }
+    if (tries > 150) { clearInterval(timer); report(false, "No answer from the server."); }
+  }, 150);
+});
+</script>
+</body></html>

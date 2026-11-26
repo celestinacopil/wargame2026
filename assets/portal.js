@@ -49,15 +49,44 @@ if (required && document.body.dataset.page === "team") {
   const done = progress(required);
   let count = 0;
 
+  // Challenges that are only complete when several separately recorded parts are solved.
+  const PARTS = {
+    "aldeia-cyber": {
+      "challenge-02": ["challenge-02", "challenge-02-defence"]
+    }
+  };
+
+  // Shows a status on a card, adding the badge if the card has none.
+  function setBadge(card, text) {
+    let badge = card.querySelector(".badge");
+    if (!badge) {
+      badge = document.createElement("span");
+      badge.className = "badge";
+      card.appendChild(badge);
+    }
+    badge.textContent = text;
+  }
+
   document.querySelectorAll("[data-challenge]").forEach(card => {
     const id = card.dataset.challenge;
     const result = done[id];
 
     let completed = false;
 
+    const parts = (PARTS[required] || {})[id];
+
+    if (parts) {
+      const solved = parts.filter(part => Boolean(done[part])).length;
+
+      completed = solved === parts.length;
+
+      if (solved > 0 && !completed) {
+        setBadge(card, solved + " / " + parts.length + " parts solved");
+      }
+
     // The multi-flag corruption challenge (Aldeia 04) counts its 3 objectives.
-    if (id === "challenge-04" &&
-        required === "Aldeia-cyber") {
+    } else if (id === "challenge-04" &&
+        required === "aldeia-cyber") {
 
       const objectives =
         result &&
@@ -70,8 +99,7 @@ if (required && document.body.dataset.page === "team") {
       completed = found >= 3;
 
       if (found > 0 && !completed) {
-        card.querySelector(".badge").textContent =
-          found + " / 3 flags found";
+        setBadge(card, found + " / 3 flags found");
       }
 
     } else {
@@ -79,8 +107,7 @@ if (required && document.body.dataset.page === "team") {
     }
 
     if (completed) {
-      card.querySelector(".badge").textContent =
-        "Completed";
+      setBadge(card, "Completed");
       count++;
     }
   });

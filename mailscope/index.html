@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>MailScope | Mail analysis desk (Aldeia cyber ops)</title>
+<style>
+:root{--bg:#0a0f14;--panel:#111a22;--panel2:#0d141b;--text:#d6e2ea;--muted:#7f93a3;--blue:#79c0ff;--green:#7bd88f;--amber:#f0c35e;--red:#ff8a80;--line:#22313d}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:#06090d;color:var(--text);font:14px/1.5 Arial,Helvetica,sans-serif;padding-bottom:44px}
+button{font:inherit;color:inherit;cursor:pointer}
+.bar{display:flex;align-items:center;gap:12px;padding:10px 18px;background:#0f1923;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.bar strong{letter-spacing:.08em;color:#fff}
+.tag{color:var(--blue);font-weight:bold;font-size:12px;border:1px solid var(--blue);padding:2px 8px;border-radius:3px}
+.bar a{margin-left:auto;color:var(--blue);text-decoration:none;font-size:13px}
+.intro{padding:10px 18px;color:var(--muted);border-bottom:1px solid var(--line)}
+.app{display:grid;grid-template-columns:150px 270px 1fr;min-height:470px;border-bottom:1px solid var(--line)}
+.folders,.list{border-right:1px solid var(--line);background:var(--panel2)}
+.folders button,.list button{display:block;width:100%;text-align:left;background:none;border:0;padding:10px 14px}
+.folders button[aria-current="true"],.list button[aria-current="true"]{background:#17242f}
+.list button{border-bottom:1px solid var(--line)}
+.list b{display:block;color:#fff;font-size:13px}
+.list span{display:block;color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty{padding:14px;color:var(--muted)}
+.read{padding:16px 20px;min-width:0}
+.read h2{margin:0 0 4px;font-size:18px;color:#fff}
+.meta{color:var(--muted);font-size:13px;margin:0}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.btn{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 12px}
+.btn:hover{border-color:var(--blue)}
+.btn[aria-pressed="true"]{border-color:var(--blue);background:#14293a}
+.btn.primary{border-color:var(--blue)}
+.headers{border:1px solid var(--line);border-radius:8px;background:#080d12;margin:0 0 12px;font:12.5px/1.5 Consolas,Menlo,"Courier New",monospace}
+.hrow{display:flex;gap:10px;align-items:flex-start;padding:6px 10px;border-bottom:1px solid var(--line)}
+.hrow:last-child{border-bottom:0}
+.hrow .k{color:var(--blue);min-width:92px}
+.hrow .v{flex:1;word-break:break-all}
+.mark{background:none;border:1px solid var(--line);border-radius:4px;color:var(--muted);font-size:12px;padding:1px 8px;white-space:nowrap}
+.mark[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
+.marked{background:#2a2412}
+.para{display:flex;gap:10px;align-items:flex-start;padding:3px 4px;border-radius:4px}
+.para p{margin:4px 0;flex:1;white-space:pre-line}
+.para a{color:var(--blue)}
+.attach{display:inline-block;margin-top:10px}
+.note{min-height:21px;margin:10px 0 0;font-size:13px}
+.good{color:var(--green)}.warn{color:var(--amber)}.stop{color:var(--red)}
+.desk{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px 18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px}
+.card h3{margin:0 0 8px;font-size:13px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.track{height:12px;background:#1b2630;border-radius:6px;overflow:hidden;margin:6px 0}
+.fill{height:100%;width:0;background:var(--blue);transition:width .25s}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input[type="text"]{background:#080d12;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:7px;font:13px Consolas,monospace;flex:1;min-width:160px}
+dl{margin:10px 0 0;font:12.5px/1.6 Consolas,monospace}
+dt{color:var(--muted)}dd{margin:0 0 4px}
+iframe{width:100%;height:300px;border:1px solid var(--line);border-radius:6px;background:#fff;margin-top:10px}
+.done{margin:0 18px 18px;border:1px solid var(--green);border-radius:8px;padding:14px}
+.done h3{margin-top:0;color:var(--green)}
+.done a.btn{display:inline-block;text-decoration:none;color:var(--text)}
+code{color:var(--amber)}
+.status{position:fixed;left:0;right:0;bottom:0;display:flex;gap:12px;align-items:center;min-height:40px;padding:6px 14px;background:#0f1923;border-top:1px solid var(--line);font:12.5px Consolas,monospace}
+.status span{flex:1;word-break:break-all}
+.overlay{position:fixed;inset:0;background:rgba(40,0,0,.85);display:flex;align-items:center;justify-content:center;padding:20px;z-index:5}
+.overlay div{max-width:460px;background:#1a0e10;border:2px solid var(--red);border-radius:10px;padding:22px}
+.overlay h2{margin-top:0;color:var(--red)}
+footer{padding:0 18px 20px;color:#61717e;font-size:12px}
+@media (max-width:800px){.app{grid-template-columns:1fr}.folders{display:flex;border-right:0}.folders button{width:auto}.list{border-right:0}.desk{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="bar"><strong>MAILSCOPE</strong><span class="tag">ALDEIA CYBER OPS</span><a href="../challenges/aldeia/challenge-02.html">← Back to Aldeia Challenge 2</a></div>
+<div class="intro">You are the analyst for <b>security@acg.ad</b>, the Aldeian Coast Guard. One message here is a phishing attack. Collect evidence, then report it. One message is from a whistleblower: check that it is genuine. <b>Do not click suspicious links.</b></div>
+
+<div class="app">
+  <nav class="folders" id="folders" aria-label="Folders"></nav>
+  <div class="list" id="list" aria-label="Messages"></div>
+  <section class="read" id="read" aria-live="polite"></section>
+</div>
+
+<div class="desk">
+  <div class="card">
+    <h3>Your case</h3>
+    <div>Evidence confidence for the open message: <b id="conf-n">0%</b></div>
+    <div class="track"><div class="fill" id="conf"></div></div>
+    <div class="meta">Indicators you marked on it: <span id="mark-n">0</span> · False alarms: <b id="false-n">0</b> · Times phished: <b id="phished-n">0</b></div>
+    <p class="meta">Mark header lines, links or sentences that you think are suspicious. A mark on something clean is a false alarm and counts against you.</p>
+    <div class="row">
+      <button type="button" class="btn primary" id="report">Report and quarantine</button>
+      <button type="button" class="btn" id="verify">Mark as verified genuine</button>
+    </div>
+    <p class="note" id="verdict" role="status"></p>
+  </div>
+
+  <div class="card">
+    <h3>Analyst lookups</h3>
+    <div class="row">
+      <button type="button" class="btn" id="tab-domain" aria-pressed="false">Domain lookup</button>
+      <button type="button" class="btn" id="tab-notice" aria-pressed="false">ACG staff notices</button>
+    </div>
+    <div id="pane-domain" hidden>
+      <form class="row" id="lookup" style="margin-top:10px">
+        <input type="text" id="domain" placeholder="Type a domain, for example example.ad" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Domain to look up">
+        <button type="submit" class="btn">Look up</button>
+      </form>
+      <div id="record"></div>
+    </div>
+    <div id="pane-notice" hidden>
+      <iframe id="notice-frame" title="ACG staff notices"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="done" id="done" hidden>
+  <h3>Phishing message quarantined</h3>
+  <p>You stopped the attack. What gave it away:</p>
+  <ul>
+    <li>The sender and return addresses use a domain that is not the Coast Guard's own.</li>
+    <li>Replies go to an outside mailbox.</li>
+    <li>The link shows one address and leads to another, without a secure connection.</li>
+    <li>It asks for action "today", but the staff notice gives a later deadline.</li>
+  </ul>
+  <p>SPF, DKIM and DMARC "pass" only prove that the sender controls the domain they used. They do not prove the domain is the right one.</p>
+  <p>Return to Challenge 2 to record your result. If automatic recording fails, your code is <code id="code"></code></p>
+  <p><a class="btn" href="../challenges/aldeia/challenge-02.html">Return to Challenge 2 →</a></p>
+</div>
+
+<footer>Fictional tool created for the Arctic Crisis wargame. It does not send or receive real email. Link addresses appear in the bar below when you point at them.</footer>
+
+<div class="status">
+  <span id="status">Point at a link to see where it really goes.</span>
+  <button type="button" class="mark" id="mark-link" aria-pressed="false" hidden>Mark this link</button>
+</div>
+
+<div class="overlay" id="overlay" hidden role="alertdialog" aria-modal="true" aria-labelledby="phished-title">
+  <div>
+    <h2 id="phished-title">You were phished</h2>
+    <p>You clicked the link in a phishing message. In real life, a fake login page would now be asking for your password.</p>
+    <p>Point at a link to read its address. Never click it to find out.</p>
+    <button type="button" class="btn" id="overlay-close">Continue the investigation</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+(() => {
+  // value codes for each field: "bad" = real indicator, "ok" = clean (false alarm), "" = neutral
+  const NEEDED = 4;
+  const KEY = "wargame2026-v2:mailscope";
+  const MARKER = "wargame2026-v2:mailscope-report";
+  const CODE = "FLAG{quarantine_portal-acg.ad}";
+
+  const mail = (o) => o;
+  const MESSAGES = [
+    mail({
+      id: "m1", from: "Lena Irsdottir", subject: "Mandatory security briefing, 10 December 2026", date: "3 Dec 2026, 09:05",
+      headers: [
+        ["From", "\"Lena Irsdottir\" <l.irsdottir@acg.ad>", "ok"],
+        ["To", "security@acg.ad", "ok"],
+        ["Date", "Thu, 3 Dec 2026 09:05:12 +0000", "ok"],
+        ["Reply-To", "l.irsdottir@acg.ad", "ok"],
+        ["Return-Path", "<bounce@acg.ad>", "ok"],
+        ["Received", "from smtp.acg.ad (198.51.100.10) by mx.acg.ad", "ok"],
+        ["SPF", "pass (198.51.100.10 is permitted to send for acg.ad)", "ok"],
+        ["DKIM", "pass (d=acg.ad)", "ok"],
+        ["DMARC", "pass (header.from=acg.ad)", "ok"]
+      ],
+      body: [
+        ["Dear colleagues,", "ok"],
+        ["A mandatory security briefing after the Aurora incident takes place on 10 December. All staff must attend.", "ok"],
+        ["Please confirm your attendance by 8 December through the staff portal:", "ok", { text: "Staff portal", dest: "https://portal.acg.ad/briefing" }],
+        ["Lena Irsdottir\nCommunications & Events Officer", "ok"]
+      ]
+    }),
+    mail({
+      id: "m2", from: "Human Resources", subject: "Updated shift roster (week 50)", date: "3 Dec 2026, 09:40",
+      headers: [
+        ["From", "\"Human Resources\" <hr@acg.ad>", "ok"],
+        ["To", "security@acg.ad", "ok"],
+        ["Date", "Thu, 3 Dec 2026 09:40:48 +0000", "ok"],
+        ["Reply-To", "hr@acg.ad", "ok"],
+        ["Return-Path", "<bounce@acg.ad>", "ok"],
+        ["Received", "from smtp.acg.ad (198.51.100.10) by mx.acg.ad", "ok"],
+        ["SPF", "pass (198.51.100.10 is permitted to send for acg.ad)", "ok"],
+        ["DKIM", "pass (d=acg.ad)", "ok"],
+        ["DMARC", "pass (header.from=acg.ad)", "ok"]
+      ],
+      body: [
+        ["Hello,", "ok"],
+        ["Night shifts at the operations room have changed. Please check your shifts and tell HR about any problem by Friday.", "ok"],
+        ["The new roster is here:", "ok", { text: "https://portal.acg.ad/roster", dest: "https://portal.acg.ad/roster" }],
+        ["Human Resources", "ok"]
+      ]
+    }),
+    mail({
+      id: "m3", from: "Lena Irsdottir", subject: "Confirm your attendance — mandatory Aurora security briefing", date: "3 Dec 2026, 10:15",
+      phish: true,
+      headers: [
+        ["From", "\"Lena Irsdottir\" <l.irsdottir@portal-acg.ad>", "bad"],
+        ["To", "security@acg.ad", "ok"],
+        ["Date", "Thu, 3 Dec 2026 10:15:07 +0000", ""],
+        ["Reply-To", "d.kova@mail.bv", "bad"],
+        ["Return-Path", "<bounce@portal-acg.ad>", "bad"],
+        ["Received", "from out.mail.bv (203.0.113.45) by mx.acg.ad", "bad"],
+        ["SPF", "pass (203.0.113.45 is permitted to send for portal-acg.ad)", ""],
+        ["DKIM", "pass (d=portal-acg.ad)", ""],
+        ["DMARC", "pass (header.from=portal-acg.ad)", ""]
+      ],
+      body: [
+        ["Dear colleague,", ""],
+        ["All staff must attend the mandatory Aurora security briefing on 10 December. Please confirm your attendance here:", "", { text: "https://portal.acg.ad/confirm", dest: "http://portal-acg.ad/confirm" }],
+        ["Please complete this today.", "bad"],
+        ["Lena Irsdottir\nCommunications & Events Officer", ""]
+      ]
+    }),
+    mail({
+      id: "m4", from: "ACG Secure Tip Channel", subject: "Forwarded tip: photograph from the night of 2 December", date: "4 Dec 2026, 19:00",
+      whistle: true, attachment: "vessel-photo.jpg",
+      headers: [
+        ["From", "\"ACG Secure Tip Channel\" <tips@acg.ad>", "ok"],
+        ["To", "security@acg.ad", "ok"],
+        ["Date", "Fri, 4 Dec 2026 19:00:31 +0000", "ok"],
+        ["Reply-To", "tips@acg.ad", "ok"],
+        ["Return-Path", "<bounce@acg.ad>", "ok"],
+        ["Received", "from tipbox.acg.ad (198.51.100.22) by mx.acg.ad", "ok"],
+        ["SPF", "pass (198.51.100.22 is permitted to send for acg.ad)", "ok"],
+        ["DKIM", "pass (d=acg.ad)", "ok"],
+        ["DMARC", "pass (header.from=acg.ad)", "ok"]
+      ],
+      body: [
+        ["Forwarded from the encrypted tip channel. The sender's identity is not recorded.", "ok"],
+        ["I serve in the Bessarovian Coast Guard. I attach a photograph of a vessel I saw near the Aurora on the evening of 2 December.", "ok"],
+        ["Check it yourselves. Do not rely on my word alone. There is no hurry to answer me.", "ok"]
+      ]
+    })
+  ];
+
+  // Registration records: facts only.
+  const RECORDS = {
+    "acg.ad": [["Registrant", "Aldeian Coast Guard"], ["Created", "14 March 2009"], ["Registrar", "Aldeia National Registry"], ["Name servers", "ns1.acg.ad, ns2.acg.ad"]],
+    "portal.acg.ad": [["Type", "Subdomain of acg.ad"], ["Controlled by", "the owner of acg.ad"], ["Listed as", "Staff portal (ACG staff notices)"]],
+    "portal-acg.ad": [["Registrant", "Hidden (privacy service)"], ["Created", "1 December 2026"], ["Registrar", "Quickname Domains"], ["Name servers", "ns1.mail.bv"], ["Parent domain", "none: registered separately"]],
+    "mail.bv": [["Registrant", "Mail.bv public webmail"], ["Created", "2 June 2011"], ["Type", "Free webmail: anyone can open an address"]]
+  };
+
+  let saved = { marks: {}, falseKeys: {}, falseExtra: 0, phished: 0, verified: false, quarantined: false };
+  try {
+    const stored = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (stored && typeof stored === "object" && stored.marks) saved = Object.assign(saved, stored);
+  } catch (e) {}
+  const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} };
+
+  let folder = "inbox";
+  let openId = null;
+  let showOriginal = false;
+  let markText = false;
+  let hovered = null;
+
+  const $ = id => document.getElementById(id);
+  const el = (tag, cls, text) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  };
+  const current = () => MESSAGES.find(m => m.id === openId) || null;
+  const say = (text, tone) => { $("verdict").textContent = text; $("verdict").className = "note " + (tone || ""); };
+
+  // Every markable item of a message, keyed so it can be saved.
+  function fields(m) {
+    const out = {};
+    m.headers.forEach(h => { out[m.id + ":h:" + h[0]] = h[2]; });
+    m.body.forEach((p, i) => {
+      out[m.id + ":p:" + i] = p[1];
+      if (p[2]) out[m.id + ":l:" + i] = m.phish ? "bad" : "ok";
+    });
+    return out;
+  }
+  function tally(m) {
+    const f = fields(m);
+    let good = 0, wrong = 0, total = 0;
+    Object.keys(f).forEach(k => {
+      if (!saved.marks[k]) return;
+      total++;
+      if (f[k] === "bad") good++;
+      if (f[k] === "ok") wrong++;
+    });
+    return { good, wrong, total };
+  }
+
+  function toggleMark(key) {
+    if (saved.marks[key]) delete saved.marks[key];
+    else {
+      saved.marks[key] = true;
+      const m = current();
+      // A false alarm is counted once per item, even if the mark is removed later.
+      if (m && fields(m)[key] === "ok") saved.falseKeys[key] = true;
+    }
+    persist();
+    say("", "");
+    renderMessage();
+    renderStatus();
+  }
+
+  function markButton(key, label) {
+    const b = el("button", "mark", saved.marks[key] ? "Marked" : "Mark");
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(!!saved.marks[key]));
+    b.setAttribute("aria-label", (saved.marks[key] ? "Remove mark: " : "Mark as suspicious: ") + label);
+    b.addEventListener("click", () => toggleMark(key));
+    return b;
+  }
+
+  // ---------- links ----------
+  function renderStatus() {
+    const button = $("mark-link");
+    if (!hovered) { button.hidden = true; return; }
+    $("status").textContent = "Link goes to: " + hovered.dest;
+    button.hidden = false;
+    button.textContent = saved.marks[hovered.key] ? "Link marked" : "Mark this link";
+    button.setAttribute("aria-pressed", String(!!saved.marks[hovered.key]));
+  }
+  $("mark-link").addEventListener("click", () => { if (hovered) toggleMark(hovered.key); });
+
+  function makeLink(m, i, info) {
+    const a = el("a", "", info.text);
+    a.href = "#";
+    const show = () => { hovered = { dest: info.dest, key: m.id + ":l:" + i }; renderStatus(); };
+    a.addEventListener("mouseenter", show);
+    a.addEventListener("focus", show);
+    const click = event => {
+      event.preventDefault();
+      show();
+      if (m.phish) {
+        saved.phished++;
+        persist();
+        $("overlay").hidden = false;
+        $("overlay-close").focus();
+        renderCase();
+      } else {
+        $("status").textContent = "Link goes to: " + info.dest + "  (this page is not available in the exercise)";
+      }
+    };
+    a.addEventListener("click", click);
+    a.addEventListener("auxclick", click);
+    return a;
+  }
+  $("overlay-close").addEventListener("click", () => { $("overlay").hidden = true; });
+
+  // ---------- rendering ----------
+  const inFolder = m => {
+    if (m.phish && saved.quarantined) return folder === "quarantine";
+    if (m.whistle && saved.verified) return folder === "verified";
+    return folder === "inbox";
+  };
+
+  function renderFolders() {
+    const box = $("folders");
+    box.replaceChildren();
+    [["inbox", "Inbox"], ["verified", "Verified"], ["quarantine", "Quarantine"]].forEach(([id, label]) => {
+      const keep = folder;
+      folder = id;
+      const count = MESSAGES.filter(inFolder).length;
+      folder = keep;
+      const b = el("button", "", label + " (" + count + ")");
+      b.type = "button";
+      b.setAttribute("aria-current", String(folder === id));
+      b.addEventListener("click", () => { folder = id; openId = null; renderAll(); });
+      box.appendChild(b);
+    });
+  }
+
+  function renderList() {
+    const box = $("list");
+    box.replaceChildren();
+    const items = MESSAGES.filter(inFolder);
+    if (!items.length) box.appendChild(el("div", "empty", "No messages."));
+    items.forEach(m => {
+      const b = el("button");
+      b.type = "button";
+      b.dataset.id = m.id;
+      b.setAttribute("aria-current", String(m.id === openId));
+      b.append(el("b", "", m.from), el("span", "", m.subject), el("span", "", m.date));
+      b.addEventListener("click", () => {
+        openId = m.id; showOriginal = false; markText = false; hovered = null;
+        $("status").textContent = "Point at a link to see where it really goes.";
+        say("", "");
+        renderAll();
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function toggleButton(id, label, on, action) {
+    const b = el("button", "btn", label);
+    b.type = "button";
+    b.id = id;
+    b.setAttribute("aria-pressed", String(on));
+    b.addEventListener("click", action);
+    return b;
+  }
+
+  function renderMessage() {
+    const box = $("read");
+    box.replaceChildren();
+    const m = current();
+    if (!m) { box.appendChild(el("p", "empty", "Select a message to open it.")); renderCase(); return; }
+
+    box.append(el("h2", "", m.subject), el("p", "meta", m.from + " · to security@acg.ad · " + m.date));
+
+    const tools = el("div", "tools");
+    tools.append(
+      toggleButton("btn-original", "Show original / headers", showOriginal, () => { showOriginal = !showOriginal; if (showOriginal) m.seen = true; renderMessage(); }),
+      toggleButton("btn-marktext", "Mark sentences", markText, () => { markText = !markText; renderMessage(); })
+    );
+    box.appendChild(tools);
+
+    if (showOriginal) {
+      const table = el("div", "headers");
+      m.headers.concat([["Subject", m.subject, ""]]).forEach(h => {
+        const key = m.id + ":h:" + h[0];
+        const row = el("div", "hrow" + (saved.marks[key] ? " marked" : ""));
+        row.dataset.key = key;
+        row.append(el("span", "k", h[0]), el("span", "v", h[1]));
+        if (h[0] !== "Subject") row.appendChild(markButton(key, h[0]));
+        table.appendChild(row);
+      });
+      box.appendChild(table);
+    }
+
+    m.body.forEach((p, i) => {
+      const key = m.id + ":p:" + i;
+      const line = el("div", "para" + (saved.marks[key] ? " marked" : ""));
+      const text = el("p", "", p[0]);
+      if (p[2]) { text.append(" "); text.appendChild(makeLink(m, i, p[2])); }
+      line.appendChild(text);
+      if (markText) line.appendChild(markButton(key, "sentence " + (i + 1)));
+      box.appendChild(line);
+    });
+
+    if (m.attachment) {
+      const a = el("button", "btn attach", "📎 " + m.attachment);
+      a.type = "button";
+      a.addEventListener("click", () => {
+        $("status").textContent = "Attachment held for Intelligence Unit 7731. It is not opened on this desk.";
+        $("mark-link").hidden = true; hovered = null;
+      });
+      box.appendChild(a);
+    }
+    renderCase();
+  }
+
+  function renderCase() {
+    const m = current();
+    const t = m ? tally(m) : { good: 0, wrong: 0, total: 0 };
+    const confidence = Math.max(0, Math.min(100, Math.round((t.good - t.wrong) / NEEDED * 100)));
+    $("conf").style.width = confidence + "%";
+    $("conf-n").textContent = confidence + "%";
+    $("mark-n").textContent = t.total;
+    $("false-n").textContent = Object.keys(saved.falseKeys).length + saved.falseExtra;
+    $("phished-n").textContent = saved.phished;
+    $("report").disabled = !m || (m.phish && saved.quarantined);
+    $("verify").disabled = !m || (m.whistle && saved.verified);
+  }
+
+  function renderAll() { renderFolders(); renderList(); renderMessage(); $("done").hidden = !saved.quarantined; }
+
+  // ---------- decisions ----------
+  $("report").addEventListener("click", () => {
+    const m = current();
+    if (!m) return;
+    if (!m.phish) {
+      saved.falseExtra++;
+      persist(); renderCase();
+      say("False alarm. This message is legitimate. It stays in the mailbox.", "stop");
+      return;
+    }
+    const t = tally(m);
+    if (t.good - t.wrong < NEEDED) {
+      say("Not enough evidence to quarantine it yet. Collect more solid indicators and remove weak ones.", "warn");
+      return;
+    }
+    saved.quarantined = true;
+    persist();
+    // Tell the challenge page that the phishing message was reported. It reads this once.
+    try { localStorage.setItem(MARKER, JSON.stringify({ ready: true, ts: new Date().toISOString() })); } catch (e) {}
+    renderAll();
+    say("Quarantined. Return to Challenge 2 to record your result.", "good");
+    $("done").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  $("verify").addEventListener("click", () => {
+    const m = current();
+    if (!m) return;
+    if (!m.seen) { say("Check the evidence first: open \"Show original / headers\".", "warn"); return; }
+    if (m.phish) {
+      saved.falseExtra++;
+      persist(); renderCase();
+      say("Wrong call. Do not trust this one yet. Compare its addresses with a message you know is genuine.", "stop");
+      return;
+    }
+    if (m.whistle) {
+      saved.verified = true;
+      persist();
+      renderAll();
+      say("Verified: the tip came through the Coast Guard's own systems. This proves the route, not that the story is true. Pass the photo to Intelligence Unit 7731.", "good");
+      return;
+    }
+    say("Noted. This message looks consistent. The whistleblower's tip still needs your check.", "");
+  });
+
+  // ---------- lookups ----------
+  function tab(name) {
+    ["domain", "notice"].forEach(n => {
+      const open = n === name && $("pane-" + n).hidden;
+      $("pane-" + n).hidden = !open;
+      $("tab-" + n).setAttribute("aria-pressed", String(open));
+    });
+    if (name === "notice" && !$("notice-frame").src) $("notice-frame").src = "../www.acg.ad/notices.html";
+  }
+  $("tab-domain").addEventListener("click", () => tab("domain"));
+  $("tab-notice").addEventListener("click", () => tab("notice"));
+  $("lookup").addEventListener("submit", event => {
+    event.preventDefault();
+    const name = $("domain").value.trim().toLowerCase().replace(/^[a-z]+:\/\//, "").replace(/\/.*$/, "").replace(/^.*@/, "").replace(/^www\./, "");
+    const box = $("record");
+    box.replaceChildren();
+    if (!name) return;
+    const record = RECORDS[name];
+    if (!record) { box.appendChild(el("p", "meta", "No record found for " + name + ".")); return; }
+    const dl = el("dl");
+    dl.append(el("dt", "", "Domain"), el("dd", "", name));
+    record.forEach(r => dl.append(el("dt", "", r[0]), el("dd", "", r[1])));
+    box.appendChild(dl);
+  });
+
+  $("code").textContent = CODE;
+  renderAll();
+})();
+</script>
+</body>
+</html>

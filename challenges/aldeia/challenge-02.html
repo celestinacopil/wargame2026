@@ -15,6 +15,17 @@
 
 </p>
      </section>
+     <!-- EXTRA CHALLENGE: PHISHING DEFENCE (separate from the whistleblower flag below) -->
+     <section class="panel" id="def-panel">
+          <h2>Extra challenge: phishing defence</h2>
+          <p>Before you trust any message, check the Coast Guard security mailbox. Someone is phishing your staff.
+             Find the attack, report it, and verify that the whistleblower's tip is genuine.</p>
+          <div class="actions"><a class="button primary" href="../../mailscope/index.html">Open the mailbox ↗</a></div>
+          <p id="def-status" class="message" role="status"></p>
+          <p class="note">This extra challenge is recorded separately.
+             <a href="challenge-02-defence.html">Submit it by hand</a> only if the automatic recording fails.</p>
+     </section>
+
      <section class="panel">
           <h2>Evidence</h2>
           <p><a href="evidence/message.wav">Here</a> is the audio file.</p>
@@ -120,6 +131,52 @@
   "requiredFlags": 1,
   "feedback": "Challenge completed."
 }
+</script>
+
+<script>
+// Phishing defence handoff. MailScope leaves a marker after the phishing message is
+// reported. This reads it once and records the result in a hidden frame, so it does
+// not touch the flag form above.
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+  var prefix = (window.WARGAME && window.WARGAME.storagePrefix) || "wargame2026-v2:";
+  var MARKER = prefix + "mailscope-report";
+  var status = document.getElementById("def-status");
+  var frame = null;
+
+  function show(text, kind) { status.textContent = text; status.className = "message " + (kind || ""); }
+
+  function done() {
+    try {
+      var all = JSON.parse(localStorage.getItem(prefix + "progress:aldeia-cyber") || "{}");
+      return !!all["challenge-02-defence"];
+    } catch (e) { return false; }
+  }
+
+  function check() {
+    var ready = false;
+    try { ready = JSON.parse(localStorage.getItem(MARKER) || "null").ready === true; } catch (e) {}
+    if (!ready) { if (!frame && done()) show("Phishing defence completed on this browser.", "success"); return; }
+    try { localStorage.removeItem(MARKER); } catch (e) {} // run only once
+    show("Recording your phishing defence result...", "");
+    if (frame) frame.remove();
+    frame = document.createElement("iframe");
+    frame.hidden = true;
+    frame.title = "Recording the phishing defence result";
+    frame.src = "challenge-02-defence.html?auto=1";
+    document.body.appendChild(frame);
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!frame || event.source !== frame.contentWindow || !event.data || event.data.type !== "mailscope-result") return;
+    if (event.data.ok) show(event.data.text, "success");
+    else show("Could not record the defence result: " + event.data.text + " Use the Submit it by hand link above.", "error");
+  });
+  // Also check when the player returns with the Back button or from another tab.
+  window.addEventListener("pageshow", check);
+  window.addEventListener("storage", function (event) { if (event.key === MARKER) check(); });
+  check();
+});
 </script>
 
 </body>
