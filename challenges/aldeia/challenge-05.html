@@ -56,13 +56,100 @@
     </ul>
   </section>
 
+ <!-- FLAG SUBMISSION -->
+
   <section class="panel">
-    <h2>Check your flag</h2><form id="flag-form" hidden><label for="flag">Flag</label><input id="flag" type="text" placeholder="FLAG{your_answer}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="flag-message" required><div class="actions"><button type="submit" class="button primary">Check flag</button></div><p id="flag-message" class="message" role="status"></p></form><p id="accepted-status" class="note"></p><p class="note">Accepted flags are saved in this browser, not submitted to the organisers.</p></section><noscript><p class="panel">Enable JavaScript to use this portal.</p></noscript><footer>Fictional wargame. Use only your assigned space. Flags are checked locally and are not sent to organisers.</footer></main><script id="challenge-data" type="application/json">{
+    <h2>Submit your findings</h2>
+
+    <p>
+      Submit each flag separately. You will
+      receive immediate feedback.
+    </p>
+
+    <form id="flag-form" hidden>
+
+      <label for="objective">
+        Select your objective
+      </label>
+
+      <select id="objective" required>
+        <option value="">
+          Choose an objective
+        </option>
+
+        <option value="1">
+          Flag 1: Latitude and longitude
+        </option>
+  
+      </select>
+
+      <label for="flag">
+        Enter your flag
+      </label>
+
+      <input
+        id="flag"
+        type="text"
+        placeholder="FLAG{your_answer}"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        aria-describedby="flag-message"
+        required
+      >
+
+      <div class="actions">
+        <button
+          type="submit"
+          class="button primary">
+          Check flag
+        </button>
+      </div>
+
+      <p
+        id="flag-message"
+        class="message"
+        role="status">
+      </p>
+
+    </form>
+
+    <p
+      id="accepted-status"
+      class="note">
+    </p>
+
+    <p class="note">
+      Submissions are recorded for the organisers.
+      Accepted progress is also saved in this browser.
+    </p>
+  </section>
+
+  <noscript>
+    <p class="panel">
+      Enable JavaScript to use this portal.
+    </p>
+  </noscript>
+
+  <footer>
+    Fictional wargame. Use only your assigned space.
+    Submissions are recorded for the organisers.
+  </footer>
+
+</main>
+
+<!-- CHALLENGE CONFIGURATION -->
+
+<script
+  id="challenge-data"
+  type="application/json">
+{
   "id": "challenge-05",
+  "remoteId": "challenge-05",
   "enabled": true,
-  "acceptedHashes": [
-    "3b2e75b50ff4c61795884268a975dec64853fbbb6ca9357cc777fc6c31f6e1b6",
-    "ffa96161bc82de21b3bc9d0bf6ac352a68708484602c3daa265751a4ad1a009d"
-  ],
+  "validation": "remote",
+  "requiredFlags": 1,
   "feedback": "Correct. At 21:10 UTC on 2 December this civilian satellite was passing over the area, well within radio range of the two ships in its image: the Aurora and the vessel from challenge 03. It was in the right place at the right moment to relay orders. If its operator keeps a log of the messages it transmitted, that log could prove who gave them."
+}
+</script>
 }</script></body></html>
